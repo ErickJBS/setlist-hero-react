@@ -5,16 +5,22 @@ import PrivateRoute from "./routing/PrivateRoute";
 import store from './redux/store';
 import { Provider } from "react-redux";
 import RegisterPage from './pages/register-page';
+import LoginPage from './pages/login-page';
+
 import './pages/pages.css'
 
 import './App.css';
+
+const componentToTest = <><RegisterPage className="full-page"/></>;
 
 function App() {
   return (
     <Provider store={store}>
       <Router>
         <>
-          <Route exact path="/test" render={() => <><RegisterPage className="full-page"/></>}/>
+          <Route exact path="/test" render={() => componentToTest}/>
+          <Route exact path="/login" component={LoginPage} />
+          <Route exact path="/register" component={RegisterPage} />
         </>
       </Router>
     </Provider>
