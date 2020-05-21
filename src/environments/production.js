@@ -1,7 +1,7 @@
 import environment from './base';
 
-const basePath = '/';
-const env = environment(basePath);
+const host = '';
+const env = environment(host);
 
 export default {
     ...env,
