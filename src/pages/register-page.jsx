@@ -1,17 +1,20 @@
 import React, { Fragment } from 'react';
 import RegisterForm from '../components/register/register-form';
 import Card from 'react-bootstrap/Card'
-import './pages.css';
+import '../theme/styles.css';
 import { connect} from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import { selectUser } from '../redux/auth/auth.selector';
 import { Redirect } from 'react-router-dom';
+import image from '../assets/register_bg.jpg';
 const RegisterPage = ({ user }) => {
-    if (!user) {
-        return <Redirect to="/"></Redirect>
-    };
     return (
-        <div className="p-3 bg-dark fill-height center" >
+        <div className="p-3 fill-height center" style={{
+            backgroundImage: `url(${image})`,
+            backgroundRepeat: 'no-repeat',
+            backgroundAttachment: 'fixed',
+            backgroundSize: 'cover'
+        }}>
             <>
                 <Card style={{ width: '20rem', padding:'15px' }}>
                     <RegisterForm />

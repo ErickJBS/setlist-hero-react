@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import logo from '../../assets/only_logo.svg';
 import { connect} from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import { selectUser } from '../../redux/auth/auth.selector';
 import { registerSuccess } from '../../redux/auth/auth.actions';
 import { validatePassword } from '../../utils/RegisterUtils';
-import { Redirect } from 'react-router-dom';
-import '../../pages/pages.css';
+import { Redirect, Link } from 'react-router-dom';
+import MiniLogo from '../mini-logo';
+import authService from '../../services/AuthService';
 
 const RegisterForm = ({ registerUser, user }) => {
 
@@ -19,10 +19,14 @@ const RegisterForm = ({ registerUser, user }) => {
     const [confirmPassword, setConfirmPassword] = useState('');
     const [passwordConfirmed, setPasswordConfifmed] = useState(false);
     const [confirmPasswordFeedback, setConfirmPasswordFeedback] = useState('');
+    const [isRegistered, setIsRegistered] = useState(false);
 
     useEffect( () => {
-        (password !== confirmPassword) && setConfirmPasswordFeedback('Passwords are different');
-        if (password === confirmPassword) {
+        if (password !== confirmPassword){
+            setConfirmPasswordFeedback('Passwords are different');
+            setPasswordConfifmed(false);
+        }
+        else {
             setConfirmPasswordFeedback('');
             setPasswordConfifmed(true);
         } 
@@ -33,10 +37,17 @@ const RegisterForm = ({ registerUser, user }) => {
     const handleSubmit = (e) => {
         e.preventDefault();
         if (validPassword && passwordConfirmed) {
-            //TODO add call to real register service
-            user = { name, username, email, password };
-            registerUser(user);
-            alert('user registered');
+            user = {email, displayName: name, password, username };
+            authService.register(user)
+            .then(value => {
+                console.log(value);
+                setIsRegistered(true);
+                alert('user registered');
+            })
+           .catch(error =>{
+               setConfirmPasswordFeedback(error.message);
+           });
+
         }
     };
 
@@ -49,18 +60,12 @@ const RegisterForm = ({ registerUser, user }) => {
             setValidPassword(true);
         }
     };
-
+    if (isRegistered){
+        return <Redirect to="/login"/>
+    }
     return (
         <>
-            <div className="center image-centerd">
-                <img src={logo} alt="logo" 
-                style={/**Satanic IIFE */
-                    ((value) => ({
-                        height: `${value}px`,
-                        width: `${value}px`
-                    }))(100)
-                } />
-            </div>
+            <MiniLogo/>
             <form onSubmit={handleSubmit}>
                 <div className="form-group">
                     <input type="text" className="form-control" required
@@ -88,8 +93,10 @@ const RegisterForm = ({ registerUser, user }) => {
                         id="inputPassword2" onChange={(e) => setConfirmPassword(e.target.value)} />
                     <small id="passwordFeedback" className="form-text text-danger">{confirmPasswordFeedback}</small>
                 </div>
-                <button type="submit" className="btn btn-warning btn-block text-light">Sign up</button>
+                <button type="submit" className="btn btn-warning btn-block text-light">Register</button>
             </form>
+            <div className="spacer-mini"/>
+            <small className="center">Already have an account? <Link style={{paddingLeft: '5px'}} to="/login">Login here</Link></small>
         </>
     );
 }
