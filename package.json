@@ -3,11 +3,13 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@craco/craco": "^5.6.4",
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",
     "axios": "^0.19.2",
     "bootstrap": "^4.5.0",
+    "js-cookie": "^2.2.1",
     "prop-types": "^15.7.2",
     "react": "^16.13.1",
     "react-bootstrap": "^1.0.1",
@@ -20,8 +22,9 @@
     "reselect": "^4.0.0"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
+    "start": "cross-env CLIENT_ENV=development craco start",
+    "prod": "cross-env CLIENT_ENV=production craco start",
+    "build": "cross-env CLIENT_ENV=production craco build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },

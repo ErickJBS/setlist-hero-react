@@ -1,8 +1,14 @@
 import AuthActionTypes from './auth.types';
+import Cookies from 'js-cookie';
 
+let jwt = {};
+if (Cookies.get('jwt')) jwt = JSON.parse((Cookies.get('jwt')));
 
 const INITIAL_STATE = {
-    user: {},
+    user: {
+        token : jwt.token,
+        ...jwt.user
+    } || {},
     error: {}
 };
 

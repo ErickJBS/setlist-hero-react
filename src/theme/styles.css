@@ -1,0 +1,35 @@
+.spacer-sm {
+    height: 20px;
+}
+
+.spacer-mini {
+    height: 10px;
+}
+  
+.spacer-lg {
+    height: 100px;
+}
+  
+.spacer {
+    height: 50px;
+}
+
+.center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+  
+.fill-height {
+    height: 100vh;
+}
+
+.image-centerd{
+    padding: 5%;
+}
+  
+.btn-content-horizontal{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
