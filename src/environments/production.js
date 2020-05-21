@@ -1,6 +1,6 @@
 import environment from './base';
 
-const basePath = 'http://www.your-production-api.com';
+const basePath = '/';
 const env = environment(basePath);
 
 export default {
