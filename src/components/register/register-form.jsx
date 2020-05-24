@@ -33,6 +33,16 @@ const RegisterForm = ({ registerUser, user }) => {
     },
     [password,confirmPassword]);
 
+    useEffect(() => {
+        if (password === '') setPasswordFeedback('');
+        else if (!validatePassword(password)) {
+            setPasswordFeedback('Password must have at least one capital letter, one lowercase letter, one number and one special character (! @ # \$ % \^ & \*)');
+        } else {
+            setPasswordFeedback('');
+            setValidPassword(true);
+        }
+    },[password]);
+
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -48,16 +58,6 @@ const RegisterForm = ({ registerUser, user }) => {
                setConfirmPasswordFeedback(error.message);
            });
 
-        }
-    };
-
-    const handlePasswordChange = (e) => {
-        setPassword(e.target.value);
-        if (!validatePassword(password)) {
-            setPasswordFeedback('Password must have at least one capital letter, one lowercase letter, one number and one special character (! @ # \$ % \^ & \*)');
-        } else {
-            setPasswordFeedback('');
-            setValidPassword(true);
         }
     };
     if (isRegistered){
@@ -85,7 +85,7 @@ const RegisterForm = ({ registerUser, user }) => {
                 </div>
                 <div className="form-group">
                     <input type="password" className="form-control" required placeholder="Password"
-                        id="inputPassword1" onChange={handlePasswordChange} />
+                        id="inputPassword1" onChange={(e) => setPassword(e.target.value)} />
                     <small id="passwordFeedback" className="form-text text-danger">{passwordFeedback}</small>
                 </div>
                 <div className="form-group">

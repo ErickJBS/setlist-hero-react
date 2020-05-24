@@ -9,7 +9,7 @@ const SocialNetworkButton = ({ logo, text, action, btnClass }) => {
     return (
         <button className={`btn btn-block ${btnClass}`} 
         onClick={() => window.location.href = `${baseUrl}/auth/${action}`}>
-            <span className="btn-content-horizontal">
+            <span className="content-horizontal">
                 <img src={logo} alt="logo"
                     style={/**Satanic IIFE */
                         ((value) => ({

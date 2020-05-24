@@ -34,8 +34,9 @@ export class AuthService {
             console.log(response);
             return response.data;
         } catch (error) {
-            const message = error?.response?.data?.errors[0]?.msg;
-            if (error?.response?.status === 500) {
+            const {data, status} = error.response;
+            const message = data?.errors[0]?.msg;
+            if (status === 500) {
                 throw new Error('Something wrong happened... try again later');
             } else {
                 throw new Error(message);
