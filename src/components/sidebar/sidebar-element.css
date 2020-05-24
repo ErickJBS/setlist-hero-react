@@ -1,0 +1,46 @@
+.selectable {
+    transition-duration: 0.4s;
+    
+    cursor: pointer;
+}
+
+.selected {
+    background-color: #fafafa;
+    color: #ffc107;
+    transition: all ease-in-out 0.2s;
+    transform: translateX(15px);
+}
+
+.selectable:hover {
+    background-color: #fafafa;
+    color: #ffc107;
+    transition: all ease-in-out 0.2s;
+    
+    transform: translateX(15px);
+}
+
+.selectable span {
+    cursor: pointer;
+}
+
+.selectable:hover:active{
+    transform: translate(15px,10px);
+}
+
+.selectable span:after {
+    content: '\00bb';
+    position: absolute;
+    opacity: 0;
+    top: 0;
+    right: -20px;
+    transition: 0.3s;
+}
+
+.selectable:hover span {
+    padding-right: 25px;
+}
+
+.selectable:hover span:after {
+    opacity: 1;
+    right: 0;
+}

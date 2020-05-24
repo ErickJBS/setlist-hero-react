@@ -1,13 +1,10 @@
 import React from 'react';
-import LoginForm from '../components/login/login-form';
-import Card from 'react-bootstrap/Card'
-import '../theme/styles.css';
+import Card from 'react-bootstrap/Card';
 import { connect} from 'react-redux';
 import { createStructuredSelector } from 'reselect';
-import { selectUser } from '../redux/auth/auth.selector';
-import image from '../assets/login_bg.jpg';
+import { selectUser } from '../../redux/auth/auth.selector';
 
-const LoginPage = () =>{
+const AuthPage = ({image, children}) =>{
     return (
         <div className="p-3 fill-height center" style={{
             backgroundImage: `url(${image})`,
@@ -15,11 +12,12 @@ const LoginPage = () =>{
             backgroundAttachment: 'fixed',
             backgroundSize: 'cover'
         }}>
-            <>
-                <Card style={{ width: '20rem', padding:'15px' }}>
-                    <LoginForm />
+            <div  className="animated faster fadeIn">
+                <Card className="shadowed"
+                style={{ width: '20rem', padding:'15px' }}>
+                    {children}
                 </Card>
-            </>
+            </div>
         </div>
     )
 };
@@ -32,4 +30,4 @@ const mapStateToProps = createStructuredSelector({
 
 export default connect(
     mapStateToProps
-)(LoginPage);
+)(AuthPage);

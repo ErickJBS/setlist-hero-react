@@ -4,12 +4,16 @@ import { Redirect, BrowserRouter as Router, Route, Switch } from "react-router-d
 import PrivateRoute from "./routing/PrivateRoute";
 import store from './redux/store';
 import { Provider } from "react-redux";
-import RegisterPage from './pages/register-page';
-import LoginPage from './pages/login-page';
-import LandingPage from './pages/landing-page';
-import BandManagement from './pages/band-management-page';
+import RegisterPage from './pages/auth/register-page';
+import LoginPage from './pages/auth/login-page';
+import BandManagement from './pages/dashboard/band-management-page';
 import Cookies from 'js-cookie';
+import Dashboard from './pages/dashboard/dashboard';
 import './App.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import './theme/styles.css';
+import './theme/animate.css';
+import '@fortawesome/fontawesome-free/css/all.min.css'
 
 const componentToTest = <><RegisterPage className="full-page" /></>;
 
@@ -21,17 +25,15 @@ function App() {
       (
         <>
           <Switch>
-            <PrivateRoute exact path="/" to="/home" component={LandingPage} />
-            <PrivateRoute exact path="/home" component={LandingPage} />
-            <PrivateRoute exact path="/manage-bands" component={BandManagement} />
-            <Redirect to="/"/>
+            <PrivateRoute path="/dashboard" component={Dashboard} />
+            <Redirect from="/" to="/dashboard"/>
           </Switch>
         </>
       ) :
       (
         <>
           <Switch>
-            <Route exact path="/" to="/logIn" component={LoginPage} />
+            <Route exact path="/" to="/login" component={LoginPage} />
             <Route exact path="/test" render={() => componentToTest} />
             <Route exact path="/login" component={LoginPage} />
             <Route exact path="/register" component={RegisterPage} />

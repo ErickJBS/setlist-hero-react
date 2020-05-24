@@ -1,6 +1,8 @@
 import React from 'react';
+import {withRouter} from 'react-router-dom';
 
 const BandManagementPage = () =>{
+    console.log('rendering bands');
     return(
         <>
             Band Management!
@@ -8,4 +10,4 @@ const BandManagementPage = () =>{
     )
 };
 
-export default BandManagementPage;
+export default withRouter(BandManagementPage);

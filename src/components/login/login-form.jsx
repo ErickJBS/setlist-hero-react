@@ -23,7 +23,6 @@ const RegisterForm = ({ registerUser, user }) => {
         user = { identifier, password };
         authService.login(user)
             .then(value => {
-                console.log(value);
                 alert('Logged In!');
                 window.location.href = '/';
             })
