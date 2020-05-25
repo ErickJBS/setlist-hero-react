@@ -11,6 +11,10 @@
     transform: translateX(15px);
 }
 
+.selected img {  
+    filter: invert(85%) sepia(43%) saturate(3521%) hue-rotate(352deg) brightness(102%) contrast(104%);
+}
+
 .selectable:hover {
     background-color: #fafafa;
     color: #ffc107;
@@ -43,4 +47,17 @@
 .selectable:hover span:after {
     opacity: 1;
     right: 0;
+}
+.selectable:hover img {
+    
+    filter: invert(85%) sepia(43%) saturate(3521%) hue-rotate(352deg) brightness(102%) contrast(104%);
+}
+
+.dashboard {
+    height: 17px;
+    width: 15px;
+    padding-bottom: 2px;
+    position: relative;
+}
+.dashboard:hover:active {
 }

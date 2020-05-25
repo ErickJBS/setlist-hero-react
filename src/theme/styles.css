@@ -164,12 +164,7 @@ button:focus {
     animation-delay: 200ms;
 }
 
-.dashboard {
-    height: 17px;
-    width: 15px;
-    padding-bottom: 2px;
-    position: relative;
-}
+
 
 
 @media only screen and (max-width: 765px) {
