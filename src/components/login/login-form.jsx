@@ -11,7 +11,7 @@ import fLogo from '../../assets/fb_logo.svg';
 import authService from '../../services/AuthService';
 
 
-const RegisterForm = ({ registerUser, user }) => {
+const LoginForm = ({ registerUser, user }) => {
     const [password, setPassword] = useState('');
     const [identifier, setIdentifier] = useState('');
     const [errorFeedback, setErrorFeedback] = useState('');
@@ -68,5 +68,5 @@ const mapDispatchToProps = dispatch => ({
 export default connect(
     mapStateToProps,
     mapDispatchToProps
-)(RegisterForm);
+)(LoginForm);
 

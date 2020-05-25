@@ -1,7 +1,11 @@
 import React from 'react'
-
-
+import logo from '../../assets/dashboard.svg';
 export default {
+    dashboard: {
+        text: 'Dashboard',
+        icon: <img src={logo} alt="logo" className="fas dashboard"/>,
+        path: 'dashboard'
+    },
     profile: {
         text: 'Profile',
         icon: <i className="fas fa-user" />,
@@ -11,16 +15,6 @@ export default {
         text: 'Bands',
         icon: <i className="fas fa-users" />,
         path: 'bands'
-    },
-    events: {
-        text: 'Events & Shows',
-        icon: <i className="far fa-calendar-alt" />,
-        path: 'events'
-    },
-    songs: {
-        text: 'Songs',
-        icon: <i className="fas fa-music" />,
-        path: 'songs'
     },
     setlist: {
         text: 'Setlists',

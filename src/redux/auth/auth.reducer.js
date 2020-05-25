@@ -28,8 +28,8 @@ const authReducer = (state = INITIAL_STATE, action) => {
         case AuthActionTypes.LOGOUT:
             return {
                 ...state,
-                user: null,
-                error: null
+                user: {},
+                error: {}
             };
         case AuthActionTypes.REGISTER_SUCCESS:
             return {
