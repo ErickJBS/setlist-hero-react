@@ -1,17 +1,16 @@
-import React, {useState} from 'react';
-import {useHistory} from 'react-router-dom';
+import React, { useState } from 'react';
+import { useHistory, useLocation } from 'react-router-dom';
 import './sidebar-element.css';
 
-const SidebarElement = ({children, text, path,callback,selected }) => {
+const SidebarElement = ({ children, text, path }) => {
     const history = useHistory();
+    const location = useLocation();
 
-    const handleClick = (path) => {
-        history.push(`/dashboard/${path}`);
-        callback();
-    };
+    const selected = location.pathname.match(path);
+
     return (
         <div className={`row selectable ${selected ? 'selected' : ''}`} style={{ padding: '10px' }}
-            onClick={() => handleClick(path)}>
+            onClick={() => history.push(`/${path}`)}>
             <div className="col">
                 <div className="row align-items-center">
                     <div className="col-sm-1">

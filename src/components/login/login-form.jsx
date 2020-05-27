@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import { selectUser } from '../../redux/auth/auth.selector';
-import { registerSuccess } from '../../redux/auth/auth.actions';
+import { loginFailure } from '../../redux/auth/auth.actions';
 import { Link } from 'react-router-dom';
 import MiniLogo from '../mini-logo';
 import SocialNetworkButton from './social-network-button'
@@ -11,7 +11,7 @@ import fLogo from '../../assets/fb_logo.svg';
 import authService from '../../services/AuthService';
 
 
-const RegisterForm = ({ registerUser, user }) => {
+const LoginForm = ({ user }) => {
     const [password, setPassword] = useState('');
     const [identifier, setIdentifier] = useState('');
     const [errorFeedback, setErrorFeedback] = useState('');
@@ -62,11 +62,11 @@ const mapStateToProps = createStructuredSelector({
 });
 
 const mapDispatchToProps = dispatch => ({
-    registerUser: user => dispatch(registerSuccess(user))
+    loginFailure: error => dispatch(loginFailure(error))
 });
 
 export default connect(
     mapStateToProps,
     mapDispatchToProps
-)(RegisterForm);
+)(LoginForm);
 
