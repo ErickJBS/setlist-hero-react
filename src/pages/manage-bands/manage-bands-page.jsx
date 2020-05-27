@@ -20,7 +20,7 @@ const ManageBandsPage = ({fetchBandsFailure, fetchBandsSuccess, user}) => {
             fetchBandsSuccess(bands);
         })
         .catch(error => fetchBandsFailure(error));
-    },[fetchBandsFailure,fetchBandsSuccess]);
+    },[]);
 
     return (
         <Switch>

@@ -5,10 +5,13 @@ import Button from 'react-bootstrap/Button';
 import genreItems from './genre-items';
 import bandService from '../../services/BandService';
 import { connect } from 'react-redux';
+import {fetchBandsSuccess} from '../../redux/band/band.actions';
 import { createStructuredSelector } from 'reselect';
 import { selectUser } from '../../redux/auth/auth.selector';
+import {selectBands} from '../../redux/band/band.selector';
 import { Growl } from 'primereact/growl'
 import selected from '../multiselect-selected';
+import {useHistory} from 'react-router-dom';
 
 import environment from 'environment';
 
@@ -16,11 +19,12 @@ const baseUrl = environment.api;
 
 
 
-const CreateBand = ({ user, callback }) => {
+const CreateBand = ({ user, callback, fetchBands, bands }) => {
     const [genres, setGenres] = useState('');
     const [imageUrl, setImageUrl] = useState('');
     const [bandName, setBandName] = useState('');
     const [bandDescription, setBandDescription] = useState('');
+    const history = useHistory();
 
     let growl = useRef(null);
     let bandCreated = useRef(null);
@@ -41,9 +45,12 @@ const CreateBand = ({ user, callback }) => {
             logo: imageUrl
         };
         bandService.create(band)
-            .then(() => {
+            .then((result) => {
+                const newBands = bands.concat({...band, genres: band.genres.map((genre, index) => index === 0 ? genre : ` ${genre}`).join()})
                 callback();
+                fetchBands(newBands);
                 bandCreated.current.show({ severity: 'success', summary: 'Success', detail: 'Band Created' });
+                
             })
             .catch((error) => {
                 bandCreated.current.show({severity: 'error', summary: 'Error Message', detail: "Couldn't create band"});
@@ -113,7 +120,12 @@ const CreateBand = ({ user, callback }) => {
 }
 
 const mapStateToProps = createStructuredSelector({
-    user: selectUser
+    user: selectUser,
+    bands: selectBands
 });
 
-export default connect(mapStateToProps)(CreateBand);
+const mapDispatchToProps = dispatch => ({
+    fetchBands : bands => dispatch(fetchBandsSuccess(bands))
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(CreateBand);
