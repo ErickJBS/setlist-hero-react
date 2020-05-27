@@ -1,6 +1,6 @@
 import BandActionTypes from './band.types';
 
-const {FETCH_BANDS_SUCCESS, FETCH_BANDS_FAILURE,SELECT_BAND} = BandActionTypes;
+const { FETCH_BANDS_SUCCESS, FETCH_BANDS_FAILURE, SELECT_BAND, UPDATE_SELECTED_BAND } = BandActionTypes;
 
 
 const INITIAL_STATE = {
@@ -10,7 +10,7 @@ const INITIAL_STATE = {
 }
 
 const bandReducer = (state = INITIAL_STATE, action) => {
-    const {type, payload} = action;
+    const { type, payload } = action;
     switch (type) {
         case FETCH_BANDS_SUCCESS:
             return {
@@ -23,6 +23,11 @@ const bandReducer = (state = INITIAL_STATE, action) => {
                 error: payload
             }
         case SELECT_BAND:
+            return {
+                ...state,
+                selectedBand: payload
+            }
+        case UPDATE_SELECTED_BAND:
             return {
                 ...state,
                 selectedBand: payload

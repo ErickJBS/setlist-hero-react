@@ -12,25 +12,24 @@ const BandTitle = ({ className, selectedBand }) => {
         genre => {
             return (
                 <>
-                    <Badge className="h6" variant="secondary">{genre}</Badge>{' '}
+                    <Badge className="h7" variant="secondary">{genre}</Badge>{' '}
                 </>
             );
         }
     );
 
     return (
-        <Card style={{ padding: '30px' }} className={className}>
+        <Card style={{paddingTop:'15px',paddingLeft: '10px', paddingBottom:'15px'}} className={className}>
             <div className="container-fluid">
                 <div className="row">
-                    <div className="col-3 center" >
-                        <img src={logo}
+                    <div className="col-2 center" >
+                        <img src={logo} className="rounded"
                             alt={name}
                             style={/**Satanic IIFE */
                                 ((value) => ({
                                     height: `${value}px`,
-                                    width: `${value}px`,
-                                    marginTop: '20px'
-                                }))(100)
+                                    width: `${value}px`
+                                }))(150)
                             } />
                     </div>
                     <div className="col">

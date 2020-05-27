@@ -2,13 +2,16 @@ import React, { useState, useRef, useReducer } from 'react'
 import { MultiSelect } from 'primereact/multiselect';
 import { FileUpload } from 'primereact/fileupload';
 import Button from 'react-bootstrap/Button';
-import genreItems from './genre-items';
-import bandService from '../../services/BandService';
+import genreItems from '../genre-items';
+import bandService from '../../../services/BandService';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
-import { selectUser } from '../../redux/auth/auth.selector';
+import { selectUser } from '../../../redux/auth/auth.selector';
+import {selectBand} from '../../../redux/band/band.actions';
+import {selectSelectedBand} from '../../../redux/band/band.selector';
 import { Growl } from 'primereact/growl'
-import selected from '../multiselect-selected';
+import selected from '../../multiselect-selected';
+import {useHistory} from 'react-router-dom';
 
 import environment from 'environment';
 
@@ -16,14 +19,15 @@ const baseUrl = environment.api;
 
 
 
-const CreateBand = ({ user, callback }) => {
-    const [genres, setGenres] = useState('');
-    const [imageUrl, setImageUrl] = useState('');
-    const [bandName, setBandName] = useState('');
-    const [bandDescription, setBandDescription] = useState('');
-
+const EditBand = ({ user, selectedBand, updateSelectedBand }) => {
+    const [genres, setGenres] = useState(selectedBand.genres.split(',').map(genre => genre.trim()));
+    const [imageUrl, setImageUrl] = useState(selectedBand.logo);
+    const [bandName, setBandName] = useState(selectedBand.name);
+    const [bandDescription, setBandDescription] = useState(selectedBand.description);
+    const history = useHistory();
     let growl = useRef(null);
-    let bandCreated = useRef(null);
+    let bandUpdated = useRef(null);
+    let bandUpdateError = useRef(null);
 
     const onUpload = (e) => {
         growl.current.show({ severity: 'success', summary: 'Success', detail: 'File Uploaded' });
@@ -40,25 +44,27 @@ const CreateBand = ({ user, callback }) => {
             manager: user.id,
             logo: imageUrl
         };
-        bandService.create(band)
-            .then(() => {
-                callback();
-                bandCreated.current.show({ severity: 'success', summary: 'Success', detail: 'Band Created' });
+        bandService.update(selectedBand.id,band)
+            .then((element) => {
+                bandUpdated.current.show({ severity: 'success', summary: 'Success', detail: 'Band Updated' });
+                updateSelectedBand({...element, genres: element.genres.map((genre, index) => index === 0 ? genre : ` ${genre}`).join()});
             })
             .catch((error) => {
-                bandCreated.current.show({severity: 'error', summary: 'Error Message', detail: "Couldn't create band"});
+                bandUpdateError.current.show({severity: 'error', summary: 'Error Message', detail: "Couldn't update band"});
             });
     }
 
     return (
-        <>
-
-            <Growl ref={bandCreated} position="topright"></Growl>
+        <div className="animated faster fadeIn">
+            <div className="spacer-sm"/>
+            <Growl ref={bandUpdateError} position="topright"></Growl>
+            <Growl ref={bandUpdated} position="topright"></Growl>
             <Growl ref={growl} position="topleft"></Growl>
-            <form onSubmit={handleSubmit}>
+            <form style={{paddingLeft:'20px'}}onSubmit={handleSubmit}>
                 <div className="row">
                     <div className="col-5">
                         <div className="form-group">
+                            <label className="h6"><strong>Edit band logo</strong></label>
                             <FileUpload name="data"
                                 url={`${baseUrl}/storage/upload`}
                                 onUpload={onUpload}
@@ -68,11 +74,11 @@ const CreateBand = ({ user, callback }) => {
                     <div className="col">
                         <div className="form-group">
                             <label className="h6" htmlFor="band-name"><strong>Band name</strong></label>
-                            <input type="text" className="form-control" id="band-name" onChange={(e) => setBandName(e.target.value)} />
+                            <input defaultValue={bandName} type="text" className="form-control" id="band-name" onChange={(e) => setBandName(e.target.value)} />
                         </div>
                         <div className="form-group">
                             <label className="h6" htmlFor="band-description"><strong>Band description</strong></label>
-                            <textarea className="form-control" id="band-description" rows="3" onChange={(e) => setBandDescription(e.target.value)}></textarea>
+                            <textarea className="form-control" id="band-description" rows="3" onChange={(e) => setBandDescription(e.target.value)} defaultValue={bandDescription}/>
                         </div>
                         <div className="form-group">
                             <div className="row">
@@ -98,22 +104,23 @@ const CreateBand = ({ user, callback }) => {
                                 </div>
                             </div>
                         </div>
-                        <div className="row">
-                            <div className="col-8"></div>
-                            <div className="col">
-                                <Button style={{ marginRight: '10px' }} variant="success" type="submit" >Save</Button>
-                                <Button variant="secondary" onClick={callback}>Close</Button>
-                            </div>
-                        </div>
                     </div>
                 </div>
+                <div className="row" style={{paddingLeft:'90%'}}>
+                    <Button style={{width:'130px'}}variant="success" type="submit" >Save</Button>
+                </div>
             </form>
-        </>
+        </div>
     )
 }
 
 const mapStateToProps = createStructuredSelector({
-    user: selectUser
+    user: selectUser,
+    selectedBand: selectSelectedBand
 });
 
-export default connect(mapStateToProps)(CreateBand);
+const mapDispatchTopProps = dispatch => ({
+    updateSelectedBand: (band) => dispatch(selectBand(band))
+});
+
+export default connect(mapStateToProps,mapDispatchTopProps)(EditBand);
