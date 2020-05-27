@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
 import { Redirect, BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import PrivateRoute from "./routing/PrivateRoute";
-import store from './redux/store';
+import { store, persistor } from './redux/store';
+import { PersistGate } from 'redux-persist/integration/react'
 import { Provider } from "react-redux";
 import RegisterPage from './pages/auth/register-page';
 import LoginPage from './pages/auth/login-page';
 import Cookies from 'js-cookie';
-import Dashboard from './pages/dashboard/dashboard';
+import setAuthToken from './utils/SetAuthToken';
 import HomePage from './pages/home-page';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -22,13 +23,17 @@ const componentToTest = <><RegisterPage className="full-page" /></>;
 function App() {
   const [jwtCookie,] = useState(Cookies.get('jwt'));
 
+  if (jwtCookie) {
+    const jwt = JSON.parse(jwtCookie);
+    setAuthToken(jwt.token);
+  }
+
   const renderRoutes = () => {
     return jwtCookie ?
       (
         <>
           <Switch>
-            <PrivateRoute path="/home" component={HomePage} />
-            <Redirect from="/" to="/home"/>
+            <PrivateRoute path="/" component={HomePage} />
           </Switch>
         </>
       ) :
@@ -48,9 +53,11 @@ function App() {
 
   return (
     <Provider store={store}>
-      <Router>
-        {renderRoutes()}
-      </Router>
+      <PersistGate loading={null} persistor={persistor}>
+        <Router>
+          {renderRoutes()}
+        </Router>
+      </PersistGate>
     </Provider>
   );
 }

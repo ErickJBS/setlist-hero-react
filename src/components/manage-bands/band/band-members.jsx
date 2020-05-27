@@ -7,7 +7,6 @@ import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
 import CreateBand from './create-band';
 import { connect } from 'react-redux';
-import { fetchBandsSuccess, fetchBandsFailure, selectBand } from '../../redux/band/band.actions';
 import { selectBands } from '../../redux/band/band.selector';
 import { createStructuredSelector } from 'reselect';
 
@@ -68,7 +67,7 @@ const ManageBandsBody = ({bands, selectBand }) => {
                     <div className="spacer" />
                 </Modal.Body>
             </Modal>
-            <DataTable header={tableHeader()} value={bands}
+            <DataTable header={tableHeader()} 
                 globalFilter={globalFilter} sortField="name"
                 onRowClick={e => console.log(e.data)}
                 selectionMode="single"
@@ -86,13 +85,6 @@ const mapStateToProps = createStructuredSelector({
     bands: selectBands
 });
 
-const mapDispatchToProps = dispatch => ({
-    fetchBandsSuccess: bands => dispatch(fetchBandsSuccess(bands)),
-    fetchBandsFailure: error => dispatch(fetchBandsFailure(error)),
-    selectBand: band => dispatch(selectBand(band))
-});
-
 export default connect(
-    mapStateToProps,
-    mapDispatchToProps
+    mapStateToProps
 )(ManageBandsBody);

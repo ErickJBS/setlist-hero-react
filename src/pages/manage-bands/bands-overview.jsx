@@ -5,9 +5,6 @@ import GenericBodyCard from '../../components/generic-body-card';
 import ManageBandsBody from '../../components/manage-bands/manage-bands-body';
 
 const BandsOverview = () => {
-    const handleSearch = (e) => {
-        e.preventDefault();
-    };
 
     return (
         <div className="container-fluid" style={{ padding: '20px' }}>
@@ -21,4 +18,4 @@ const BandsOverview = () => {
         </div>
     )
 };
-export default withRouter(BandsOverview);
+export default BandsOverview;

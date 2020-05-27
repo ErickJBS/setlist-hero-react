@@ -15,11 +15,11 @@ const HomePage = () => {
                 </Card>
                 <div className="col-10">
                     <Switch>
-                        <PrivateRoute path='/home/bands' component={ManageBandsPage}/>
-                        <PrivateRoute path='/home/setlists' component={SetlistsPage}/>
-                        <PrivateRoute path='/home/profile' component={() => <>profile</>}/>
-                        <PrivateRoute path='/home/dashboard' component={() => <>dashboard</>}/>
-                        <Redirect from="/home" to="/home/dashboard"/>
+                        <PrivateRoute path='/bands' component={ManageBandsPage}/>
+                        <PrivateRoute path='/setlists' component={SetlistsPage}/>
+                        <PrivateRoute path='/profile' component={() => <>profile</>}/>
+                        <PrivateRoute path='/dashboard' component={() => <>dashboard</>}/>
+                        <Redirect from="/" to="/dashboard"/>
                     </Switch>
                 </div>
             </div>

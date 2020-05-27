@@ -1,0 +1,7 @@
+const BandActionTypes = {
+    FETCH_BANDS_SUCCESS: 'FETCH_BANDS_SUCCESS',
+    FETCH_BANDS_FAILURE: 'FETCH_BANDS_FAILURE',
+    SELECT_BAND: 'SELECT_BAND'
+}
+
+export default BandActionTypes;

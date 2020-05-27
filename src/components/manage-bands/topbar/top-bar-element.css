@@ -1,0 +1,40 @@
+.tbe-selectable {
+    transition-duration: 0.4s;
+    
+    cursor: pointer;
+}
+
+.tbe-selected {
+    color: #ffc107;
+    transition: all ease-in-out 0.2s;
+    border-bottom-color: #ffc107;
+    border-bottom-style: solid;
+}
+
+.tbe-selectable:hover {
+    color: #ffc107;
+    transition: all ease-in-out 0.2s;
+    border-bottom-color: #ffc107;
+    border-bottom-style: solid;
+}
+
+.tbe-selectable h6 {
+    cursor: pointer;
+}
+
+.tbe-selectable:hover:active{
+    transform: translateY(9px);
+}
+
+.tbe-selectable h6:after {
+    content: '🡣';
+    position: absolute;
+    opacity: 0;
+    right: 60px;
+    transition: 0.3s;
+}
+
+.tbe-selectable:hover h6:after {
+    opacity: 1;
+    right: 60px;
+}

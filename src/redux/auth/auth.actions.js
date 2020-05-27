@@ -12,7 +12,7 @@ export const loginSuccess = (user) => ({
 
 export const loginFailure = (error) => ({
     type: AuthActionTypes.LOGIN_FAILURE,
-    payload: AuthActionTypes
+    payload: error
 });
 
 export const logout = () => ({
@@ -26,5 +26,5 @@ export const registerSuccess = (user) => ({
 
 export const registerFailure = (error) => ({
     type: AuthActionTypes.REGISTER_FAILURE,
-    payload: AuthActionTypes
-})
+    payload: error
+});

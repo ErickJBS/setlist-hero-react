@@ -2,9 +2,10 @@ import React from 'react'
 import logo from '../../assets/only_logo.svg';
 const SidebarLogo = () => {
     return (
-        <div className="col">
+        <div className="col ">
             <div className="center image-centerd">
-                <img src={logo} alt="logo"
+                <img className="animated fast sidebar-logo rubberBand"
+                    src={logo} alt="logo"
                     style={/**Satanic IIFE */
                         ((value) => ({
                             height: `${value}px`,

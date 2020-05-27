@@ -10,7 +10,7 @@ const SidebarElement = ({ children, text, path }) => {
 
     return (
         <div className={`row selectable ${selected ? 'selected' : ''}`} style={{ padding: '10px' }}
-            onClick={() => history.push(`/home/${path}`)}>
+            onClick={() => history.push(`/${path}`)}>
             <div className="col">
                 <div className="row align-items-center">
                     <div className="col-sm-1">

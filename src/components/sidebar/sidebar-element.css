@@ -16,7 +16,6 @@
 }
 
 .selectable:hover {
-    background-color: #fafafa;
     color: #ffc107;
     transition: all ease-in-out 0.2s;
     
@@ -58,6 +57,4 @@
     width: 15px;
     padding-bottom: 2px;
     position: relative;
-}
-.dashboard:hover:active {
 }
