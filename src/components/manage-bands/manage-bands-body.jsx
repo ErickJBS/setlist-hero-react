@@ -10,34 +10,12 @@ import { connect } from 'react-redux';
 import { fetchBandsSuccess, fetchBandsFailure, selectBand } from '../../redux/band/band.actions';
 import { selectBands } from '../../redux/band/band.selector';
 import { createStructuredSelector } from 'reselect';
-
+import TableHeader from '../table-header';
 const ManageBandsBody = ({bands, selectBand }) => {
     const [globalFilter, setGlobalFilter] = useState(null);
     const [isDialogDisplaying, setIsDialogDisplaying] = useState(false);
     const [selectedColumn, setSelectedColumn] = useState(null);
     const history = useHistory();
-
-
-    const tableHeader = () => (
-        <div className='container-fluid' style={{ paddingTop: '15px' }}>
-            <div className="row align-content-center">
-                <div className="col-lg-2" style={{ paddingBottom: '10px' }}>
-                    <Button
-                        active={isDialogDisplaying}
-                        variant="success"
-                        onClick={() => setIsDialogDisplaying(true)}>
-                        <span className="text-light">
-                            <i className="fas fa-plus-square" />
-                            {' Add Band'}
-                        </span>
-                    </Button>
-                </div>
-                <div style={{ paddingLeft: '750px' }} className="col">
-                    <InputText type="search" placeholder="Search" onInput={(e) => setGlobalFilter(e.target.value)} />
-                </div>
-            </div>
-        </div>
-    )
 
     const createBandCallback = () => {
         setIsDialogDisplaying(false);
@@ -68,9 +46,15 @@ const ManageBandsBody = ({bands, selectBand }) => {
                     <div className="spacer" />
                 </Modal.Body>
             </Modal>
-            <DataTable header={tableHeader()} value={bands}
+            <DataTable  
+                header={
+                    <TableHeader
+                        isDialogDisplaying={isDialogDisplaying}
+                        setGlobalFilte={setGlobalFilter}
+                        setIsDialogDisplaying={setIsDialogDisplaying} />
+                }
+                value={bands} scrollable scrollHeight="315px"
                 globalFilter={globalFilter} sortField="name"
-                onRowClick={e => console.log(e.data)}
                 selectionMode="single"
                 selection={selectedColumn} onSelectionChange={chooseBand}>
                 <Column field="name" header="Name" sortable />

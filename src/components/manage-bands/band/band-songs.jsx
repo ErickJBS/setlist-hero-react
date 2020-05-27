@@ -7,7 +7,7 @@ import { selectBands } from '../../../redux/band/band.selector';
 import { createStructuredSelector } from 'reselect';
 import TableHeader from '../../table-header';
 
-const BandMembers = ({ bands, selectBand }) => {
+const BandSongs = ({ bands, selectBand }) => {
     const [globalFilter, setGlobalFilter] = useState(null);
     const [isDialogDisplaying, setIsDialogDisplaying] = useState(false);
 
@@ -47,9 +47,8 @@ const BandMembers = ({ bands, selectBand }) => {
                 globalFilter={globalFilter} sortField="name"
                 selectionMode="single">
                 <Column field="name" header="Name" sortable />
-                <Column field="username" header="Username" sortable />
-                <Column field="email" header="Email" sortable />
-                <Column field="intrument" header="Instrument" sortable />
+                <Column field="tags" header="Tags" sortable />
+                <Column field="tempo" header="Tempo" sortable />
             </DataTable>
         </>
     )
@@ -61,4 +60,4 @@ const mapStateToProps = createStructuredSelector({
 
 export default connect(
     mapStateToProps
-)(BandMembers);
+)(BandSongs);
