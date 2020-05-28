@@ -6,6 +6,7 @@ import { connect } from 'react-redux';
 import { selectBands } from '../../../redux/band/band.selector';
 import { createStructuredSelector } from 'reselect';
 import TableHeader from '../../table-header';
+import AddSong from './add-song';
 
 const BandSongs = ({ bands, selectBand }) => {
     const [globalFilter, setGlobalFilter] = useState(null);
@@ -19,7 +20,7 @@ const BandSongs = ({ bands, selectBand }) => {
         <>
 
             <Modal
-                size="xl"
+                size="lg"
                 show={isDialogDisplaying}
                 onHide={() => setIsDialogDisplaying(false)}
                 dialogClassName="modal-dialog-centered"
@@ -28,17 +29,17 @@ const BandSongs = ({ bands, selectBand }) => {
             >
                 <Modal.Header closeButton>
                     <Modal.Title id="modal-title">
-                        Add member
+                        Add song
                     </Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-
-                    <div className="spacer" />
+                    <AddSong callback={setIsDialogDisplaying}/>
                 </Modal.Body>
             </Modal>
             <DataTable className="animated faster fadeIn"
                 header={
                     <TableHeader
+                        buttonText="Add song"
                         isDialogDisplaying={isDialogDisplaying}
                         setGlobalFilte={setGlobalFilter}
                         setIsDialogDisplaying={setIsDialogDisplaying} />

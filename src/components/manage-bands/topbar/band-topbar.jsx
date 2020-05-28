@@ -3,8 +3,8 @@ import BandTopBarElement from './band-topbar-element';
 const elementsInfo = ['Members', 'Songs', 'Events', 'Edit'];
 
 const renderTopBandElements = elementsInfo.map(
-    elementName => (
-        <BandTopBarElement text={elementName}/>
+    (elementName, index) => (
+        <BandTopBarElement key={index} text={elementName}/>
     )
 );
 

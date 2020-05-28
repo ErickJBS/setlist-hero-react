@@ -9,11 +9,11 @@ import { createStructuredSelector } from 'reselect';
 const BandTitle = ({ className, selectedBand }) => {
     const { name, logo, description, genres } = selectedBand
     const generateGenreTags = genres.split(',').map(
-        genre => {
+        (genre, index) => {
             return (
-                <>
-                    <Badge className="h7" variant="secondary">{genre}</Badge>{' '}
-                </>
+                <React.Fragment key={index}>
+                    <Badge key={index} className="h7" variant="secondary">{genre}</Badge>{' '}
+                </React.Fragment>
             );
         }
     );

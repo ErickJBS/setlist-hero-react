@@ -50,6 +50,7 @@ const ManageBandsBody = ({bands, selectBand }) => {
             <DataTable  
                 header={
                     <TableHeader
+                        buttonText="Add band"
                         isDialogDisplaying={isDialogDisplaying}
                         setGlobalFilte={setGlobalFilter}
                         setIsDialogDisplaying={setIsDialogDisplaying} />

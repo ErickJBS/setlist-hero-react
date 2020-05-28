@@ -1,0 +1,6 @@
+const MusicianActionTypes = {
+    FETCH_MUSICIANS_SUCCESS: 'FETCH_MUSICIANS_SUCCESS',
+    FETCH_MUSICIANS_FAILURE: 'FETCH_MUSICIANS_FAILURE'
+}
+
+export default MusicianActionTypes;

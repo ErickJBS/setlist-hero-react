@@ -39,6 +39,7 @@ const BandEvents = ({ bands, selectBand }) => {
             <DataTable className="animated faster fadeIn"
                 header={
                     <TableHeader
+                        buttonText="Add event"
                         isDialogDisplaying={isDialogDisplaying}
                         setGlobalFilte={setGlobalFilter}
                         setIsDialogDisplaying={setIsDialogDisplaying} />
