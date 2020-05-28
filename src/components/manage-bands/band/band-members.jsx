@@ -113,7 +113,7 @@ const BandMembers = ({ musicians, fetchMusicians, band, fetchFailure }) => {
     };
 
     const renderDeleteModal = (
-        <Modal show={isConfirmDialogDisplaying} onHide={() => setIsConfirmDialogDisplaying(false)}>
+        <Modal show={isConfirmDialogDisplaying} onHide={() => setIsConfirmDialogDisplaying(false)} centered> 
             <Modal.Header closeButton>
                 <Modal.Title>Confirm deletion</Modal.Title>
             </Modal.Header>
@@ -132,7 +132,7 @@ const BandMembers = ({ musicians, fetchMusicians, band, fetchFailure }) => {
     );
 
     const renderUpdateModal = (
-        <Modal show={isUpdateDialogDisplaying} onHide={() => setIsUpdateDialogDisplaying(false)}>
+        <Modal show={isUpdateDialogDisplaying} onHide={() => setIsUpdateDialogDisplaying(false)} centered>
             <Modal.Header closeButton>
                 <Modal.Title>Confirm update</Modal.Title>
             </Modal.Header>

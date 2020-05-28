@@ -5,13 +5,13 @@ import Button from 'react-bootstrap/Button';
 import genreItems from './genre-items';
 import bandService from '../../services/BandService';
 import { connect } from 'react-redux';
-import {fetchBandsSuccess} from '../../redux/band/band.actions';
+import { fetchBandsSuccess } from '../../redux/band/band.actions';
 import { createStructuredSelector } from 'reselect';
 import { selectUser } from '../../redux/auth/auth.selector';
-import {selectBands} from '../../redux/band/band.selector';
+import { selectBands } from '../../redux/band/band.selector';
 import { Growl } from 'primereact/growl'
 import selected from '../multiselect-selected';
-import {useHistory} from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 
 import environment from 'environment';
 
@@ -21,7 +21,7 @@ const baseUrl = environment.api;
 
 const CreateBand = ({ user, callback, fetchBands, bands }) => {
     const [genres, setGenres] = useState('');
-    const [imageUrl, setImageUrl] = useState('');
+    const [imageUrl, setImageUrl] = useState(null);
     const [bandName, setBandName] = useState('');
     const [bandDescription, setBandDescription] = useState('');
     const history = useHistory();
@@ -46,14 +46,14 @@ const CreateBand = ({ user, callback, fetchBands, bands }) => {
         };
         bandService.create(band)
             .then((result) => {
-                const newBands = bands.concat({...band, genres: band.genres.map((genre, index) => index === 0 ? genre : ` ${genre}`).join()})
+                const newBands = bands.concat({ ...result, genres: result.genres.map((genre, index) => index === 0 ? genre : ` ${genre}`).join() })
                 callback();
                 fetchBands(newBands);
                 bandCreated.current.show({ severity: 'success', summary: 'Success', detail: 'Band Created' });
-                
+
             })
             .catch((error) => {
-                bandCreated.current.show({severity: 'error', summary: 'Error Message', detail: "Couldn't create band"});
+                bandCreated.current.show({ severity: 'error', summary: 'Error Message', detail: "Couldn't create band" });
             });
     }
 
@@ -61,15 +61,24 @@ const CreateBand = ({ user, callback, fetchBands, bands }) => {
         <>
 
             <Growl ref={bandCreated} position="topright"></Growl>
-            <Growl ref={growl} position="topleft"></Growl>
+            <Growl ref={growl} position="topright"></Growl>
             <form onSubmit={handleSubmit}>
                 <div className="row">
                     <div className="col-5">
                         <div className="form-group">
-                            <FileUpload name="data"
-                                url={`${baseUrl}/storage/upload`}
-                                onUpload={onUpload}
-                                multiple={false} accept="image/*" maxFileSize={1000000} />
+                            <label className="h6" htmlFor="create-band-profile-pic"><strong>Upload band logo</strong></label>
+                            <div>
+                                <FileUpload
+                                    name="data" id="create-band-profile-pic"
+                                    multiple={false}
+                                    url={`${baseUrl}/storage/upload`}
+                                    onUpload={onUpload}
+                                    accept="image/*" maxFileSize={1000000} />
+                            </div>
+                        </div>
+                        <div className="form-group">
+                            <label className="h6">Profile selected:</label>
+                            {imageUrl && <img className="animated faster fadeIn rounded"src={imageUrl} alt="band logo" style={{Left:'10px',height:'100px', width:'100px'}} />}
                         </div>
                     </div>
                     <div className="col">
@@ -100,7 +109,7 @@ const CreateBand = ({ user, callback, fetchBands, bands }) => {
                                         options={genreItems}
                                         onChange={(e) => setGenres(e.value)}
                                         selectedItemTemplate={selected}
-                                        
+
                                     />
                                 </div>
                             </div>
@@ -125,7 +134,7 @@ const mapStateToProps = createStructuredSelector({
 });
 
 const mapDispatchToProps = dispatch => ({
-    fetchBands : bands => dispatch(fetchBandsSuccess(bands))
+    fetchBands: bands => dispatch(fetchBandsSuccess(bands))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(CreateBand);

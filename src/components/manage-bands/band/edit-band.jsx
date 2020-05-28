@@ -59,7 +59,7 @@ const EditBand = ({ user, selectedBand, updateSelectedBand }) => {
             <div className="spacer-sm"/>
             <Growl ref={bandUpdateError} position="topright"></Growl>
             <Growl ref={bandUpdated} position="topright"></Growl>
-            <Growl ref={growl} position="topleft"></Growl>
+            <Growl ref={growl} position="topright"></Growl>
             <form style={{paddingLeft:'20px'}}onSubmit={handleSubmit}>
                 <div className="row">
                     <div className="col-5">

@@ -52,8 +52,8 @@ const AddBandMember = ({ callback, selectedBand, musicians, fetchMusicians }) =>
     return (
         <>
 
-            <Growl ref={memberAdded} position="topleft"></Growl>
-            <Growl ref={memberError} position="topleft"></Growl>
+            <Growl ref={memberAdded} position="topright"></Growl>
+            <Growl ref={memberError} position="topright"></Growl>
             <form onSubmit={handleSubmit}>
                 <div className="form-group row">
                     <label htmlFor="inputEmail3" className="col-sm-3 col-form-label h6">Email</label>
