@@ -44,9 +44,9 @@ export default class BaseService {
         }
     }
 
-    async getAll(id) {
+    async getAll({query,id}) {
         try {
-            const response = await axios.get(`${this.resourceUrl}/?manager=${id}`);
+            const response = await axios.get(`${this.resourceUrl}/?${query}=${id}`);
             return response.data;
         } catch (error) {
             if (error?.response?.status === 500) {

@@ -2,7 +2,7 @@ import React from 'react'
 import Button from 'react-bootstrap/Button';
 import { InputText } from 'primereact/inputtext';
 
-const TableHeader = ({isDialogDisplaying, setIsDialogDisplaying, setGlobalFilter}) => (
+const TableHeader = ({isDialogDisplaying, setIsDialogDisplaying, setGlobalFilter, buttonText}) => (
     <div className='container-fluid' style={{ paddingTop: '15px' }}>
         <div className="row align-content-center">
             <div className="col-lg-2" style={{ paddingBottom: '10px' }}>
@@ -12,7 +12,7 @@ const TableHeader = ({isDialogDisplaying, setIsDialogDisplaying, setGlobalFilter
                     onClick={() => setIsDialogDisplaying(true)}>
                     <span className="text-light">
                         <i className="fas fa-plus-square" />
-                        {' Add Member'}
+                        {` ${buttonText}`}
                     </span>
                 </Button>
             </div>

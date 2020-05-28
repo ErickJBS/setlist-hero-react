@@ -19,6 +19,7 @@ const ManageBandsBody = ({bands, selectBand }) => {
 
     const createBandCallback = () => {
         setIsDialogDisplaying(false);
+        
     }
     const chooseBand = e => {
         selectBand(e.value);
@@ -49,13 +50,14 @@ const ManageBandsBody = ({bands, selectBand }) => {
             <DataTable  
                 header={
                     <TableHeader
+                        buttonText="Add band"
                         isDialogDisplaying={isDialogDisplaying}
                         setGlobalFilte={setGlobalFilter}
                         setIsDialogDisplaying={setIsDialogDisplaying} />
                 }
                 value={bands} scrollable scrollHeight="315px"
                 globalFilter={globalFilter} sortField="name"
-                selectionMode="single"
+                selectionMode="single" sortOrder={1}
                 selection={selectedColumn} onSelectionChange={chooseBand}>
                 <Column field="name" header="Name" sortable />
                 <Column style={{ width: '50%' }} field="description" header="Description" sortable />
