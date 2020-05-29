@@ -62,7 +62,7 @@ const ManageBandsBody = ({bands, selectBand }) => {
                 <Column field="name" header="Name" sortable />
                 <Column style={{ width: '50%' }} field="description" header="Description" sortable />
                 <Column style={{ width: '25%' }} field="genres" header="Genres" sortable />
-
+                <Column field="active" header="Active" />
             </DataTable>
         </>
     )

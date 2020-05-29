@@ -32,7 +32,7 @@ const BandMembers = ({ musicians, fetchMusicians, band, fetchFailure }) => {
                         const { band, instrument, email, id, user } = result;
                         return {
                             band,
-                            instrument: [instrument[0].toUpperCase(), instrument.slice(1)].join(''),
+                            instrument,
                             email,
                             id,
                             status: user ? 'Active' : 'Pending',
@@ -108,7 +108,8 @@ const BandMembers = ({ musicians, fetchMusicians, band, fetchFailure }) => {
             setIsUpdateDialogDisplaying(true);
         };
         return (
-            <Button type="button" icon="pi pi-pencil" className="p-button-secondary" onClick={() => handleClick(rowData)}></Button>
+            <Button type="button" icon="pi pi-pencil" className="p-button-secondary" 
+                onClick={() => handleClick(rowData)}/>
         );
     };
 

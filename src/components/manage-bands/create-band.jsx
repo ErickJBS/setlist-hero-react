@@ -21,7 +21,7 @@ const baseUrl = environment.api;
 
 const CreateBand = ({ user, callback, fetchBands, bands }) => {
     const [genres, setGenres] = useState('');
-    const [imageUrl, setImageUrl] = useState(null);
+    const [imageUrl, setImageUrl] = useState(undefined);
     const [bandName, setBandName] = useState('');
     const [bandDescription, setBandDescription] = useState('');
     const history = useHistory();
