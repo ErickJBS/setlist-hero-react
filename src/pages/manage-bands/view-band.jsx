@@ -1,5 +1,5 @@
-import React,{useEffect} from 'react'
-import { useParams, Switch, Redirect, useHistory } from 'react-router-dom';
+import React from 'react'
+import { useParams, Switch, Redirect, useHistory} from 'react-router-dom';
 import { connect } from 'react-redux';
 import { selectSelectedBand } from '../../redux/band/band.selector';
 import { selectBand } from '../../redux/band/band.actions';
@@ -10,15 +10,15 @@ import PrivateRoute from '../../routing/PrivateRoute';
 import BandTopBar from '../../components/manage-bands/topbar/band-topbar';
 import BandMembers from '../../components/manage-bands/band/band-members';
 import BandEvents from '../../components/manage-bands/band/band-events';
-import BandSongs from '../../components/manage-bands/band/band-songs'
+import BandSongsRouter from '../../components/manage-bands/band/band-songs-router';
 import EditBand from '../../components/manage-bands/band/edit-band';
 
 const ViewBand = ({ selectedBand, selectBand }) => {
     const { id } = useParams();
     const history = useHistory();
-    console.log(id);
-
+    const location = useHistory();
     
+    if (id !== selectedBand.id) return <Redirect to="/bands"/>
 
     return (
         <div className="container-fluid" style={{ padding: '20px' }}>
@@ -30,15 +30,15 @@ const ViewBand = ({ selectedBand, selectBand }) => {
                         <BandTopBar />
                     </div>
                 </div>
-                <div className="spacer-mini"/>
+                <div className="spacer-mini" />
                 <div className="row">
                     <div className="col">
                         <Switch>
                             <PrivateRoute path="/bands/:id/members" component={BandMembers} />
-                            <PrivateRoute path="/bands/:id/songs" component={BandSongs} />
+                            <PrivateRoute path="/bands/:id/songs" component={BandSongsRouter} />
                             <PrivateRoute path="/bands/:id/events" component={BandEvents} />
                             <PrivateRoute path="/bands/:id/edit" component={EditBand} />
-                            <Redirect from="/bands/:id" to="/bands/:id/members"/>
+                            <Redirect from="/bands/:id" to="/bands/:id/members" />
                         </Switch>
                     </div>
                 </div>

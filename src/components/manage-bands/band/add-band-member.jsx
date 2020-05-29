@@ -35,7 +35,7 @@ const AddBandMember = ({ callback, selectedBand, musicians, fetchMusicians }) =>
                 const {band, instrument, id, email, user} = musician;
                 return {
                     band,
-                    instrument: [instrument[0].toUpperCase(), instrument.slice(1)].join(''), //transform to Pascal case
+                    instrument, //transform to Pascal case
                     email,
                     id,
                     status: user ? 'Active' : 'Pending',

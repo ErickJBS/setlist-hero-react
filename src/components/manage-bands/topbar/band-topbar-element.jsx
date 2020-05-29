@@ -6,7 +6,7 @@ const BandTopBarElement = ({text}) => {
     const history = useHistory();
     const location = useLocation();
     const {id} = useParams();
-    const selected = location.pathname.match(text.toLowerCase());
+    const selected = location.pathname.match(`/bands/${id}/${text.toLowerCase()}`);
 
     return (
         <div className={`center col tbe-selectable ${selected ? 'tbe-selected' : ''}`}

@@ -25,7 +25,7 @@ const BandTitle = ({ className, selectedBand }) => {
                     <div className="col-2 center" >
                         <img src={logo} className="rounded"
                             alt={name}
-                            style={/**Satanic IIFE */
+                            style={
                                 ((value) => ({
                                     height: `${value}px`,
                                     width: `${value}px`
