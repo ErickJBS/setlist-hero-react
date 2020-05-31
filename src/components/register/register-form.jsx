@@ -93,7 +93,7 @@ const RegisterForm = ({ registerUser, user }) => {
                         id="inputPassword2" onChange={(e) => setConfirmPassword(e.target.value)} />
                     <small id="passwordFeedback" className="form-text text-danger">{confirmPasswordFeedback}</small>
                 </div>
-                <button type="submit" className="btn btn-warning btn-block text-light">Register</button>
+                <button type="submit" className="btn btn-primary btn-block text-light">Register</button>
             </form>
             <div className="spacer-mini" />
             <small className="center">Already have an account? <Link style={{ paddingLeft: '5px' }} to="/login">Login here</Link></small>

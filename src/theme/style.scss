@@ -1,0 +1,133 @@
+$brand-color: #FD6631;
+$brand-shadow: rgb(255, 168, 137);
+$brand-color-svg: invert(61%) sepia(33%) saturate(7497%) hue-rotate(340deg) brightness(101%) contrast(99%);
+
+$theme-colors: ("primary":$brand-color,
+"info": #007bff,
+"highlight":#ffc107);
+
+$body-bg: #f2f2f2;
+$font-family-sans-serif: "Montserrat",
+sans-serif;
+
+$border-radius: 0.50rem;
+$border-radius-lg: 0.5rem;
+$border-radius-sm: 0.3rem;
+$font-size-base: .9rem;
+$font-size-lg: $font-size-base * 1.15;
+$font-size-sm: $font-size-base * .765;
+
+$enable-responsive-font-sizes: true;
+
+@import "../../node_modules/bootstrap/scss/bootstrap.scss";
+@import url("https://fonts.googleapis.com/css?family=Montserrat:300,400,700,800&display=swap");
+
+/*---------------DocsStyle----------------------*/
+
+$secondary: $gray-600;
+$secondary-hover: $gray-700;
+$secondary-active: $gray-800;
+$secondary-shadow: $gray-300;
+
+.square {
+  height: 150;
+}
+
+.spacer-sm {
+  height: 20px;
+}
+
+.spacer-lg {
+  height: 100px;
+}
+
+.spacer {
+  height: 50px;
+}
+
+.spacer-mini {
+    height: 10px;
+}
+
+/*---------------UIStyle----------------------*/
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  overflow-y: hidden;
+  scroll-behavior: smooth;
+  transition: all ease-in-out 0.2s;
+}
+
+*::-webkit-scrollbar {
+  width: 3px;
+
+  background-color: transparent;
+}
+
+*::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  background-color: #4950574f;
+}
+
+*::-webkit-scrollbar-track {
+  border-radius: 10px;
+  background-color: transparent;
+}
+
+hr {
+  margin-bottom: 0;
+}
+
+.bg-background {
+  background-color: $body-bg;
+}
+
+/* Selected items sidebar */
+
+.selected {
+    color: $brand-color;
+}
+
+.selectable:hover {
+    color: $brand-color;
+}
+
+.selected img {
+    filter: $brand-color-svg;
+}
+
+.selectable:hover img {
+    filter: $brand-color-svg;
+}
+
+.tbe-selectable{
+  padding-top: 16px;
+}
+
+.tbe-selected{
+  color: $brand-color;
+}
+.tbe-selectable:hover{
+  
+  color: $brand-color;
+}
+
+.my-multiselected-item-token{
+  background-color: $gray-600;
+}
+
+button {
+  font-family: 'Open Sans';
+  font-size: '14px';
+  
+}
+
+.btn{
+  font-family: 'Open Sans';
+  font-size: '14px';
+  min-width: 70px;
+}
+

@@ -1,9 +1,10 @@
 import React from 'react'
-import { useParams, Switch, Redirect, useHistory} from 'react-router-dom';
+import { useParams, Switch, Redirect, useHistory } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { selectSelectedBand } from '../../redux/band/band.selector';
 import { selectBand } from '../../redux/band/band.actions';
 import { createStructuredSelector } from 'reselect';
+import Card from 'react-bootstrap/Card';
 import GenericBodyCard from '../../components/generic-body-card';
 import BandTitle from '../../components/manage-bands/band-title';
 import PrivateRoute from '../../routing/PrivateRoute';
@@ -17,32 +18,34 @@ const ViewBand = ({ selectedBand, selectBand }) => {
     const { id } = useParams();
     const history = useHistory();
     const location = useHistory();
-    
-    if (id !== selectedBand.id) return <Redirect to="/bands"/>
+
+    if (id !== selectedBand.id) return <Redirect to="/bands" />
 
     return (
-        <div className="container-fluid" style={{ padding: '20px' }}>
-            <BandTitle className="shadowed animated faster bounceInRight" />
-            <div className="spacer-sm" />
-            <GenericBodyCard className="container-fluid shadowed animated faster bounceInRight delayed">
-                <div className="row">
-                    <div className="col">
-                        <BandTopBar />
+        <div className="container-fluid animated faster fadeIn" style={{ padding: '20px' }}>
+            <Card className="shadowed" style={{padding:'20px'}}>
+                <Card.Body>
+                    <BandTitle />
+                    <hr/>
+                    <div className="row">
+                        <div className="col">
+                            <BandTopBar />
+                        </div>
                     </div>
-                </div>
-                <div className="spacer-mini" />
-                <div className="row">
-                    <div className="col">
-                        <Switch>
-                            <PrivateRoute path="/bands/:id/members" component={BandMembers} />
-                            <PrivateRoute path="/bands/:id/songs" component={BandSongsRouter} />
-                            <PrivateRoute path="/bands/:id/events" component={BandEvents} />
-                            <PrivateRoute path="/bands/:id/edit" component={EditBand} />
-                            <Redirect from="/bands/:id" to="/bands/:id/members" />
-                        </Switch>
+                    <div className="spacer-mini" />
+                    <div className="row">
+                        <div className="col">
+                            <Switch>
+                                <PrivateRoute path="/bands/:id/members" component={BandMembers} />
+                                <PrivateRoute path="/bands/:id/songs" component={BandSongsRouter} />
+                                <PrivateRoute path="/bands/:id/events" component={BandEvents} />
+                                <PrivateRoute path="/bands/:id/edit" component={EditBand} />
+                                <Redirect from="/bands/:id" to="/bands/:id/members" />
+                            </Switch>
+                        </div>
                     </div>
-                </div>
-            </GenericBodyCard>
+                </Card.Body>
+            </Card>
         </div>
     )
 };

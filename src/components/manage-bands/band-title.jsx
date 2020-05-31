@@ -12,17 +12,17 @@ const BandTitle = ({ className, selectedBand }) => {
         (genre, index) => {
             return (
                 <React.Fragment key={index}>
-                    <Badge key={index} className="h7" variant="secondary">{genre}</Badge>{' '}
+                    <span className="h6" key={index}><Badge variant="secondary" style={{padding:'6px'}}>{genre}</Badge></span>{' '}
                 </React.Fragment>
             );
         }
     );
 
     return (
-        <Card style={{paddingTop:'15px',paddingLeft: '10px', paddingBottom:'15px'}} className={className}>
+        <div className={className}>
             <div className="container-fluid">
                 <div className="row">
-                    <div className="col-2 center" >
+                    <div className="col-2" >
                         <img src={logo} className="rounded"
                             alt={name}
                             style={
@@ -33,7 +33,8 @@ const BandTitle = ({ className, selectedBand }) => {
                             } />
                     </div>
                     <div className="col">
-                        <span className="h5"><strong>{name}</strong></span>
+                        <div className="spacer-mini"/>
+                        <span className="h3"><strong>{name}</strong></span>
                         <div className="spacer-sm" />
                         <p className="text-muted">{description}</p>
                         <div>
@@ -42,7 +43,7 @@ const BandTitle = ({ className, selectedBand }) => {
                     </div>
                 </div>
             </div>
-        </Card>
+        </div>
     )
 }
 const mapStateToProps = createStructuredSelector({

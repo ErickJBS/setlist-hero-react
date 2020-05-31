@@ -54,7 +54,7 @@ const AddSong = ({ callback, selectedBand, songs, fetchSongs }) => {
                 </div>
                 <div className="form-group row">
                     <div className="col-6" />
-                    <div className="col" style={{ paddingLeft: '39px' }}>
+                    <div className="col" style={{ paddingLeft: '52px' }}>
                         <button type="submit" className="btn btn-success mb-2" >Create song</button>{' '}
                         <button type="button" className="btn btn-secondary mb-2" onClick={callback}>Cancel</button>
                     </div>

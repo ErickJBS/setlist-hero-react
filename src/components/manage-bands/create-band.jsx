@@ -46,7 +46,7 @@ const CreateBand = ({ user, callback, fetchBands, bands }) => {
         };
         bandService.create(band)
             .then((result) => {
-                const newBands = bands.concat({ ...result, genres: result.genres.map((genre, index) => index === 0 ? genre : ` ${genre}`).join() })
+                const newBands = bands.concat({ ...result, genres: result.genres.join(', ') })
                 callback();
                 fetchBands(newBands);
                 bandCreated.current.show({ severity: 'success', summary: 'Success', detail: 'Band Created' });
@@ -71,6 +71,7 @@ const CreateBand = ({ user, callback, fetchBands, bands }) => {
                                 <FileUpload
                                     name="data" id="create-band-profile-pic"
                                     multiple={false}
+                                    auto
                                     url={`${baseUrl}/storage/upload`}
                                     onUpload={onUpload}
                                     accept="image/*" maxFileSize={1000000} />
@@ -116,8 +117,8 @@ const CreateBand = ({ user, callback, fetchBands, bands }) => {
                         </div>
                         <div className="row">
                             <div className="col-8"></div>
-                            <div className="col">
-                                <Button style={{ marginRight: '10px' }} variant="success" type="submit" >Save</Button>
+                            <div className="col" style={{paddingLeft:'57px'}}>
+                                <Button variant="success" type="submit" >Save</Button>{' '}
                                 <Button variant="secondary" onClick={callback}>Close</Button>
                             </div>
                         </div>

@@ -41,7 +41,7 @@ const Sidebar = () => {
             {renderSidebarElements}
             <div className="spacer-lg" />
             <span className="center">
-                <button className="btn btn-warning text-light" onClick={onLogout}>
+                <button className="btn btn-primary text-light" onClick={onLogout}>
                     <i className="fas fa-sign-out-alt"></i>
                     {' Logout'}
                 </button>

@@ -2,10 +2,9 @@ import React from 'react'
 
 const selected = (value) => {
     if (value) {
-
         return (
             <div className="my-multiselected-item-token">
-                <span>{value}</span>
+                {value}
             </div>
         );
     }

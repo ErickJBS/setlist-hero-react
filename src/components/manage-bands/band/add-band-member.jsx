@@ -69,7 +69,7 @@ const AddBandMember = ({ callback, selectedBand, musicians, fetchMusicians }) =>
                 </div>
                 <div className="row">
                     <div className="col-7" />
-                    <div className="col" style={{ paddingLeft: '35px' }}>
+                    <div className="col" style={{ paddingLeft: '43px' }}>
                         <button type="submit" className="btn btn-success mb-2">Submit</button>{' '}
                         <button type="button" className="btn btn-secondary mb-2" onClick={callback}>Cancel</button>
                     </div>

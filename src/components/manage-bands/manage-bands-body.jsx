@@ -47,7 +47,7 @@ const ManageBandsBody = ({bands, selectBand }) => {
                     <div className="spacer" />
                 </Modal.Body>
             </Modal>
-            <DataTable  
+            <DataTable  className="animated faster fadeIn"
                 header={
                     <TableHeader
                         buttonText="Add band"

@@ -46,11 +46,11 @@ const LoginForm = ({ user }) => {
 
                     <small id="passwordFeedback" className="form-text text-danger">{errorFeedback}</small>
                 </div>
-                <button type="submit" className="btn btn-warning btn-block text-light">Log in</button>
+                <button type="submit" className="btn btn-primary btn-block text-light">Log in</button>
             </form>
             <div className="spacer-mini" />
-            <SocialNetworkButton action="google" text="Log in with Google" logo={gLogo} btnClass="btn-outline-primary" />
-            <SocialNetworkButton action="facebook" text="Log in with Facebook" logo={fLogo} btnClass="btn-outline-primary" />
+            <SocialNetworkButton action="google" text="Log in with Google" logo={gLogo} btnClass="btn-outline-info" />
+            <SocialNetworkButton action="facebook" text="Log in with Facebook" logo={fLogo} btnClass="btn-outline-info" />
             <div className="spacer-mini" />
             <small className="center">Don't have an account? <Link style={{ paddingLeft: '5px' }} to="/register">Register here</Link></small>
         </>

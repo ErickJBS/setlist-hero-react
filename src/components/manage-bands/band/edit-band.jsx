@@ -149,12 +149,12 @@ const EditBand = ({ user, selectedBand, updateSelectedBand, updateBands, bands }
                 {actionState.message}
             </Modal.Body>
             <Modal.Footer>
-                <button className="btn btn-primary" onClick={actionState.action === 'update' ? handleSubmit : handleMark}>
+                <Button variant="primary" onClick={actionState.action === 'update' ? handleSubmit : handleMark}>
                     Confirm
-                </button>
-                <button className="btn btn-secondary" onClick={() => setIsConfirmDialogDisplaying(false)}>
+                </Button>
+                <Button variant="secondary" onClick={() => setIsConfirmDialogDisplaying(false)}>
                     Close
-                </button>
+                </Button>
             </Modal.Footer>
         </Modal>
     );
@@ -165,7 +165,6 @@ const EditBand = ({ user, selectedBand, updateSelectedBand, updateBands, bands }
         <>
             {renderModal}
             <div className="animated faster fadeIn">
-                <div className="spacer-sm" />
                 <Growl ref={bandUpdateError} position="topright"></Growl>
                 <Growl ref={bandUpdated} position="topright"></Growl>
                 <Growl ref={growl} position="topright"></Growl>
@@ -177,6 +176,7 @@ const EditBand = ({ user, selectedBand, updateSelectedBand, updateBands, bands }
                                 <FileUpload name="data"
                                     url={`${baseUrl}/storage/upload`}
                                     onUpload={onUpload}
+                                    auto
                                     multiple={false} accept="image/*" maxFileSize={1000000} />
                             </div>
                         </div>
@@ -208,7 +208,6 @@ const EditBand = ({ user, selectedBand, updateSelectedBand, updateBands, bands }
                                             options={genreItems}
                                             onChange={(e) => setGenres(e.value)}
                                             selectedItemTemplate={selected}
-
                                         />
                                     </div>
                                 </div>
@@ -216,10 +215,10 @@ const EditBand = ({ user, selectedBand, updateSelectedBand, updateBands, bands }
                         </div>
                     </div>
                     <div className="row">
-                        <div className="col-8" />
-                        <div className="col" style={{ paddingLeft: '89px' }}>
-                            <Button id="edit-band-save" style={{ width: '130px' }} variant="success" type="button" onClick={handleButtonClick}>Save</Button>{' '}
-                            <Button id="edit-band-mark" style={{ width: '150px' }} variant="secondary" type="button" onClick={handleButtonClick}>{`Mark as ${isBandActive ? 'inactive' : 'active'}`}</Button>
+                        <div className="col-9" />
+                        <div className="col" style={{ paddingLeft: '74px' }}>
+                            <Button id="edit-band-save"  variant="success" type="button" onClick={handleButtonClick}>Save</Button>{' '}
+                            <Button id="edit-band-mark"  variant="secondary" type="button" onClick={handleButtonClick}>{`Mark as ${isBandActive ? 'inactive' : 'active'}`}</Button>
                         </div >
 
                     </div>

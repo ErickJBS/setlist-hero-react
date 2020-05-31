@@ -1,20 +1,24 @@
 import React from 'react';
-import { withRouter} from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 import PageTitle from '../../components/page-title';
 import GenericBodyCard from '../../components/generic-body-card';
 import ManageBandsBody from '../../components/manage-bands/manage-bands-body';
+import Card from 'react-bootstrap/Card';
 
 const BandsOverview = () => {
 
     return (
         <div className="container-fluid" style={{ padding: '20px' }}>
-            <PageTitle className="shadowed animated faster bounceInRight" title="Your Bands">
-                Here you can organize, create, delete, edit and search your bands
-            </PageTitle>
-            <div className="spacer-sm" />
-            <GenericBodyCard className="shadowed animated faster bounceInRight delayed">
-                <ManageBandsBody />
-            </GenericBodyCard>
+            <Card className="shadowed" style={{padding:'20px'}}>
+                <Card.Body>
+                    <PageTitle className="animated faster fadeIn" title="Your Bands">
+                        Organize your bands
+                    </PageTitle>
+                    <hr/>
+                    <div className="spacer-mini" />
+                    <ManageBandsBody />
+                </Card.Body>
+            </Card>
         </div>
     )
 };

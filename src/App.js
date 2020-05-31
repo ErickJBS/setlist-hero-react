@@ -13,8 +13,9 @@ import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './theme/styles.css';
 import './theme/animate.css';
+import './theme/style.scss';
+import './theme/theme.scss';
 import '@fortawesome/fontawesome-free/css/all.min.css'
-import 'primereact/resources/themes/nova-light/theme.css';
 import 'primereact/resources/primereact.min.css';
 import 'primeicons/primeicons.css';
 
