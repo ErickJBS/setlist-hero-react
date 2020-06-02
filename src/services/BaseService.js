@@ -52,8 +52,7 @@ export default class BaseService {
             if (error?.response?.status === 500) {
                 throw new Error('Something happened');
             } else {
-                const { data } = error.response;
-                const errors = data?.errors;
+                const errors = error?.response?.data?.errors;
                 throw errors;
             }
         }
@@ -72,8 +71,8 @@ export default class BaseService {
                 const message = data?.errors[0]?.msg;
                 throw new Error(message);
             } else {
-                const { data } = error.response;
-                const errors = data?.errors;
+                 
+                const errors = error?.response?.data?.errors;
                 throw errors;
             }
         }

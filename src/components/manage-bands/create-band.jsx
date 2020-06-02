@@ -1,36 +1,31 @@
-import React, { useState, useRef, useReducer } from 'react'
-import { MultiSelect } from 'primereact/multiselect';
+import environment from 'environment';
 import { FileUpload } from 'primereact/fileupload';
+import { MultiSelect } from 'primereact/multiselect';
+import React, { useState } from 'react';
 import Button from 'react-bootstrap/Button';
-import genreItems from './genre-items';
-import bandService from '../../services/BandService';
 import { connect } from 'react-redux';
-import { fetchBandsSuccess } from '../../redux/band/band.actions';
 import { createStructuredSelector } from 'reselect';
 import { selectUser } from '../../redux/auth/auth.selector';
+import { fetchBandsSuccess } from '../../redux/band/band.actions';
 import { selectBands } from '../../redux/band/band.selector';
-import { Growl } from 'primereact/growl'
+import { showMessage } from '../../redux/growl/growl.actions';
+import bandService from '../../services/BandService';
 import selected from '../multiselect-selected';
-import { useHistory } from 'react-router-dom';
+import genreItems from './genre-items';
 
-import environment from 'environment';
 
 const baseUrl = environment.api;
 
 
 
-const CreateBand = ({ user, callback, fetchBands, bands }) => {
+const CreateBand = ({ user, callback, fetchBands, bands, showMessage }) => {
     const [genres, setGenres] = useState('');
     const [imageUrl, setImageUrl] = useState(undefined);
     const [bandName, setBandName] = useState('');
     const [bandDescription, setBandDescription] = useState('');
-    const history = useHistory();
-
-    let growl = useRef(null);
-    let bandCreated = useRef(null);
 
     const onUpload = (e) => {
-        growl.current.show({ severity: 'success', summary: 'Success', detail: 'File Uploaded' });
+        showMessage({ severity: 'success', summary: 'Success', detail: 'File Uploaded' });
         const response = JSON.parse(e.xhr.response);
         setImageUrl(response.downloadUrl);
     }
@@ -49,19 +44,16 @@ const CreateBand = ({ user, callback, fetchBands, bands }) => {
                 const newBands = bands.concat({ ...result, genres: result.genres.join(', ') })
                 callback();
                 fetchBands(newBands);
-                bandCreated.current.show({ severity: 'success', summary: 'Success', detail: 'Band Created' });
+                showMessage({ severity: 'success', summary: 'Success', detail: 'Band Created' });
 
             })
             .catch((error) => {
-                bandCreated.current.show({ severity: 'error', summary: 'Error Message', detail: "Couldn't create band" });
+                showMessage({ severity: 'error', summary: 'Error Message', detail: "Couldn't create band" });
             });
     }
 
     return (
         <>
-
-            <Growl ref={bandCreated} position="topright"></Growl>
-            <Growl ref={growl} position="topright"></Growl>
             <form onSubmit={handleSubmit}>
                 <div className="row">
                     <div className="col-5">
@@ -74,7 +66,7 @@ const CreateBand = ({ user, callback, fetchBands, bands }) => {
                                     auto
                                     url={`${baseUrl}/storage/upload`}
                                     onUpload={onUpload}
-                                    accept="image/*" maxFileSize={1000000} />
+                                    accept="image/*" maxFileSize={1000000}/>
                             </div>
                         </div>
                         <div className="form-group">
@@ -135,7 +127,8 @@ const mapStateToProps = createStructuredSelector({
 });
 
 const mapDispatchToProps = dispatch => ({
-    fetchBands: bands => dispatch(fetchBandsSuccess(bands))
+    fetchBands: bands => dispatch(fetchBandsSuccess(bands)),
+    showMessage: message => dispatch(showMessage(message))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(CreateBand);

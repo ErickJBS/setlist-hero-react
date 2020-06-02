@@ -1,20 +1,18 @@
-import React, { useState, useRef, useReducer } from 'react'
-import { MultiSelect } from 'primereact/multiselect';
+import environment from 'environment';
 import { FileUpload } from 'primereact/fileupload';
+import { MultiSelect } from 'primereact/multiselect';
+import React, { useReducer, useState } from 'react';
 import Button from 'react-bootstrap/Button';
-import genreItems from '../genre-items';
 import Modal from 'react-bootstrap/Modal';
-import bandService from '../../../services/BandService';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import { selectUser } from '../../../redux/auth/auth.selector';
-import { selectBand, fetchBandsSuccess } from '../../../redux/band/band.actions';
-import { selectSelectedBand, selectBands } from '../../../redux/band/band.selector';
-import { Growl } from 'primereact/growl'
+import { fetchBandsSuccess, selectBand } from '../../../redux/band/band.actions';
+import { selectBands, selectSelectedBand } from '../../../redux/band/band.selector';
+import { showMessage } from '../../../redux/growl/growl.actions';
+import bandService from '../../../services/BandService';
 import selected from '../../multiselect-selected';
-import { useHistory } from 'react-router-dom';
-
-import environment from 'environment';
+import genreItems from '../genre-items';
 
 const baseUrl = environment.api;
 
@@ -41,21 +39,19 @@ const reducer = (state, action) => {
     }
 }
 
-const EditBand = ({ user, selectedBand, updateSelectedBand, updateBands, bands }) => {
+const EditBand = ({ user, selectedBand, updateSelectedBand, fetchBandsSuccess, bands, showMessage }) => {
     const [genres, setGenres] = useState(selectedBand.genres.split(',').map(genre => genre.trim()));
     const [imageUrl, setImageUrl] = useState(selectedBand.logo);
     const [bandName, setBandName] = useState(selectedBand.name);
     const [bandDescription, setBandDescription] = useState(selectedBand.description);
     const [isBandActive, setIsBandActive] = useState(selectedBand.active === 'Active');
     const [isConfirmDialogDisplaying, setIsConfirmDialogDisplaying] = useState(false);
-    const history = useHistory();
-    let growl = useRef(null);
-    let bandUpdated = useRef(null);
-    let bandUpdateError = useRef(null);
+    
+
     const [actionState, dispatch] = useReducer(reducer, { action: {}, message: '' });
 
     const onUpload = (e) => {
-        growl.current.show({ severity: 'success', summary: 'Success', detail: 'File Uploaded' });
+        showMessage({ severity: 'success', summary: 'Success', detail: 'File Uploaded' });
         const response = JSON.parse(e.xhr.response);
         setImageUrl(response.downloadUrl);
     }
@@ -64,25 +60,25 @@ const EditBand = ({ user, selectedBand, updateSelectedBand, updateBands, bands }
         if (actionState.action === 'markActive') {
             bandService.update(selectedBand.id, {active: true})
                 .then(() => {
-                    growl.current.show({ severity: 'success', summary: 'Success', detail: 'Band marked as active' });
                     setIsBandActive(true)
                     setIsConfirmDialogDisplaying(false);
                     const updatedBand = { ...selectedBand, active: 'Active'};
                     updateSelectedBand(updatedBand);
+                    showMessage({ severity: 'success', summary: 'Success', detail: 'Band marked as active' });
                     return updatedBand;
                 })
                 .then((band) => {
                     fetchBandsSuccess(bands.concat(band));
                 })
                 .catch((error) => {
-                    growl.current.show({ severity: 'error', summary: 'Error Message', detail: "Couldn't update band" });
+                    showMessage({ severity: 'error', summary: 'Error Message', detail: "Couldn't update band" });
                     setIsConfirmDialogDisplaying(false);
                 });
         }
         if (actionState.action === 'markInactive') {
             bandService.delete(selectedBand.id)
                 .then(() => {
-                    growl.current.show({ severity: 'success', summary: 'Success', detail: 'Band marked as inactive' });
+                    showMessage({ severity: 'success', summary: 'Success', detail: 'Band marked as inactive' });
                     setIsBandActive(false);
                     const updatedBand = { ...selectedBand, active: 'Inactive'};
                     updateSelectedBand(updatedBand);
@@ -92,7 +88,7 @@ const EditBand = ({ user, selectedBand, updateSelectedBand, updateBands, bands }
                     fetchBandsSuccess(bands.concat(band));
                 })
                 .catch((error) => {
-                    growl.current.show({ severity: 'error', summary: 'Error Message', detail: "Couldn't update band" });
+                    showMessage({ severity: 'error', summary: 'Error Message', detail: "Couldn't update band" });
                     setIsConfirmDialogDisplaying(false);
                 });
         }
@@ -109,17 +105,17 @@ const EditBand = ({ user, selectedBand, updateSelectedBand, updateBands, bands }
         };
         bandService.update(selectedBand.id, band)
             .then((band) => {
-                bandUpdated.current.show({ severity: 'success', summary: 'Success', detail: 'Band Updated' });
                 setIsConfirmDialogDisplaying(false);
                 const updatedBand = { ...band, genres: band.genres.join(', ')};
                 updateSelectedBand(updatedBand);
+                showMessage({ severity: 'success', summary: 'Success', detail: 'Band Updated' });
                 return updatedBand;
             })
             .then((band) => {
                 fetchBandsSuccess(bands.concat(band));
             })
             .catch((error) => {
-                bandUpdateError.current.show({ severity: 'error', summary: 'Error Message', detail: "Couldn't update band" });
+                showMessage({ severity: 'error', summary: 'Error Message', detail: "Couldn't update band" });
             });
     }
 
@@ -159,15 +155,10 @@ const EditBand = ({ user, selectedBand, updateSelectedBand, updateBands, bands }
         </Modal>
     );
 
- 
-
     return (
         <>
             {renderModal}
             <div className="animated faster fadeIn">
-                <Growl ref={bandUpdateError} position="topright"></Growl>
-                <Growl ref={bandUpdated} position="topright"></Growl>
-                <Growl ref={growl} position="topright"></Growl>
                 <form style={{ paddingLeft: '20px' }}>
                     <div className="row">
                         <div className="col-5">
@@ -236,7 +227,8 @@ const mapStateToProps = createStructuredSelector({
 
 const mapDispatchTopProps = dispatch => ({
     updateSelectedBand: (band) => dispatch(selectBand(band)),
-    fetchBandsSuccess: (bands) => dispatch(fetchBandsSuccess(bands))
+    fetchBandsSuccess: (bands) => dispatch(fetchBandsSuccess(bands)),
+    showMessage: message => dispatch(showMessage(message))
 });
 
 export default connect(mapStateToProps, mapDispatchTopProps)(EditBand);

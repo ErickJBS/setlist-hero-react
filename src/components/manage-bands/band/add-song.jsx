@@ -1,19 +1,17 @@
-import React, { useState, useRef } from 'react'
-import { connect } from 'react-redux';
-import { selectSelectedBand } from '../../../redux/band/band.selector';
-import { createStructuredSelector } from 'reselect';
 import { Chips } from 'primereact/chips';
-import { Growl } from 'primereact/growl';
-import { selectSongs } from '../../../redux/song/song.selector';
+import React, { useState } from 'react';
+import { connect } from 'react-redux';
+import { createStructuredSelector } from 'reselect';
+import { selectSelectedBand } from '../../../redux/band/band.selector';
+import { showMessage } from '../../../redux/growl/growl.actions';
 import { fetchSongs } from '../../../redux/song/song.actions';
+import { selectSongs } from '../../../redux/song/song.selector';
 import songService from '../../../services/SongService';
 
 const AddSong = ({ callback, selectedBand, songs, fetchSongs }) => {
     const [name, setName] = useState('');
     const [tempo, setTempo] = useState(null);
     const [tags, setTags] = useState([]);
-    let songMessage = useRef(null);
-    let songMessageFailed = useRef(null);
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -21,18 +19,16 @@ const AddSong = ({ callback, selectedBand, songs, fetchSongs }) => {
         songService.create(song)
             .then(song => {
                 setTimeout(callback, 1000);
-                songMessage.current.show({ life: 650, severity: 'success', summary: 'Success', detail: 'Song added' });
+                showMessage({ life: 650, severity: 'success', summary: 'Success', detail: 'Song added' });
                 return { ...song, tags: song.tags.join(', ') };
             })
             .then(newSong => fetchSongs(songs.concat(newSong)))
             .catch(e => {
-                songMessageFailed.current.show({ severity: 'error', summary: 'Error Message', detail: "Couldn't add song" })
+                showMessage({ severity: 'error', summary: 'Error Message', detail: "Couldn't add song" })
             });
     }
     return (
         <>
-            <Growl ref={songMessage} position="topright"></Growl>
-            <Growl ref={songMessageFailed} position="topright"></Growl>
             <form onSubmit={handleSubmit}>
                 <div className="form-group row">
                     <label htmlFor="song-name" className="col-sm-2 col-form-label">Name</label>
@@ -69,7 +65,8 @@ const mapStateToProps = createStructuredSelector({
 });
 
 const mapDispatchToProps = dispatch => ({
-    fetchSongs: songs => dispatch(fetchSongs(songs))
+    fetchSongs: songs => dispatch(fetchSongs(songs)),
+    showMessage: message => dispatch(showMessage(message))
 })
 
 export default connect(

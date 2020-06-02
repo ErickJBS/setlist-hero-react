@@ -9,14 +9,11 @@ import { fetchMusiciansSuccess } from '../../../redux/musician/musician.actions'
 import { selectSelectedBand } from '../../../redux/band/band.selector';
 import musicianService from '../../../services/MusicianService';
 import options from './instruments-options';
+import {showMessage} from '../../../redux/growl/growl.actions';
 
-const AddBandMember = ({ callback, selectedBand, musicians, fetchMusicians }) => {
+const AddBandMember = ({ callback, selectedBand, musicians, fetchMusicians, showMessage }) => {
     const [selectedInstrument, setSelectedInstrument] = useState('');
     const [email, setEmail] = useState('');
-    let memberAdded = useRef(null);
-    let memberError = useRef(null);
-
-    
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -28,7 +25,7 @@ const AddBandMember = ({ callback, selectedBand, musicians, fetchMusicians }) =>
         musicianService.create(musician)
             .then(musician => {
                 setTimeout(callback, 1000);
-                memberAdded.current.show({ life: 650, severity: 'success', summary: 'Success', detail: 'Member added' });
+                showMessage({ life: 650, severity: 'success', summary: 'Success', detail: 'Member added' });
                 return musicianService.getById(musician.id)
             })
             .then(musician => {
@@ -45,15 +42,12 @@ const AddBandMember = ({ callback, selectedBand, musicians, fetchMusicians }) =>
             })
             .then(newMusician => fetchMusicians(musicians.concat(newMusician)))
             .catch(e => {
-                memberError.current.show({ severity: 'error', summary: 'Error Message', detail: "Couldn't add member" });
+                showMessage({ severity: 'error', summary: 'Error Message', detail: "Couldn't add member" });
             });
 
     }
     return (
         <>
-
-            <Growl ref={memberAdded} position="topright"></Growl>
-            <Growl ref={memberError} position="topright"></Growl>
             <form onSubmit={handleSubmit}>
                 <div className="form-group row">
                     <label htmlFor="inputEmail3" className="col-sm-3 col-form-label h6">Email</label>
@@ -84,7 +78,8 @@ const mapStateToProps = createStructuredSelector({
     musicians: selectMusicians
 });
 const mapDispatchTopProps = dispatch => ({
-    fetchMusicians: musicians => dispatch(fetchMusiciansSuccess(musicians))
+    fetchMusicians: musicians => dispatch(fetchMusiciansSuccess(musicians)),
+    showMessage: message => dispatch(showMessage(message))
 })
 
 export default connect(mapStateToProps, mapDispatchTopProps)(AddBandMember);

@@ -1,8 +1,6 @@
 import React,{useEffect} from 'react'
-import Card from 'react-bootstrap/Card';
 import { connect } from 'react-redux';
 import Badge from 'react-bootstrap/Badge';
-import { Redirect, useParams } from 'react-router-dom';
 import { selectSelectedBand } from '../../redux/band/band.selector';
 import { createStructuredSelector } from 'reselect';
 
@@ -36,7 +34,7 @@ const BandTitle = ({ className, selectedBand }) => {
                         <div className="spacer-mini"/>
                         <span className="h3"><strong>{name}</strong></span>
                         <div className="spacer-sm" />
-                        <p className="text-muted">{description}</p>
+                        <p className="text-white">{description}</p>
                         <div>
                             {generateGenreTags}
                         </div>

@@ -52,7 +52,7 @@ const ManageBandsBody = ({bands, selectBand }) => {
                     <TableHeader
                         buttonText="Add band"
                         isDialogDisplaying={isDialogDisplaying}
-                        setGlobalFilte={setGlobalFilter}
+                        setGlobalFilter={setGlobalFilter}
                         setIsDialogDisplaying={setIsDialogDisplaying} />
                 }
                 value={bands} scrollable scrollHeight="315px"

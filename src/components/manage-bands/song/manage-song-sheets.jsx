@@ -1,6 +1,6 @@
 import React from 'react'
 import Button from 'react-bootstrap/Button';
-import {useHistory} from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import { InputText } from 'primereact/inputtext';
 import { connect } from 'react-redux'
 import { TreeTable } from 'primereact/treetable';
@@ -9,30 +9,30 @@ import { createStructuredSelector } from 'reselect'
 import { selectSelectedBand } from '../../../redux/band/band.selector';
 import { selectSelectedSong } from '../../../redux/song/song.selector';
 
-const CustomHeader = ({lyricsCallback, setGlobalFilter, sheetsCallback}) => (
-    <div className='container-fluid' style={{ paddingTop: '15px' }}>
-        <div className="row align-content-center">
-            <div className="col-lg-2" style={{ paddingBottom: '10px' }}>
+const CustomHeader = ({ lyricsCallback, setGlobalFilter, chordsCallback, isLyricsEdition, isChordsEdition }) => (
+    <div style={{ paddingTop: '15px' }}>
+        <div className="d-flex flex-row justify-content-start">
+            <div style={{ paddingBottom: '10px', marginRight: '10px' }}>
                 <Button
-                    variant="success"
+                    variant="secondary"
                     onClick={lyricsCallback}>
                     <span className="text-light">
-                        <i className="fas fa-plus-square" />
-                        {` Add Lyrics`}
+                        {isLyricsEdition ? <i className="fas fa-edit" /> : <i className="fas fa-plus-square" />}
+                        {` ${isLyricsEdition ? 'Edit' : 'Add'} Lyrics`}
                     </span>
                 </Button>
             </div>
-            <div className="col-lg-2" style={{ paddingBottom: '10px' }}>
+            <div>
                 <Button
-                    variant="success"
-                    onClick={sheetsCallback}>
+                    variant="secondary"
+                    onClick={chordsCallback}>
                     <span className="text-light">
-                        <i className="fas fa-plus-square" />
-                        {` Add Sheet`}
+                        {isChordsEdition ? <i className="fas fa-edit" /> : <i className="fas fa-plus-square" />}
+                        {` ${isChordsEdition ? 'Edit' : 'Add'} Chords`}
                     </span>
                 </Button>
             </div>
-            <div style={{ paddingLeft: '550px' }} className="col">
+            <div style={{ paddingLeft: '600px' }}>
                 <InputText type="search" placeholder="Search" onInput={(e) => setGlobalFilter(e.target.value)} />
             </div>
         </div>
@@ -42,38 +42,72 @@ const CustomHeader = ({lyricsCallback, setGlobalFilter, sheetsCallback}) => (
 const ManageSongSheets = ({ band, song }) => {
     const history = useHistory();
 
-    const songSheetsFormated = ({ lyrics, sheets }) => ({
-        root: [
-            {
-                key: 0,
-                data: {
-                    type: 'Lyrics',
-                    content: lyrics
+
+
+    const songSheetsFormated = ({ lyrics, sheets, chords }) => {
+        let formatedSheets = [{ key: '2-0', data: { name: 'No sheets' } }];
+        if (!sheets) {
+            formatedSheets = sheets.map((sheet, index) => (
+                {
+                    key: `2-${index}`,
+                    data: {
+                        name: sheet?.intrument,
+                        type: sheet?.instrument,
+                        content: sheet?.content
+                    }
+                }));
+        }
+        console.log(formatedSheets);
+        return {
+            root: [
+                {
+                    key: 0,
+                    data: {
+                        name: 'Lyrics',
+                        type: 'Lyrics',
+                        content: lyrics
+                    }
+                },
+                {
+                    key: 1,
+                    data: {
+                        name: 'Chords',
+                        type: 'Chords',
+                        content: chords
+                    }
+                },
+                {
+                    key: 2,
+                    data: {
+                        name: 'Sheets',
+                        type: 'All sheets'
+                    },
+                    children: formatedSheets
                 }
-            }
-        ].concat(sheets.map(
-            (sheet, index) => ({
-                key: index,
-                data: {
-                    type: sheet?.instrument,
-                    content: sheet?.content
-                }
-            })
-        ))
-    });
+            ]
+        };
+    }
+
     const lyricsCallback = () => {
         history.push(`/bands/${band.id}/songs/${song.id}/editor/lyrics`);
     }
 
+    const chordsCallback = () => {
+        history.push(`/bands/${band.id}/songs/${song.id}/editor/chords`);
+    }
+
     return (
-        <TreeTable 
+        <TreeTable
             className="animated faster fadeIn"
-            value={songSheetsFormated(song)}
+            value={songSheetsFormated(song).root}
             header={
-                <CustomHeader 
-                    lyricsCallback={lyricsCallback}/>
-                }
-            >
+                <CustomHeader
+                    lyricsCallback={lyricsCallback}
+                    chordsCallback={chordsCallback}
+                    isLyricsEdition={song.lyrics}
+                    isChordsEdition={song.chords} />
+            }
+        >
             <Column field="name" header="Name" expander />
             <Column field="type" header="Type" />
         </TreeTable>

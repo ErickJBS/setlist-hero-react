@@ -1,33 +1,10 @@
-$brand-color: #FD6631;
-$brand-shadow: rgb(255, 168, 137);
-$brand-color-svg: invert(61%) sepia(33%) saturate(7497%) hue-rotate(340deg) brightness(101%) contrast(99%);
 
-$theme-colors: ("primary":$brand-color,
-"info": #007bff,
-"highlight":#ffc107);
-
-$body-bg: #f2f2f2;
-$font-family-sans-serif: "Montserrat",
-sans-serif;
-
-$border-radius: 0.50rem;
-$border-radius-lg: 0.5rem;
-$border-radius-sm: 0.3rem;
-$font-size-base: .9rem;
-$font-size-lg: $font-size-base * 1.15;
-$font-size-sm: $font-size-base * .765;
-
-$enable-responsive-font-sizes: true;
-
+@import "./variables.scss";
 @import "../../node_modules/bootstrap/scss/bootstrap.scss";
 @import url("https://fonts.googleapis.com/css?family=Montserrat:300,400,700,800&display=swap");
 
 /*---------------DocsStyle----------------------*/
 
-$secondary: $gray-600;
-$secondary-hover: $gray-700;
-$secondary-active: $gray-800;
-$secondary-shadow: $gray-300;
 
 .square {
   height: 150;
@@ -59,17 +36,62 @@ body {
   overflow-y: hidden;
   scroll-behavior: smooth;
   transition: all ease-in-out 0.2s;
+  color: #F2F2F2;
+}
+
+.modal-header{
+  border-bottom-color: $dark;
+}
+.modal-footer {
+  border-top-color: $dark;;
+}
+
+.selectable img {
+  filter: invert(100%) sepia(0%) saturate(0%) hue-rotate(49deg) brightness(103%) contrast(103%);
+}
+
+.close {
+  color: white;
+}
+
+.form-control {
+  color: white;
+  background-color: $body-bg;
+  border-color: $body-bg;
+}
+
+.form-control::placeholder {
+  color: $placeholder-color;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover, 
+input:-webkit-autofill:focus, 
+input:-webkit-autofill:active {
+  -webkit-box-shadow: 0 0 0 30px $body-bg inset !important;
+  box-shadow: 0 0 0 30px $body-bg inset !important;
+  -webkit-text-fill-color: white !important;
+  color: white;
+}
+
+.form-control:focus{
+  color: white;
+  border-color:$brand-color;
+  background-color: $body-bg;
+}
+
+.form-control::-webkit-input-placeholder { /* Edge */
+  color: $placeholder-color;
 }
 
 *::-webkit-scrollbar {
-  width: 3px;
-
+  width: 10px;
   background-color: transparent;
 }
 
 *::-webkit-scrollbar-thumb {
   border-radius: 10px;
-  background-color: #4950574f;
+  background-color: white;
 }
 
 *::-webkit-scrollbar-track {
@@ -114,9 +136,17 @@ hr {
   
   color: $brand-color;
 }
+.card, .card-body,.modal-content ,.modal-header,.modal-title,.modal-body {
+  background-color: #3f3f3f;
+}
+
+.shadowed {
+  
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
 
 .my-multiselected-item-token{
-  background-color: $gray-600;
+  background-color: $brand-color;
 }
 
 button {

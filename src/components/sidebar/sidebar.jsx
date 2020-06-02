@@ -37,7 +37,7 @@ const Sidebar = () => {
             <div className="row justify-content-center">
                 <SidebarLogo />
             </div>
-            <hr style={{ margin: '5px', backgroundColor: 'gray' }} />
+            <hr style={{ margin: '5px'}} />
             {renderSidebarElements}
             <div className="spacer-lg" />
             <span className="center">

@@ -16,7 +16,7 @@ const TableHeader = ({isDialogDisplaying, setIsDialogDisplaying, setGlobalFilter
                     </span>
                 </Button>
             </div>  
-            <div style={{ paddingLeft: '750px' }}>
+            <div style={{ paddingLeft: '780px' }}>
                 <InputText type="search" placeholder="Search" onInput={(e) => setGlobalFilter(e.target.value)} />
             </div>
         </div>

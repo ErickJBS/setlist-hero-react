@@ -9,17 +9,15 @@ import LoginPage from './pages/auth/login-page';
 import Cookies from 'js-cookie';
 import setAuthToken from './utils/SetAuthToken';
 import HomePage from './pages/home-page';
-import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import '@fortawesome/fontawesome-free/css/all.min.css'
+import 'primereact/resources/primereact.min.css';
+import 'primeicons/primeicons.css';
+import './App.css';
 import './theme/styles.css';
 import './theme/animate.css';
 import './theme/style.scss';
 import './theme/theme.scss';
-import '@fortawesome/fontawesome-free/css/all.min.css'
-import 'primereact/resources/primereact.min.css';
-import 'primeicons/primeicons.css';
-
-const componentToTest = <><RegisterPage className="full-page" /></>;
 
 function App() {
   const [jwtCookie,] = useState(Cookies.get('jwt'));
@@ -42,7 +40,6 @@ function App() {
         <>
           <Switch>
             <Route exact path="/" to="/login" component={LoginPage} />
-            <Route exact path="/test" render={() => componentToTest} />
             <Route exact path="/login" component={LoginPage} />
             <Route exact path="/register" component={RegisterPage} />
             <Redirect to="/" />
@@ -62,5 +59,7 @@ function App() {
     </Provider>
   );
 }
+
+
 
 export default App;

@@ -13,13 +13,13 @@ import { Growl } from 'primereact/growl';
 import TableHeader from '../../table-header';
 import AddSong from './add-song';
 import songService from '../../../services/SongService';
+import { showMessage } from '../../../redux/growl/growl.actions';
 
-const BandSongs = ({ songs, band, fetchSongs, selectSong }) => {
+const BandSongs = ({ songs, band, fetchSongs, selectSong, showMessage }) => {
     const [globalFilter, setGlobalFilter] = useState(null);
     const [isDialogDisplaying, setIsDialogDisplaying] = useState(false);
     const [isConfirmDialogDisplaying, setIsConfirmDialogDisplaying] = useState(false);
     const [songToBeDeleted, setSongToBeDeleted] = useState(null);
-    let songModified = useRef(null);
     const history = useHistory();
 
     useEffect(() => {
@@ -35,12 +35,12 @@ const BandSongs = ({ songs, band, fetchSongs, selectSong }) => {
         songService.delete(songToBeDeleted.id)
             .then(() => {
                 setSongToBeDeleted(null);
-                songModified.current.show({ severity: 'success', summary: 'Success', detail: 'Member deleted' });
+                showMessage({ severity: 'success', summary: 'Success', detail: 'Member deleted' });
                 setIsConfirmDialogDisplaying(false)
                 fetchSongs(songs.filter(song => song.id !== songToBeDeleted.id));
             })
             .catch(() => {
-                songModified.current.show({ severity: 'error', summary: 'Error Message', detail: "Couldn't delete member" });
+                showMessage({ severity: 'error', summary: 'Error Message', detail: "Couldn't delete member" });
                 setIsConfirmDialogDisplaying(false)
             });
     }
@@ -61,7 +61,11 @@ const BandSongs = ({ songs, band, fetchSongs, selectSong }) => {
             history.push(`/bands/${band.id}/songs/${data.id}`);
         };
         return (
-            <Button type="button" icon="pi pi-pencil" className="p-button-secondary" onClick={() => handleClick(rowData)}></Button>
+            <Button
+                type="button"
+                icon="pi pi-pencil"
+                className="p-button-secondary"
+                onClick={() => handleClick(rowData)} />
         );
     };
 
@@ -87,7 +91,6 @@ const BandSongs = ({ songs, band, fetchSongs, selectSong }) => {
 
     return (
         <>
-            <Growl ref={songModified} position="topright"></Growl>
             {renderDeleteModal}
             <Modal
                 show={isDialogDisplaying}
@@ -132,7 +135,8 @@ const mapStateToProps = createStructuredSelector({
 
 const mapDispatchToProps = dispatch => ({
     selectSong: song => dispatch(selectSong(song)),
-    fetchSongs: songs => dispatch(fetchSongs(songs))
+    fetchSongs: songs => dispatch(fetchSongs(songs)),
+    showMessage: message => dispatch(showMessage(message))
 })
 
 export default connect(

@@ -6,7 +6,7 @@ class MusicianService extends BaseService{
     }
 
     async getAll(id){
-        return super.getAll({query:'band', id})
+        return super.getAll({query:'band', id});
     }
 }
 
