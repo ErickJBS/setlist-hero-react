@@ -197,11 +197,11 @@ const BandMembers = ({ musicians, fetchMusicians, band, fetchFailure }) => {
                 scrollable scrollHeight="315px"
                 globalFilter={globalFilter} sortField="name"
                 selectionMode="single">
-                <Column field="name" header="Name" sortable />
-                <Column field="username" header="Username" sortable style={{ width: '13%' }} />
-                <Column field="email" header="Email" sortable />
-                <Column field="instrument" header="Instrument" sortable style={{ width: '13%' }} />
-                <Column field="status" header="Status" sortable />
+                <Column field="name" header="Name" sortable style={{width:'25%', textAlign:'center'}} />
+                <Column field="username" header="Username" sortable style={{ width: '13%', textAlign:'center' }} />
+                <Column field="email" header="Email" sortable style={{textAlign:'center'}} />
+                <Column field="instrument" header="Instrument" sortable style={{ width: '13%', textAlign:'center' }} />
+                <Column field="status" header="Status" style={{width:'15%', textAlign:'center'}} sortable />
                 <Column body={editBodyTemplate} headerStyle={{ width: '4em', textAlign: 'center' }} bodyStyle={{ textAlign: 'center', overflow: 'visible' }} />
                 <Column body={deleteBodyTemplate} headerStyle={{ width: '4em', textAlign: 'center' }} bodyStyle={{ textAlign: 'center', overflow: 'visible' }} />
             </DataTable>

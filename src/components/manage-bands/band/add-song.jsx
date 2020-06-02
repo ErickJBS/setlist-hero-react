@@ -18,8 +18,8 @@ const AddSong = ({ callback, selectedBand, songs, fetchSongs }) => {
         const song = { band: selectedBand.id, name, tempo, tags };
         songService.create(song)
             .then(song => {
-                setTimeout(callback, 1000);
-                showMessage({ life: 650, severity: 'success', summary: 'Success', detail: 'Song added' });
+                callback();
+                showMessage({severity: 'success', summary: 'Success', detail: 'Song added' });
                 return { ...song, tags: song.tags.join(', ') };
             })
             .then(newSong => fetchSongs(songs.concat(newSong)))

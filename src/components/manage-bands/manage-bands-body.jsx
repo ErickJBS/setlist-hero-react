@@ -59,10 +59,10 @@ const ManageBandsBody = ({bands, selectBand }) => {
                 globalFilter={globalFilter} sortField="name"
                 selectionMode="single" sortOrder={1}
                 selection={selectedColumn} onSelectionChange={chooseBand}>
-                <Column field="name" header="Name" sortable />
+                <Column field="name" header="Name" sortable style={{textAlign: 'center'}} />
                 <Column style={{ width: '50%' }} field="description" header="Description" sortable />
                 <Column style={{ width: '25%' }} field="genres" header="Genres" sortable />
-                <Column field="active" header="Active" />
+                <Column field="active" header="Active" style={{textAlign: 'center'}}/>
             </DataTable>
         </>
     )

@@ -1,16 +1,16 @@
-import React, { useEffect } from 'react'
-import { Switch, withRouter } from 'react-router-dom';
+import React, { useEffect } from 'react';
+import { connect } from 'react-redux';
+import { Switch } from 'react-router-dom';
+import { createStructuredSelector } from 'reselect';
+import { selectUser } from '../../redux/auth/auth.selector';
+import { fetchBandsFailure, fetchBandsSuccess } from '../../redux/band/band.actions';
+import { selectBands } from '../../redux/band/band.selector';
 import PrivateRoute from '../../routing/PrivateRoute';
+import bandService from '../../services/BandService';
 import BandsOverview from './bands-overview';
 import ViewBand from './view-band';
-import { connect } from 'react-redux';
-import { fetchBandsSuccess, fetchBandsFailure } from '../../redux/band/band.actions';
-import { selectBands } from '../../redux/band/band.selector';
-import { selectUser } from '../../redux/auth/auth.selector';
-import { createStructuredSelector } from 'reselect';
-import bandService from '../../services/BandService';
-
-const ManageBandsPage = ({ fetchBandsFailure, fetchBandsSuccess, user }) => {
+import {showMessage} from '../../redux/growl/growl.actions';
+const ManageBandsPage = ({ fetchBandsFailure, fetchBandsSuccess, user, showMessage }) => {
     useEffect(() => {
         bandService.getAll(user.id)
             .then(bands => {
@@ -23,7 +23,10 @@ const ManageBandsPage = ({ fetchBandsFailure, fetchBandsSuccess, user }) => {
                         })
                     ));
             })
-            .catch(error => fetchBandsFailure(error));
+            .catch(error => {
+                fetchBandsFailure(error);
+                showMessage({ severity: 'error', summary: 'Error Message', detail: "Couldn't fetch bands try later" })
+            });
     }, []);
 
     return (
@@ -41,7 +44,8 @@ const mapStateToProps = createStructuredSelector({
 
 const mapDispatchToProps = dispatch => ({
     fetchBandsSuccess: bands => dispatch(fetchBandsSuccess(bands)),
-    fetchBandsFailure: error => dispatch(fetchBandsFailure(error))
+    fetchBandsFailure: error => dispatch(fetchBandsFailure(error)),
+    showMessage: message => dispatch(showMessage(message))
 });
 
 export default connect(

@@ -6,20 +6,17 @@ import { connect } from 'react-redux';
 import { selectBands } from '../../../redux/band/band.selector';
 import { createStructuredSelector } from 'reselect';
 import TableHeader from '../../table-header';
+import CreateEvent from './create-event';
 
 const BandEvents = ({ bands, selectBand }) => {
     const [globalFilter, setGlobalFilter] = useState(null);
     const [isDialogDisplaying, setIsDialogDisplaying] = useState(false);
 
-    const createBandCallback = () => {
-        setIsDialogDisplaying(false);
-    }
-
     return (
         <>
 
             <Modal
-                size="xl"
+                
                 show={isDialogDisplaying}
                 onHide={() => setIsDialogDisplaying(false)}
                 dialogClassName="modal-dialog-centered"
@@ -28,12 +25,12 @@ const BandEvents = ({ bands, selectBand }) => {
             >
                 <Modal.Header closeButton>
                     <Modal.Title id="modal-title">
-                        Add member
+                        Add event
                     </Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-
-                    <div className="spacer" />
+                    <CreateEvent
+                        callback={() => setIsDialogDisplaying(false)}/>
                 </Modal.Body>
             </Modal>
             <DataTable className="animated faster fadeIn"
@@ -41,7 +38,7 @@ const BandEvents = ({ bands, selectBand }) => {
                     <TableHeader
                         buttonText="Add event"
                         isDialogDisplaying={isDialogDisplaying}
-                        setGlobalFilte={setGlobalFilter}
+                        setGlobalFilter={setGlobalFilter}
                         setIsDialogDisplaying={setIsDialogDisplaying} />
                 }
                 scrollable scrollHeight="315px"

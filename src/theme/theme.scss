@@ -67,9 +67,9 @@ body .pi {
 body .p-link {
   font-size: 14px;
   font-family: "Open Sans", "Helvetica Neue", sans-serif;
-  -moz-border-radius: 3px;
-  -webkit-border-radius: 3px;
-  border-radius: 3px;
+  -moz-border-radius: $border-radius;
+  -webkit-border-radius: $border-radius;
+  border-radius: $border-radius;
 }
 body .p-link:focus {
   outline: 0 none;
@@ -95,9 +95,9 @@ body .p-inputtext {
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
-  -moz-border-radius: 3px;
-  -webkit-border-radius: 3px;
-  border-radius: 3px;
+  -moz-border-radius: $border-radius;
+  -webkit-border-radius: $border-radius;
+  border-radius: $border-radius;
 }
 body .p-inputtext:enabled:hover {
   border-color: $brand-color;
@@ -123,9 +123,9 @@ body .p-checkbox .p-checkbox-box {
   width: 20px;
   height: 20px;
   text-align: center;
-  -moz-border-radius: 3px;
-  -webkit-border-radius: 3px;
-  border-radius: 3px;
+  -moz-border-radius: $border-radius;
+  -webkit-border-radius: $border-radius;
+  border-radius: $border-radius;
   -moz-transition: background-color 0.2s, border-color 0.2s, box-shadow 0.2s;
   -o-transition: background-color 0.2s, border-color 0.2s, box-shadow 0.2s;
   -webkit-transition: background-color 0.2s, border-color 0.2s, box-shadow 0.2s;
@@ -307,9 +307,9 @@ body .p-autocomplete.p-autocomplete-multiple .p-autocomplete-multiple-container 
   margin: 0 0.286em 0 0;
   background: $brand-color;
   color: white;
-  -moz-border-radius: 3px;
-  -webkit-border-radius: 3px;
-  border-radius: 3px;
+  -moz-border-radius: $border-radius;
+  -webkit-border-radius: $border-radius;
+  border-radius: $border-radius;
 }
 body .p-autocomplete-panel {
   padding: 0;
@@ -401,9 +401,9 @@ body .p-chips > ul.p-inputtext .p-chips-token {
   margin: 0 0.286em 0 0;
   background: $brand-color;
   color: white;
-  -moz-border-radius: 3px;
-  -webkit-border-radius: 3px;
-  border-radius: 3px;
+  -moz-border-radius: $border-radius;
+  -webkit-border-radius: $border-radius;
+  border-radius: $border-radius;
 }
 body .p-dropdown {
   background: #585858;
@@ -412,9 +412,9 @@ body .p-dropdown {
   -o-transition: border-color 0.2s, box-shadow 0.2s;
   -webkit-transition: border-color 0.2s, box-shadow 0.2s;
   transition: border-color 0.2s, box-shadow 0.2s;
-  -moz-border-radius: 3px;
-  -webkit-border-radius: 3px;
-  border-radius: 3px;
+  -moz-border-radius: $border-radius;
+  -webkit-border-radius: $border-radius;
+  border-radius: $border-radius;
 }
 body .p-dropdown:not(.p-disabled):hover {
   border-color: $brand-color;
@@ -446,9 +446,9 @@ body .p-dropdown .p-dropdown-trigger {
   text-align: center;
   padding: 0;
   color: #dedede;
-  -moz-border-radius: 3px;
-  -webkit-border-radius: 3px;
-  border-radius: 3px;
+  -moz-border-radius: $border-radius;
+  -webkit-border-radius: $border-radius;
+  border-radius: $border-radius;
 }
 body .p-dropdown .p-dropdown-clear-icon {
   color: #dedede;
@@ -510,9 +510,9 @@ body .p-multiselect {
   -o-transition: border-color 0.2s, box-shadow 0.2s;
   -webkit-transition: border-color 0.2s, box-shadow 0.2s;
   transition: border-color 0.2s, box-shadow 0.2s;
-  -moz-border-radius: 3px;
-  -webkit-border-radius: 3px;
-  border-radius: 3px;
+  -moz-border-radius: $border-radius;
+  -webkit-border-radius: $border-radius;
+  border-radius: $border-radius;
 }
 body .p-multiselect:not(.p-disabled):hover {
   border-color: $brand-color;
@@ -541,9 +541,9 @@ body .p-multiselect .p-multiselect-trigger {
   text-align: center;
   padding: 0;
   color: #dedede;
-  -moz-border-radius: 3px;
-  -webkit-border-radius: 3px;
-  border-radius: 3px;
+  -moz-border-radius: $border-radius;
+  -webkit-border-radius: $border-radius;
+  border-radius: $border-radius;
 }
 body .p-multiselect-panel {
   padding: 0;
@@ -714,9 +714,9 @@ body .p-listbox.p-disabled .p-checkbox-box:not(.p-disabled):not(.p-highlight):ho
   border: 1px solid #585858;
 }
 body .p-listbox .p-listbox-list-wrapper {
-  -moz-border-radius: 3px;
-  -webkit-border-radius: 3px;
-  border-radius: 3px;
+  -moz-border-radius: $border-radius;
+  -webkit-border-radius: $border-radius;
+  border-radius: $border-radius;
 }
 body .p-listbox .p-listbox-footer {
   padding: 0.429em 0.857em 0.429em 0.857em;
@@ -789,9 +789,9 @@ body .p-rating .p-rating-icon {
   text-align: center;
   display: inline-block;
   color: #dedede;
-  -moz-border-radius: 3px;
-  -webkit-border-radius: 3px;
-  border-radius: 3px;
+  -moz-border-radius: $border-radius;
+  -webkit-border-radius: $border-radius;
+  border-radius: $border-radius;
   -moz-transition: color 0.2s, box-shadow 0.2s;
   -o-transition: color 0.2s, box-shadow 0.2s;
   -webkit-transition: color 0.2s, box-shadow 0.2s;
@@ -905,9 +905,9 @@ body .p-datepicker {
   background-color: #323232;
   color: #dedede;
   border: 1px solid #191919;
-  -moz-border-radius: 3px;
-  -webkit-border-radius: 3px;
-  border-radius: 3px;
+  -moz-border-radius: $border-radius;
+  -webkit-border-radius: $border-radius;
+  border-radius: $border-radius;
 }
 body .p-datepicker:not(.p-datepicker-inline) {
   border: 1px solid #191919;
@@ -996,9 +996,9 @@ body .p-datepicker table td > span {
   color: #dedede;
   cursor: pointer;
   padding: 0.5em;
-  -moz-border-radius: 3px;
-  -webkit-border-radius: 3px;
-  border-radius: 3px;
+  -moz-border-radius: $border-radius;
+  -webkit-border-radius: $border-radius;
+  border-radius: $border-radius;
 }
 body .p-datepicker table td > span.p-highlight {
   color: white;
@@ -1251,9 +1251,9 @@ body .p-button {
   -o-transition: background-color 0.2s, box-shadow 0.2s;
   -webkit-transition: background-color 0.2s, box-shadow 0.2s;
   transition: background-color 0.2s, box-shadow 0.2s;
-  -moz-border-radius: 3px;
-  -webkit-border-radius: 3px;
-  border-radius: 3px;
+  -moz-border-radius: $border-radius;
+  -webkit-border-radius: $border-radius;
+  border-radius: $border-radius;
 }
 body .p-button:enabled:hover {
   background-color: $brand-hover;
@@ -1568,9 +1568,9 @@ body .p-panel .p-panel-titlebar .p-panel-titlebar-icon {
   font-size: 14px;
   color: #888888;
   border: 1px solid transparent;
-  -moz-border-radius: 3px;
-  -webkit-border-radius: 3px;
-  border-radius: 3px;
+  -moz-border-radius: $border-radius;
+  -webkit-border-radius: $border-radius;
+  border-radius: $border-radius;
   -moz-transition: color 0.2s, box-shadow 0.2s;
   -o-transition: color 0.2s, box-shadow 0.2s;
   -webkit-transition: color 0.2s, box-shadow 0.2s;
@@ -1611,9 +1611,9 @@ body .p-fieldset {
   border: 1px solid #191919;
   background-color: #323232;
   color: #dedede;
-  -moz-border-radius: 3px;
-  -webkit-border-radius: 3px;
-  border-radius: 3px;
+  -moz-border-radius: $border-radius;
+  -webkit-border-radius: $border-radius;
+  border-radius: $border-radius;
 }
 body .p-fieldset .p-fieldset-legend a {
   padding: 0.571em 1em;
@@ -1621,9 +1621,9 @@ body .p-fieldset .p-fieldset-legend a {
   color: #dedede;
   background-color: #191919;
   font-weight: 700;
-  -moz-border-radius: 3px;
-  -webkit-border-radius: 3px;
-  border-radius: 3px;
+  -moz-border-radius: $border-radius;
+  -webkit-border-radius: $border-radius;
+  border-radius: $border-radius;
   -moz-transition: background-color 0.2s, box-shadow 0.2s;
   -o-transition: background-color 0.2s, box-shadow 0.2s;
   -webkit-transition: background-color 0.2s, box-shadow 0.2s;
@@ -1667,9 +1667,9 @@ body .p-accordion .p-accordion-header a {
   background-color: #191919;
   color: #dedede;
   font-weight: 700;
-  -moz-border-radius: 3px;
-  -webkit-border-radius: 3px;
-  border-radius: 3px;
+  -moz-border-radius: $border-radius;
+  -webkit-border-radius: $border-radius;
+  border-radius: $border-radius;
   -moz-transition: background-color 0.2s, box-shadow 0.2s;
   -o-transition: background-color 0.2s, box-shadow 0.2s;
   -webkit-transition: background-color 0.2s, box-shadow 0.2s;
@@ -1877,9 +1877,9 @@ body .p-toolbar {
   background-color: #191919;
   border: 1px solid #191919;
   padding: 0.571em 1em;
-  -moz-border-radius: 3px;
-  -webkit-border-radius: 3px;
-  border-radius: 3px;
+  -moz-border-radius: $border-radius;
+  -webkit-border-radius: $border-radius;
+  border-radius: $border-radius;
 }
 body .p-toolbar button {
   vertical-align: middle;
@@ -2327,9 +2327,9 @@ body .fc .fc-toolbar .fc-button {
   -o-transition: background-color 0.2s, box-shadow 0.2s;
   -webkit-transition: background-color 0.2s, box-shadow 0.2s;
   transition: background-color 0.2s, box-shadow 0.2s;
-  -moz-border-radius: 3px;
-  -webkit-border-radius: 3px;
-  border-radius: 3px;
+  -moz-border-radius: $border-radius;
+  -webkit-border-radius: $border-radius;
+  border-radius: $border-radius;
 }
 body .fc .fc-toolbar .fc-button:enabled:hover {
   background-color: $brand-hover;
@@ -2557,9 +2557,9 @@ body .p-tree {
   background-color: #323232;
   color: #dedede;
   padding: 0.571em 1em;
-  -moz-border-radius: 3px;
-  -webkit-border-radius: 3px;
-  border-radius: 3px;
+  -moz-border-radius: $border-radius;
+  -webkit-border-radius: $border-radius;
+  border-radius: $border-radius;
 }
 body .p-tree .p-tree-container {
   padding: 0.286em;
@@ -2575,9 +2575,9 @@ body .p-tree .p-tree-container .p-treenode .p-treenode-content {
   -o-transition: background-color 0.2s, box-shadow 0.2s;
   -webkit-transition: background-color 0.2s, box-shadow 0.2s;
   transition: background-color 0.2s, box-shadow 0.2s;
-  -moz-border-radius: 3px;
-  -webkit-border-radius: 3px;
-  border-radius: 3px;
+  -moz-border-radius: $border-radius;
+  -webkit-border-radius: $border-radius;
+  border-radius: $border-radius;
 }
 body .p-tree .p-tree-container .p-treenode .p-treenode-content .p-tree-toggler {
   vertical-align: middle;
@@ -2651,9 +2651,9 @@ body .p-tree.p-tree-horizontal .p-treenode .p-treenode-content {
   background-color: #323232;
   color: #dedede;
   padding: 0.571em 1em;
-  -moz-border-radius: 3px;
-  -webkit-border-radius: 3px;
-  border-radius: 3px;
+  -moz-border-radius: $border-radius;
+  -webkit-border-radius: $border-radius;
+  border-radius: $border-radius;
 }
 body .p-tree.p-tree-horizontal .p-treenode .p-treenode-content.p-highlight {
   background-color: $brand-color;
@@ -2713,9 +2713,9 @@ body .p-organizationchart .p-organizationchart-node-content .p-node-toggler {
   bottom: -0.7em;
   margin-left: -0.46em;
   color: #888888;
-  -moz-border-radius: 3px;
-  -webkit-border-radius: 3px;
-  border-radius: 3px;
+  -moz-border-radius: $border-radius;
+  -webkit-border-radius: $border-radius;
+  border-radius: $border-radius;
   -moz-transition: box-shadow 0.2s;
   -o-transition: box-shadow 0.2s;
   -webkit-transition: box-shadow 0.2s;
@@ -2911,9 +2911,9 @@ body .p-carousel .p-carousel-dots-container .p-carousel-dot-item.p-highlight .p-
 
 body .p-messages {
   margin: 1em 0;
-  -moz-border-radius: 3px;
-  -webkit-border-radius: 3px;
-  border-radius: 3px;
+  -moz-border-radius: $border-radius;
+  -webkit-border-radius: $border-radius;
+  border-radius: $border-radius;
 }
 body .p-messages .p-messages-wrapper {
   padding: 1em;
@@ -2998,9 +2998,9 @@ body .p-messages .p-messages-icon {
 body .p-message {
   padding: 0.429em;
   margin: 0;
-  -moz-border-radius: 3px;
-  -webkit-border-radius: 3px;
-  border-radius: 3px;
+  -moz-border-radius: $border-radius;
+  -webkit-border-radius: $border-radius;
+  border-radius: $border-radius;
 }
 body .p-message.p-message-info {
   background-color: #7fbcec;
@@ -3157,9 +3157,9 @@ body .p-overlaypanel {
   color: #dedede;
   padding: 0;
   border: 1px solid #191919;
-  -moz-border-radius: 3px;
-  -webkit-border-radius: 3px;
-  border-radius: 3px;
+  -moz-border-radius: $border-radius;
+  -webkit-border-radius: $border-radius;
+  border-radius: $border-radius;
   -webkit-box-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.16);
   -moz-box-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.16);
   box-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.16);
@@ -3208,9 +3208,9 @@ body .p-overlaypanel.p-overlaypanel-flipped:before {
 }
 body .p-dialog {
   padding: 0;
-  -moz-border-radius: 3px;
-  -webkit-border-radius: 3px;
-  border-radius: 3px;
+  -moz-border-radius: $border-radius;
+  -webkit-border-radius: $border-radius;
+  border-radius: $border-radius;
   -webkit-box-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.16);
   -moz-box-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.16);
   box-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.16);
@@ -3307,9 +3307,9 @@ body .p-tooltip .p-tooltip-text {
   -webkit-box-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.16);
   -moz-box-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.16);
   box-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.16);
-  -moz-border-radius: 3px;
-  -webkit-border-radius: 3px;
-  border-radius: 3px;
+  -moz-border-radius: $border-radius;
+  -webkit-border-radius: $border-radius;
+  border-radius: $border-radius;
 }
 body .p-tooltip.p-tooltip-right .p-tooltip-arrow {
   border-right-color: #4c4c4c;
@@ -3384,9 +3384,9 @@ body .p-breadcrumb {
   background-color: #323232;
   border: 1px solid #191919;
   padding: 0.571em 1em;
-  -moz-border-radius: 3px;
-  -webkit-border-radius: 3px;
-  border-radius: 3px;
+  -moz-border-radius: $border-radius;
+  -webkit-border-radius: $border-radius;
+  border-radius: $border-radius;
 }
 body .p-breadcrumb ul li .p-menuitem-link {
   color: #dedede;
@@ -3395,9 +3395,9 @@ body .p-breadcrumb ul li .p-menuitem-link {
   -o-transition: box-shadow 0.2s;
   -webkit-transition: box-shadow 0.2s;
   transition: box-shadow 0.2s;
-  -moz-border-radius: 3px;
-  -webkit-border-radius: 3px;
-  border-radius: 3px;
+  -moz-border-radius: $border-radius;
+  -webkit-border-radius: $border-radius;
+  border-radius: $border-radius;
 }
 body .p-breadcrumb ul li .p-menuitem-link:focus {
   outline: 0 none;
@@ -3430,9 +3430,9 @@ body .p-steps .p-steps-item .p-menuitem-link {
   -o-transition: box-shadow 0.2s;
   -webkit-transition: box-shadow 0.2s;
   transition: box-shadow 0.2s;
-  -moz-border-radius: 3px;
-  -webkit-border-radius: 3px;
-  border-radius: 3px;
+  -moz-border-radius: $border-radius;
+  -webkit-border-radius: $border-radius;
+  border-radius: $border-radius;
 }
 body .p-steps .p-steps-item .p-menuitem-link .p-steps-number {
   -moz-border-radius: 50%;
@@ -3554,9 +3554,9 @@ body .p-menu {
   padding: 0;
   background-color: #252525;
   border: 1px solid #191919;
-  -moz-border-radius: 3px;
-  -webkit-border-radius: 3px;
-  border-radius: 3px;
+  -moz-border-radius: $border-radius;
+  -webkit-border-radius: $border-radius;
+  border-radius: $border-radius;
 }
 body .p-menu .p-menuitem {
   margin: 0;
@@ -3589,9 +3589,9 @@ body .p-menubar {
   padding: 0;
   background-color: #252525;
   border: 1px solid #191919;
-  -moz-border-radius: 3px;
-  -webkit-border-radius: 3px;
-  border-radius: 3px;
+  -moz-border-radius: $border-radius;
+  -webkit-border-radius: $border-radius;
+  border-radius: $border-radius;
 }
 body .p-menubar .p-menubar-root-list > .p-menuitem > .p-menuitem-link {
   padding: 0.714em 0.857em;
@@ -3630,9 +3630,9 @@ body .p-contextmenu {
   -webkit-box-shadow: 0 0px 6px 0 rgba(0, 0, 0, 0.16);
   -moz-box-shadow: 0 0px 6px 0 rgba(0, 0, 0, 0.16);
   box-shadow: 0 0px 6px 0 rgba(0, 0, 0, 0.16);
-  -moz-border-radius: 3px;
-  -webkit-border-radius: 3px;
-  border-radius: 3px;
+  -moz-border-radius: $border-radius;
+  -webkit-border-radius: $border-radius;
+  border-radius: $border-radius;
 }
 body .p-contextmenu .p-submenu-list {
   padding: 0;
@@ -3665,9 +3665,9 @@ body .p-tieredmenu {
   padding: 0;
   background-color: #252525;
   border: 1px solid #191919;
-  -moz-border-radius: 3px;
-  -webkit-border-radius: 3px;
-  border-radius: 3px;
+  -moz-border-radius: $border-radius;
+  -webkit-border-radius: $border-radius;
+  border-radius: $border-radius;
 }
 body .p-tieredmenu .p-submenu-list {
   padding: 0;
@@ -3706,9 +3706,9 @@ body .p-slidemenu {
   padding: 0;
   background-color: #252525;
   border: 1px solid #191919;
-  -moz-border-radius: 3px;
-  -webkit-border-radius: 3px;
-  border-radius: 3px;
+  -moz-border-radius: $border-radius;
+  -webkit-border-radius: $border-radius;
+  border-radius: $border-radius;
 }
 body .p-slidemenu .p-submenu-list {
   padding: 0;
@@ -3821,9 +3821,9 @@ body .p-megamenu {
   padding: 0;
   background-color: #252525;
   border: 1px solid #191919;
-  -moz-border-radius: 3px;
-  -webkit-border-radius: 3px;
-  border-radius: 3px;
+  -moz-border-radius: $border-radius;
+  -webkit-border-radius: $border-radius;
+  border-radius: $border-radius;
 }
 body .p-megamenu .p-megamenu-submenu-header {
   margin: 0;
@@ -3879,9 +3879,9 @@ body .p-panelmenu .p-panelmenu-header > a {
   font-weight: 700;
   position: static;
   font-size: 14px;
-  -moz-border-radius: 3px;
-  -webkit-border-radius: 3px;
-  border-radius: 3px;
+  -moz-border-radius: $border-radius;
+  -webkit-border-radius: $border-radius;
+  border-radius: $border-radius;
   -moz-transition: background-color 0.2s, box-shadow 0.2s;
   -o-transition: background-color 0.2s, box-shadow 0.2s;
   -webkit-transition: background-color 0.2s, box-shadow 0.2s;
@@ -4024,7 +4024,7 @@ body .p-galleria .p-galleria-content .p-galleria-preview-content .p-galleria-pre
   color: #ffffff;
 }
 body .p-galleria .p-galleria-content .p-galleria-preview-content .p-galleria-indicator-container .p-galleria-indicator-item {
-  border-radius: 3px;
+  border-radius: $border-radius;
 }
 body .p-galleria .p-galleria-content .p-galleria-preview-content .p-galleria-indicator-container .p-galleria-indicator-item > button {
   display: inline-flex;
@@ -4184,9 +4184,9 @@ body .p-inplace {
 }
 body .p-inplace .p-inplace-display {
   padding: 0.429em;
-  -moz-border-radius: 3px;
-  -webkit-border-radius: 3px;
-  border-radius: 3px;
+  -moz-border-radius: $border-radius;
+  -webkit-border-radius: $border-radius;
+  border-radius: $border-radius;
   -moz-transition: background-color 0.2s;
   -o-transition: background-color 0.2s;
   -webkit-transition: background-color 0.2s;

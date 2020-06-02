@@ -1,19 +1,20 @@
-import React, { useState, useEffect, useRef } from 'react'
-import { useHistory } from 'react-router-dom';
-import { DataTable } from 'primereact/datatable';
-import { Column } from 'primereact/column';
 import { Button } from 'primereact/button';
+import { Column } from 'primereact/column';
+import { DataTable } from 'primereact/datatable';
+import React, { useEffect, useState } from 'react';
+import Badge from 'react-bootstrap/Badge';
 import Modal from 'react-bootstrap/Modal';
 import { connect } from 'react-redux';
-import { selectSelectedBand } from '../../../redux/band/band.selector';
-import { selectSongs } from '../../../redux/song/song.selector';
-import { fetchSongs, selectSong } from '../../../redux/song/song.actions';
+import { useHistory } from 'react-router-dom';
 import { createStructuredSelector } from 'reselect';
-import { Growl } from 'primereact/growl';
+import { selectSelectedBand } from '../../../redux/band/band.selector';
+import { showMessage } from '../../../redux/growl/growl.actions';
+import { fetchSongs, selectSong } from '../../../redux/song/song.actions';
+import { selectSongs } from '../../../redux/song/song.selector';
+import songService from '../../../services/SongService';
 import TableHeader from '../../table-header';
 import AddSong from './add-song';
-import songService from '../../../services/SongService';
-import { showMessage } from '../../../redux/growl/growl.actions';
+import TagsTemplate from './tag-template';
 
 const BandSongs = ({ songs, band, fetchSongs, selectSong, showMessage }) => {
     const [globalFilter, setGlobalFilter] = useState(null);
@@ -26,7 +27,7 @@ const BandSongs = ({ songs, band, fetchSongs, selectSong, showMessage }) => {
         songService.getAll(band.id)
             .then(songs => {
                 fetchSongs(
-                    songs.map(song => ({ ...song, tags: song.tags.join(', ') }))
+                    songs
                 );
             });
     }, []);
@@ -80,14 +81,13 @@ const BandSongs = ({ songs, band, fetchSongs, selectSong, showMessage }) => {
             <Modal.Footer>
                 <button className="btn btn-danger" onClick={handleDelete}>
                     Delete
-                    </button>
+                </button>
                 <button className="btn btn-secondary" onClick={() => setIsConfirmDialogDisplaying(false)}>
                     Close
-                    </button>
+                </button>
             </Modal.Footer>
         </Modal>
     );
-
 
     return (
         <>
@@ -113,13 +113,13 @@ const BandSongs = ({ songs, band, fetchSongs, selectSong, showMessage }) => {
                     <TableHeader
                         buttonText="Add song"
                         isDialogDisplaying={isDialogDisplaying}
-                        setGlobalFilte={setGlobalFilter}
+                        setGlobalFilter={setGlobalFilter}
                         setIsDialogDisplaying={setIsDialogDisplaying} />
                 }
                 scrollable scrollHeight="315px"
                 globalFilter={globalFilter} sortField="name">
                 <Column field="name" header="Name" sortable />
-                <Column field="tags" header="Tags" sortable />
+                <Column field="tags" header="Tags"  body={TagsTemplate} />
                 <Column field="tempo" header="Tempo" sortable />
                 <Column body={editBodyTemplate} headerStyle={{ width: '4em', textAlign: 'center' }} bodyStyle={{ textAlign: 'center', overflow: 'visible' }} />
                 <Column body={deleteBodyTemplate} headerStyle={{ width: '4em', textAlign: 'center' }} bodyStyle={{ textAlign: 'center', overflow: 'visible' }} />
