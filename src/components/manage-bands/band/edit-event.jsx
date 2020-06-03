@@ -10,17 +10,17 @@ import { fetchEvents } from '../../../redux/event/events.actions';
 import eventService from '../../../services/EventService';
 import { selectSelectedBand } from '../../../redux/band/band.selector';
 
-export const CreateEvent = ({ band, callback, showMessage, events, fetchEvents }) => {
-    const [date, setDate] = useState(null);
-    const [tags, setTags] = useState([]);
-    const [tour, setTour] = useState('');
-    const [name, setName] = useState('');
-    const [location, setLocation] = useState('');
-    const [designer, setDesigner] = useState('');
+const EditEvent = ({ band, callback, showMessage, events, fetchEvents, event }) => {
+    const [date, setDate] = useState(new Date(event.date));
+    const [tags, setTags] = useState(event.tags.split(', '));
+    const [tour, setTour] = useState(event.tour);
+    const [name, setName] = useState(event.tour);
+    const [location, setLocation] = useState(event.location);
+    const [designer, setDesigner] = useState(event.designer);
 
     const handleSubmit = e => {
         e.preventDefault();
-        const event = {
+        const updateEvent = {
             band: band.id,
             date: new Date(date).toLocaleDateString(),
             tags,
@@ -29,15 +29,18 @@ export const CreateEvent = ({ band, callback, showMessage, events, fetchEvents }
             location,
             designer
         };
-        eventService.create(event)
+        eventService.update(event.id,updateEvent)
             .then(event => {
                 callback();
-                showMessage({ severity: 'success', summary: 'Success', detail: 'Event added' });
+                showMessage({ severity: 'success', summary: 'Success', detail: 'Event updated' });
                 return { ...event, tags: event.tags.join(', ') };
             })
-            .then(newEvent => fetchEvents(events.concat(newEvent)))
+            .then(newEvent => fetchEvents(events.map( ev => {
+                if (ev.id === event.id) return {...newEvent, date: new Date(newEvent.date).toLocaleDateString()};
+                else return ev;
+            })))
             .catch(e => {
-                showMessage({ severity: 'error', summary: 'Error Message', detail: "Couldn't add event" })
+                showMessage({ severity: 'error', summary: 'Error Message', detail: "Couldn't update event" })
             });
     }
 
@@ -45,32 +48,32 @@ export const CreateEvent = ({ band, callback, showMessage, events, fetchEvents }
         <form onSubmit={handleSubmit}>
             <div className="form-row">
                 <div className="col mb-3">
-                    <label htmlFor="event-name">Event Name</label>
+                    <label htmlFor="edit-event-name">Event Name</label>
                     <input
                         type="text"
                         className="form-control"
-                        id="event-name"
+                        id="edit-event-name"
                         required value={name}
                         onChange={(e) => setName(e.target.value)} />
                 </div>
             </div>
             <div className="form-row">
                 <div className="col mb-3">
-                    <label htmlFor="event-location">Location</label>
+                    <label htmlFor="edit-event-location">Location</label>
                     <input
                         type="text"
                         className="form-control"
-                        id="event-location"
+                        id="edit-event-location"
                         required value={location}
                         onChange={e => setLocation(e.target.value)} />
                 </div>
             </div>
             <div className="form-row">
                 <div className="col mb-3">
-                    <label htmlFor="event-tour">Tour</label>
+                    <label htmlFor="edit-event-tour">Tour</label>
                     <div>
                         <Dropdown
-                            id="event-tour" value={tour}
+                            id="edit-event-tour" value={tour}
                             options={[{ label: 'No tour', value: 'no-tour' }]}
                             onChange={e => setTour(e.value)}
                             style={{ width: '12em' }}
@@ -78,28 +81,28 @@ export const CreateEvent = ({ band, callback, showMessage, events, fetchEvents }
                     </div>
                 </div>
                 <div className="col mb-3">
-                    <label htmlFor="event-designer">Designer</label>
+                    <label htmlFor="edit-event-designer">Designer</label>
                     <input
                         type="email"
                         className="form-control"
-                        id="event-location"
+                        id="edit-event-location"
                         required value={designer}
                         onChange={e => setDesigner(e.target.value)} />
                 </div>
             </div>
             <div className="form-row">
                 <div className="col mb-3">
-                    <label htmlFor="event-date">Event Date</label>
+                    <label htmlFor="edit-event-date">Event Date</label>
                     <div>
                         <Calendar
-                            id="event-date"
+                            id="edit-event-date"
                             value={date}
                             onChange={(e) => setDate(e.value)}
                             showButtonBar={true} />
                     </div>
                 </div>
                 <div className="col">
-                    <label htmlFor="event-tags ">Tags</label>
+                    <label htmlFor="edit-event-tags ">Tags</label>
                     <div >
                         <Chips value={tags} onChange={(e) => setTags(e.value)} separator=','></Chips>
                     </div>
@@ -108,7 +111,7 @@ export const CreateEvent = ({ band, callback, showMessage, events, fetchEvents }
             <div className="form-group row">
                 <div className="col-5" />
                 <div className="col" style={{ paddingLeft: '85px' }}>
-                    <button type="submit" className="btn btn-success mb-2" >Create event</button>{' '}
+                    <button type="submit" className="btn btn-success mb-2" >Edit event</button>{' '}
                     <button type="button" className="btn btn-secondary mb-2" onClick={callback}>Cancel</button>
                 </div>
             </div>
@@ -126,4 +129,4 @@ const mapDispatchToProps = dispatch => ({
     fetchEvents: events => dispatch(fetchEvents(events))
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(CreateEvent)
+export default connect(mapStateToProps, mapDispatchToProps)(EditEvent)

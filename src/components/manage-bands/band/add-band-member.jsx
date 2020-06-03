@@ -1,15 +1,14 @@
-import React, { useState, useRef } from 'react'
 import { Dropdown } from 'primereact/dropdown';
-import { Growl } from 'primereact/growl'
-
-import { createStructuredSelector } from 'reselect';
+import React, { useState } from 'react';
 import { connect } from 'react-redux';
-import { selectMusicians } from '../../../redux/musician/musician.selector';
-import { fetchMusiciansSuccess } from '../../../redux/musician/musician.actions';
+import { createStructuredSelector } from 'reselect';
 import { selectSelectedBand } from '../../../redux/band/band.selector';
+import { showMessage } from '../../../redux/growl/growl.actions';
+import { fetchMusiciansSuccess } from '../../../redux/musician/musician.actions';
+import { selectMusicians } from '../../../redux/musician/musician.selector';
 import musicianService from '../../../services/MusicianService';
 import options from './instruments-options';
-import {showMessage} from '../../../redux/growl/growl.actions';
+
 
 const AddBandMember = ({ callback, selectedBand, musicians, fetchMusicians, showMessage }) => {
     const [selectedInstrument, setSelectedInstrument] = useState('');
@@ -29,7 +28,7 @@ const AddBandMember = ({ callback, selectedBand, musicians, fetchMusicians, show
                 return musicianService.getById(musician.id)
             })
             .then(musician => {
-                const {band, instrument, id, email, user} = musician;
+                const { band, instrument, id, email, user } = musician;
                 return {
                     band,
                     instrument, //transform to Pascal case

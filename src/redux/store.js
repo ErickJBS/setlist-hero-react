@@ -1,17 +1,10 @@
-import { createStore, applyMiddleware } from 'redux';
-import rootReducer from './root.reducer';
-import { persistStore, persistReducer } from 'redux-persist'
-import storage from 'redux-persist/lib/storage' // defaults to localStorage for web
+import { createStore } from 'redux';
 import { devToolsEnhancer } from 'redux-devtools-extension';
+import { persistStore } from 'redux-persist';
+import storage from 'redux-persist/lib/storage'; // defaults to localStorage for web
+import rootReducer from './root.reducer';
 
 const initialState = {};
-
-
-const rootPersistConfig = {
-    key: 'root',
-    storage: storage,
-    whitelist: ['band']
-}
 
 export const store = createStore(
     rootReducer,

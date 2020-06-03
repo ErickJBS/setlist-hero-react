@@ -1,7 +1,5 @@
-import React, { useState } from 'react';
-import { Redirect,Switch, Route } from 'react-router-dom';
 import environment from 'environment';
-import { useStore } from 'react-redux';
+import React from 'react';
 
 const baseUrl = environment.api;
 

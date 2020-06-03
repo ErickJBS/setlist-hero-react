@@ -1,12 +1,12 @@
-import React, { useState, useRef, useEffect } from 'react'
-import { Switch, Route, withRouter, Redirect } from 'react-router-dom';
+import { Growl } from 'primereact/growl';
+import React, { useRef, useState } from 'react';
+import Card from 'react-bootstrap/Card';
+import { connect } from 'react-redux';
+import { Redirect, Switch } from 'react-router-dom';
 import Sidebar from '../components/sidebar/sidebar';
-import Card from 'react-bootstrap/Card'
+import PrivateRoute from '../routing/PrivateRoute';
 import ManageBandsPage from './manage-bands/manage-bands-page';
 import SetlistsPage from './setlists/setlists-page';
-import PrivateRoute from '../routing/PrivateRoute';
-import { Growl } from 'primereact/growl';
-import { connect } from 'react-redux'
 
 const HomePage = ({ growlMessages }) => {
 

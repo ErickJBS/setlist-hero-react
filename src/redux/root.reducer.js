@@ -6,11 +6,17 @@ import bandReducer from './band/band.reducer';
 import musicianReducer from './musician/musician.reducer';
 import songReducer from './song/song.reducer';
 import growlMessages from './growl/growl.reducer';
+import eventReducer from './event/events.reducer';
 
 const rootReducer = combineReducers({
     growlMessages,
     auth: authReducer,
     musician: musicianReducer,
+    event: persistReducer({
+        key: 'event',
+        storage: storage,
+        blacklist: ['events']
+    }, eventReducer),
     song: persistReducer({
         key: 'song',
         storage: storage,

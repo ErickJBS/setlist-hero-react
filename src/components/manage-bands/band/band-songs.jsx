@@ -2,7 +2,6 @@ import { Button } from 'primereact/button';
 import { Column } from 'primereact/column';
 import { DataTable } from 'primereact/datatable';
 import React, { useEffect, useState } from 'react';
-import Badge from 'react-bootstrap/Badge';
 import Modal from 'react-bootstrap/Modal';
 import { connect } from 'react-redux';
 import { useHistory } from 'react-router-dom';
@@ -34,11 +33,11 @@ const BandSongs = ({ songs, band, fetchSongs, selectSong, showMessage }) => {
 
     const handleDelete = () => {
         songService.delete(songToBeDeleted.id)
-            .then(() => {
-                setSongToBeDeleted(null);
-                showMessage({ severity: 'success', summary: 'Success', detail: 'Member deleted' });
+            .then(() => { 
                 setIsConfirmDialogDisplaying(false)
                 fetchSongs(songs.filter(song => song.id !== songToBeDeleted.id));
+                setSongToBeDeleted(null);
+                showMessage({ severity: 'success', summary: 'Success', detail: 'Member deleted' });
             })
             .catch(() => {
                 showMessage({ severity: 'error', summary: 'Error Message', detail: "Couldn't delete member" });
@@ -52,7 +51,11 @@ const BandSongs = ({ songs, band, fetchSongs, selectSong, showMessage }) => {
             setIsConfirmDialogDisplaying(true);
         };
         return (
-            <Button type="button" icon="pi pi-trash" className="p-button-secondary" onClick={() => handleClick(rowData)}></Button>
+            <Button
+                type="button"
+                icon="pi pi-trash"
+                className="p-button-secondary"
+                onClick={() => handleClick(rowData)} />
         );
     };
 
@@ -119,7 +122,7 @@ const BandSongs = ({ songs, band, fetchSongs, selectSong, showMessage }) => {
                 scrollable scrollHeight="315px"
                 globalFilter={globalFilter} sortField="name">
                 <Column field="name" header="Name" sortable />
-                <Column field="tags" header="Tags"  body={TagsTemplate} />
+                <Column field="tags" header="Tags" body={TagsTemplate} />
                 <Column field="tempo" header="Tempo" sortable />
                 <Column body={editBodyTemplate} headerStyle={{ width: '4em', textAlign: 'center' }} bodyStyle={{ textAlign: 'center', overflow: 'visible' }} />
                 <Column body={deleteBodyTemplate} headerStyle={{ width: '4em', textAlign: 'center' }} bodyStyle={{ textAlign: 'center', overflow: 'visible' }} />

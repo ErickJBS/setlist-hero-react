@@ -11,6 +11,7 @@ import BandsOverview from './bands-overview';
 import ViewBand from './view-band';
 import {showMessage} from '../../redux/growl/growl.actions';
 const ManageBandsPage = ({ fetchBandsFailure, fetchBandsSuccess, user, showMessage }) => {
+    
     useEffect(() => {
         bandService.getAll(user.id)
             .then(bands => {

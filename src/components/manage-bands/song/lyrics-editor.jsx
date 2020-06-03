@@ -1,13 +1,12 @@
-import React, { useState, useEffect } from 'react'
-import { connect } from 'react-redux'
-import { createStructuredSelector } from 'reselect';
 import { Editor } from "primereact/editor";
-import { selectSelectedBand } from '../../../redux/band/band.selector';
-import { selectSelectedSong } from '../../../redux/song/song.selector';
 import { QuillDeltaToHtmlConverter as Converter } from 'quill-delta-to-html';
-import songService from '../../../services/SongService.js';
+import React, { useState } from 'react';
+import { connect } from 'react-redux';
+import { createStructuredSelector } from 'reselect';
+import { showMessage } from '../../../redux/growl/growl.actions';
 import { selectSong } from '../../../redux/song/song.actions';
-import {showMessage} from '../../../redux/growl/growl.actions';
+import { selectSelectedSong } from '../../../redux/song/song.selector';
+import songService from '../../../services/SongService.js';
 
 
 const header = (

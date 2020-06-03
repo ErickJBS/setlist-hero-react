@@ -1,32 +1,29 @@
-import React from 'react'
-import { useParams, Switch, Redirect, useHistory } from 'react-router-dom';
-import { connect } from 'react-redux';
-import { selectSelectedBand } from '../../redux/band/band.selector';
-import { selectBand } from '../../redux/band/band.actions';
-import { createStructuredSelector } from 'reselect';
+import React from 'react';
 import Card from 'react-bootstrap/Card';
-import GenericBodyCard from '../../components/generic-body-card';
+import { connect } from 'react-redux';
+import { Redirect, Switch, useParams } from 'react-router-dom';
+import { createStructuredSelector } from 'reselect';
 import BandTitle from '../../components/manage-bands/band-title';
-import PrivateRoute from '../../routing/PrivateRoute';
-import BandTopBar from '../../components/manage-bands/topbar/band-topbar';
-import BandMembers from '../../components/manage-bands/band/band-members';
 import BandEvents from '../../components/manage-bands/band/band-events';
+import BandMembers from '../../components/manage-bands/band/band-members';
 import BandSongsRouter from '../../components/manage-bands/band/band-songs-router';
 import EditBand from '../../components/manage-bands/band/edit-band';
+import BandTopBar from '../../components/manage-bands/topbar/band-topbar';
+import { selectBand } from '../../redux/band/band.actions';
+import { selectSelectedBand } from '../../redux/band/band.selector';
+import PrivateRoute from '../../routing/PrivateRoute';
 
 const ViewBand = ({ selectedBand, selectBand }) => {
     const { id } = useParams();
-    const history = useHistory();
-    const location = useHistory();
 
     if (id !== selectedBand.id) return <Redirect to="/bands" />
 
     return (
         <div className="container-fluid animated faster fadeIn" style={{ padding: '20px' }}>
-            <Card className="shadowed" style={{padding:'20px'}}>
+            <Card className="shadowed" style={{ padding: '20px' }}>
                 <Card.Body>
                     <BandTitle />
-                    <hr/>
+                    <hr />
                     <div className="row">
                         <div className="col">
                             <BandTopBar />

@@ -16,7 +16,7 @@ const LoginForm = ({ user }) => {
     const [identifier, setIdentifier] = useState('');
     const [errorFeedback, setErrorFeedback] = useState('');
 
-    useEffect(() => setErrorFeedback(''),[password,identifier]);
+    useEffect(() => setErrorFeedback(''), [password, identifier]);
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -52,7 +52,8 @@ const LoginForm = ({ user }) => {
             <SocialNetworkButton action="google" text="Log in with Google" logo={gLogo} btnClass="btn-outline-light" />
             <SocialNetworkButton action="facebook" text="Log in with Facebook" logo={fLogo} btnClass="btn-outline-light" />
             <div className="spacer-mini" />
-            <small className="center">Don't have an account? <Link style={{ paddingLeft: '5px' }} to="/register">Register here</Link></small>
+            <small className="center">
+                Don't have an account? <Link style={{ paddingLeft: '5px' }} to="/register">Register here</Link></small>
         </>
     );
 }

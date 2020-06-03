@@ -3,11 +3,11 @@ import LoginForm from '../../components/login/login-form';
 import AuthPage from './auth-page';
 import image from '../../assets/login_bg.jpg';
 
-const LoginPage = () =>{
+const LoginPage = () => {
     return (
         <>
-            <AuthPage image = {image}>
-                <LoginForm/>
+            <AuthPage image={image}>
+                <LoginForm />
             </AuthPage>
         </>
     )

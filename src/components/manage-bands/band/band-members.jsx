@@ -1,28 +1,27 @@
-import React, { useState, useEffect, useRef } from 'react'
-import { DataTable } from 'primereact/datatable';
-import { Column } from 'primereact/column';
-import Modal from 'react-bootstrap/Modal';
 import { Button } from 'primereact/button';
-import { Growl } from 'primereact/growl';
+import { Column } from 'primereact/column';
+import { DataTable } from 'primereact/datatable';
 import { Dropdown } from 'primereact/dropdown';
+import React, { useEffect, useState } from 'react';
+import Modal from 'react-bootstrap/Modal';
 import { connect } from 'react-redux';
-import { selectSelectedBand } from '../../../redux/band/band.selector';
-import { selectMusicians } from '../../../redux/musician/musician.selector';
-import { fetchMusiciansSuccess, fetchMusiciansFailure } from '../../../redux/musician/musician.actions';
 import { createStructuredSelector } from 'reselect';
+import { selectSelectedBand } from '../../../redux/band/band.selector';
+import { showMessage } from '../../../redux/growl/growl.actions';
+import { fetchMusiciansFailure, fetchMusiciansSuccess } from '../../../redux/musician/musician.actions';
+import { selectMusicians } from '../../../redux/musician/musician.selector';
+import musicianService from '../../../services/MusicianService';
 import TableHeader from '../../table-header';
 import AddBandMember from './add-band-member';
-import musicianService from '../../../services/MusicianService';
 import options from './instruments-options';
 
-const BandMembers = ({ musicians, fetchMusicians, band, fetchFailure }) => {
+const BandMembers = ({ musicians, fetchMusicians, band, fetchFailure, showMessage }) => {
     const [globalFilter, setGlobalFilter] = useState(null);
     const [isDialogDisplaying, setIsDialogDisplaying] = useState(false);
     const [isConfirmDialogDisplaying, setIsConfirmDialogDisplaying] = useState(false);
     const [isUpdateDialogDisplaying, setIsUpdateDialogDisplaying] = useState(false);
     const [musicianToBeModified, setMusicianToBeModified] = useState(null);
     const [selectedInstrument, setSelectedInstrument] = useState('');
-    let memberModified = useRef(null);
 
     useEffect(() => {
         musicianService.getAll(band.id)
@@ -68,12 +67,12 @@ const BandMembers = ({ musicians, fetchMusicians, band, fetchFailure }) => {
                         else return musician;
 
                     }));
-                memberModified.current.show({ severity: 'success', summary: 'Success', detail: 'Member edited!' });
+                showMessage({ severity: 'success', summary: 'Success', detail: 'Member edited!' });
                 setIsUpdateDialogDisplaying(false);
                 setMusicianToBeModified(null);
             })
             .catch(() => {
-                memberModified.current.show({ severity: 'error', summary: 'Error Message', detail: "Couldn't edit member" });
+                showMessage({ severity: 'error', summary: 'Error Message', detail: "Couldn't edit member" });
                 setIsUpdateDialogDisplaying(false);
             })
     }
@@ -83,11 +82,11 @@ const BandMembers = ({ musicians, fetchMusicians, band, fetchFailure }) => {
             .then(e => {
                 fetchMusicians(musicians.filter(musician => musician.id !== musicianToBeModified.id));
                 setMusicianToBeModified(null);
-                memberModified.current.show({ severity: 'success', summary: 'Success', detail: 'Member deleted' });
+                showMessage({ severity: 'success', summary: 'Success', detail: 'Member deleted' });
                 setIsConfirmDialogDisplaying(false)
             })
             .catch(() => {
-                memberModified.current.show({ severity: 'error', summary: 'Error Message', detail: "Couldn't delete member" });
+                showMessage({ severity: 'error', summary: 'Error Message', detail: "Couldn't delete member" });
                 setIsConfirmDialogDisplaying(false)
             });
     }
@@ -108,13 +107,13 @@ const BandMembers = ({ musicians, fetchMusicians, band, fetchFailure }) => {
             setIsUpdateDialogDisplaying(true);
         };
         return (
-            <Button type="button" icon="pi pi-pencil" className="p-button-secondary" 
-                onClick={() => handleClick(rowData)}/>
+            <Button type="button" icon="pi pi-pencil" className="p-button-secondary"
+                onClick={() => handleClick(rowData)} />
         );
     };
 
     const renderDeleteModal = (
-        <Modal show={isConfirmDialogDisplaying} onHide={() => setIsConfirmDialogDisplaying(false)} centered> 
+        <Modal show={isConfirmDialogDisplaying} onHide={() => setIsConfirmDialogDisplaying(false)} centered>
             <Modal.Header closeButton>
                 <Modal.Title>Confirm deletion</Modal.Title>
             </Modal.Header>
@@ -164,7 +163,6 @@ const BandMembers = ({ musicians, fetchMusicians, band, fetchFailure }) => {
 
     return (
         <>
-            <Growl ref={memberModified} position="topright"></Growl>
             {renderDeleteModal}
             {renderUpdateModal}
             <Modal
@@ -197,11 +195,11 @@ const BandMembers = ({ musicians, fetchMusicians, band, fetchFailure }) => {
                 scrollable scrollHeight="315px"
                 globalFilter={globalFilter} sortField="name"
                 selectionMode="single">
-                <Column field="name" header="Name" sortable style={{width:'25%', textAlign:'center'}} />
-                <Column field="username" header="Username" sortable style={{ width: '13%', textAlign:'center' }} />
-                <Column field="email" header="Email" sortable style={{textAlign:'center'}} />
-                <Column field="instrument" header="Instrument" sortable style={{ width: '13%', textAlign:'center' }} />
-                <Column field="status" header="Status" style={{width:'15%', textAlign:'center'}} sortable />
+                <Column field="name" header="Name" sortable style={{ width: '25%', textAlign: 'center' }} />
+                <Column field="username" header="Username" sortable style={{ width: '13%', textAlign: 'center' }} />
+                <Column field="email" header="Email" sortable style={{ textAlign: 'center' }} />
+                <Column field="instrument" header="Instrument" sortable style={{ width: '13%', textAlign: 'center' }} />
+                <Column field="status" header="Status" style={{ width: '15%', textAlign: 'center' }} sortable />
                 <Column body={editBodyTemplate} headerStyle={{ width: '4em', textAlign: 'center' }} bodyStyle={{ textAlign: 'center', overflow: 'visible' }} />
                 <Column body={deleteBodyTemplate} headerStyle={{ width: '4em', textAlign: 'center' }} bodyStyle={{ textAlign: 'center', overflow: 'visible' }} />
             </DataTable>
@@ -216,7 +214,8 @@ const mapStateToProps = createStructuredSelector({
 
 const mapDispatchTopProps = dispatch => ({
     fetchMusicians: musicians => dispatch(fetchMusiciansSuccess(musicians)),
-    fetchFailure: error => dispatch(fetchMusiciansFailure(error))
+    fetchFailure: error => dispatch(fetchMusiciansFailure(error)),
+    showMessage: message => dispatch(showMessage(message))
 })
 
 export default connect(

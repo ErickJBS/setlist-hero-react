@@ -1,15 +1,15 @@
-import React, { useState } from 'react';
-import SidebarLogo from './sidebar-logo';
-import SidebarElement from './sidebar-element';
-import iconsAndNames from './icons-and-element-names';
-import { withRouter} from 'react-router-dom';
-import { connect } from 'react-redux';
-import { createStructuredSelector } from 'reselect';
-import { selectUser } from '../../redux/auth/auth.selector';
-import { logout } from '../../redux/auth/auth.actions';
 import Cookies from 'js-cookie';
-
+import React from 'react';
+import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
+import { createStructuredSelector } from 'reselect';
+import { logout } from '../../redux/auth/auth.actions';
+import { selectUser } from '../../redux/auth/auth.selector';
+import iconsAndNames from './icons-and-element-names';
+import SidebarElement from './sidebar-element';
 import './sidebar-element.css';
+import SidebarLogo from './sidebar-logo';
+
 
 const Sidebar = () => {
     const renderSidebarElements = Object.keys(iconsAndNames).map(
@@ -31,13 +31,13 @@ const Sidebar = () => {
         Cookies.remove('jwt');
         window.location.href = '/';
     }
-    
+
     return (
         <div className="container-fluid">
             <div className="row justify-content-center">
                 <SidebarLogo />
             </div>
-            <hr style={{ margin: '5px'}} />
+            <hr style={{ margin: '5px' }} />
             {renderSidebarElements}
             <div className="spacer-lg" />
             <span className="center">

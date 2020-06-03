@@ -46,7 +46,7 @@ const EditBand = ({ user, selectedBand, updateSelectedBand, fetchBandsSuccess, b
     const [bandDescription, setBandDescription] = useState(selectedBand.description);
     const [isBandActive, setIsBandActive] = useState(selectedBand.active === 'Active');
     const [isConfirmDialogDisplaying, setIsConfirmDialogDisplaying] = useState(false);
-    
+
 
     const [actionState, dispatch] = useReducer(reducer, { action: {}, message: '' });
 
@@ -58,11 +58,11 @@ const EditBand = ({ user, selectedBand, updateSelectedBand, fetchBandsSuccess, b
 
     const handleMark = (e) => {
         if (actionState.action === 'markActive') {
-            bandService.update(selectedBand.id, {active: true})
+            bandService.update(selectedBand.id, { active: true })
                 .then(() => {
                     setIsBandActive(true)
                     setIsConfirmDialogDisplaying(false);
-                    const updatedBand = { ...selectedBand, active: 'Active'};
+                    const updatedBand = { ...selectedBand, active: 'Active' };
                     updateSelectedBand(updatedBand);
                     showMessage({ severity: 'success', summary: 'Success', detail: 'Band marked as active' });
                     return updatedBand;
@@ -80,7 +80,7 @@ const EditBand = ({ user, selectedBand, updateSelectedBand, fetchBandsSuccess, b
                 .then(() => {
                     showMessage({ severity: 'success', summary: 'Success', detail: 'Band marked as inactive' });
                     setIsBandActive(false);
-                    const updatedBand = { ...selectedBand, active: 'Inactive'};
+                    const updatedBand = { ...selectedBand, active: 'Inactive' };
                     updateSelectedBand(updatedBand);
                     setIsConfirmDialogDisplaying(false);
                 })
@@ -106,7 +106,7 @@ const EditBand = ({ user, selectedBand, updateSelectedBand, fetchBandsSuccess, b
         bandService.update(selectedBand.id, band)
             .then((band) => {
                 setIsConfirmDialogDisplaying(false);
-                const updatedBand = { ...band, genres: band.genres.join(', ')};
+                const updatedBand = { ...band, genres: band.genres.join(', ') };
                 updateSelectedBand(updatedBand);
                 showMessage({ severity: 'success', summary: 'Success', detail: 'Band Updated' });
                 return updatedBand;
@@ -174,7 +174,11 @@ const EditBand = ({ user, selectedBand, updateSelectedBand, fetchBandsSuccess, b
                         <div className="col">
                             <div className="form-group">
                                 <label className="h6" htmlFor="band-name"><strong>Band name</strong></label>
-                                <input defaultValue={bandName} type="text" className="form-control" id="band-name" onChange={(e) => setBandName(e.target.value)} />
+                                <input defaultValue={bandName}
+                                    type="text"
+                                    className="form-control"
+                                    id="band-name"
+                                    onChange={(e) => setBandName(e.target.value)} />
                             </div>
                             <div className="form-group">
                                 <label className="h6" htmlFor="band-description"><strong>Band description</strong></label>
@@ -208,8 +212,8 @@ const EditBand = ({ user, selectedBand, updateSelectedBand, fetchBandsSuccess, b
                     <div className="row">
                         <div className="col-9" />
                         <div className="col" style={{ paddingLeft: '74px' }}>
-                            <Button id="edit-band-save"  variant="success" type="button" onClick={handleButtonClick}>Save</Button>{' '}
-                            <Button id="edit-band-mark"  variant="secondary" type="button" onClick={handleButtonClick}>{`Mark as ${isBandActive ? 'inactive' : 'active'}`}</Button>
+                            <Button id="edit-band-save" variant="success" type="button" onClick={handleButtonClick}>Save</Button>{' '}
+                            <Button id="edit-band-mark" variant="secondary" type="button" onClick={handleButtonClick}>{`Mark as ${isBandActive ? 'inactive' : 'active'}`}</Button>
                         </div >
 
                     </div>

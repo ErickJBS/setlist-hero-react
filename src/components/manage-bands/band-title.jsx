@@ -1,8 +1,8 @@
-import React,{useEffect} from 'react'
-import { connect } from 'react-redux';
+import React from 'react';
 import Badge from 'react-bootstrap/Badge';
-import { selectSelectedBand } from '../../redux/band/band.selector';
+import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
+import { selectSelectedBand } from '../../redux/band/band.selector';
 
 const BandTitle = ({ className, selectedBand }) => {
     const { name, logo, description, genres } = selectedBand
@@ -10,7 +10,7 @@ const BandTitle = ({ className, selectedBand }) => {
         (genre, index) => {
             return (
                 <React.Fragment key={index}>
-                    <span className="h6" key={index}><Badge variant="secondary" style={{padding:'6px'}}>{genre}</Badge></span>{' '}
+                    <span className="h6" key={index}><Badge variant="secondary" style={{ padding: '6px' }}>{genre}</Badge></span>{' '}
                 </React.Fragment>
             );
         }
@@ -31,7 +31,7 @@ const BandTitle = ({ className, selectedBand }) => {
                             } />
                     </div>
                     <div className="col">
-                        <div className="spacer-mini"/>
+                        <div className="spacer-mini" />
                         <span className="h3"><strong>{name}</strong></span>
                         <div className="spacer-sm" />
                         <p className="text-white">{description}</p>
