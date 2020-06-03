@@ -85,7 +85,7 @@ const EditEvent = ({ band, callback, showMessage, events, fetchEvents, event }) 
                     <input
                         type="email"
                         className="form-control"
-                        id="edit-event-location"
+                        id="edit-event-designer"
                         required value={designer}
                         onChange={e => setDesigner(e.target.value)} />
                 </div>

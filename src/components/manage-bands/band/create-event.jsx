@@ -82,7 +82,7 @@ export const CreateEvent = ({ band, callback, showMessage, events, fetchEvents }
                     <input
                         type="email"
                         className="form-control"
-                        id="event-location"
+                        id="event-designer"
                         required value={designer}
                         onChange={e => setDesigner(e.target.value)} />
                 </div>
