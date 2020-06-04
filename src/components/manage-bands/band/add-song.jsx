@@ -1,6 +1,7 @@
 import { Chips } from 'primereact/chips';
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
+import { FileUpload } from 'primereact/fileupload';
 import { createStructuredSelector } from 'reselect';
 import { selectSelectedBand } from '../../../redux/band/band.selector';
 import { showMessage } from '../../../redux/growl/growl.actions';

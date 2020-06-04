@@ -64,7 +64,7 @@ const CreateBand = ({ user, callback, fetchBands, bands, showMessage }) => {
                                     name="data" id="create-band-profile-pic"
                                     multiple={false}
                                     auto
-                                    url={`${baseUrl}/storage/upload`}
+                                    url={`${baseUrl}/storage/upload/image`}
                                     onUpload={onUpload}
                                     accept="image/*" maxFileSize={1000000}/>
                             </div>

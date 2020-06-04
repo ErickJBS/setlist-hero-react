@@ -35,7 +35,8 @@ export const ChordsEditor = ({ song }) => {
             .then(song => {
                 selectSong({ ...song, tags: song.tags.join(', ') });
                 showMessage({ severity: 'success', summary: 'Success', detail: 'Lyrics edition succeded' });
-            });
+            })
+            .catch(() => showMessage({ severity: 'error', summary: 'Error Message', detail: "Couldn't update chords" }));
     }
 
     return (

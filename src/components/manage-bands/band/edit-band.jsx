@@ -165,7 +165,7 @@ const EditBand = ({ user, selectedBand, updateSelectedBand, fetchBandsSuccess, b
                             <div className="form-group">
                                 <label className="h6"><strong>Edit band logo</strong></label>
                                 <FileUpload name="data"
-                                    url={`${baseUrl}/storage/upload`}
+                                    url={`${baseUrl}/storage/upload/image`}
                                     onUpload={onUpload}
                                     auto
                                     multiple={false} accept="image/*" maxFileSize={1000000} />

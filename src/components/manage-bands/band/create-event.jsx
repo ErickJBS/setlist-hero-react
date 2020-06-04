@@ -1,14 +1,14 @@
 import { Calendar } from 'primereact/calendar';
 import { Chips } from 'primereact/chips';
+import { Dropdown } from 'primereact/dropdown';
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
-import { showMessage } from '../../../redux/growl/growl.actions';
-import { Dropdown } from 'primereact/dropdown';
-import { selectEvents } from '../../../redux/event/events.selector';
-import { fetchEvents } from '../../../redux/event/events.actions';
-import eventService from '../../../services/EventService';
 import { selectSelectedBand } from '../../../redux/band/band.selector';
+import { fetchEvents } from '../../../redux/event/events.actions';
+import { selectEvents } from '../../../redux/event/events.selector';
+import { showMessage } from '../../../redux/growl/growl.actions';
+import eventService from '../../../services/EventService';
 
 export const CreateEvent = ({ band, callback, showMessage, events, fetchEvents }) => {
     const [date, setDate] = useState(null);
