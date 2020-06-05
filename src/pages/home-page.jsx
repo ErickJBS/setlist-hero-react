@@ -6,7 +6,7 @@ import { Redirect, Switch } from 'react-router-dom';
 import Sidebar from '../components/sidebar/sidebar';
 import PrivateRoute from '../routing/PrivateRoute';
 import ManageBandsPage from './manage-bands/manage-bands-page';
-import SetlistsPage from './setlists/setlists-page';
+import SetlistsRouter from './setlists/setlists-router';
 
 const HomePage = ({ growlMessages }) => {
 
@@ -29,10 +29,8 @@ const HomePage = ({ growlMessages }) => {
                     <Growl ref={growl} id="my-super-growl" position="topright" />
                     <Switch>
                         <PrivateRoute path='/bands' component={ManageBandsPage} />
-                        <PrivateRoute path='/setlists' component={SetlistsPage} />
-                        <PrivateRoute path='/profile' component={() => <>profile</>} />
-                        <PrivateRoute path='/dashboard' component={() => <>dashboard</>} />
-                        <Redirect from="/" to="/dashboard" />
+                        <PrivateRoute path='/setlists' component={SetlistsRouter} />
+                        <Redirect from="/" to="/bands" />
                     </Switch>
                 </div>
             </div>

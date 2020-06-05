@@ -34,7 +34,7 @@ const BandEvents = ({ band, events, fetchEvents, showMessage }) => {
                 fetchEvents(newEvents);
             })
             .catch(error => {
-                showMessage({ severity: 'error', summary: 'Error Message', detail: "Couldn't fetch errors" });
+                showMessage({ severity: 'error', summary: 'Error Message', detail: "Couldn't fetch events" });
             });
     }, []);
 

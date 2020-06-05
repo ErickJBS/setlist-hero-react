@@ -6,13 +6,9 @@ import SetlistsBody from '../../components/setlists/setlist-body';
 import Card from 'react-bootstrap/card';
 const SetlistsPage = () => {
 
-    const handleSearch = (e) => {
-        e.preventDefault();
-    };
-
     return (
         <div className="container-fluid" style={{ padding: '20px' }}>
-            <Card className="shadowed" style={{padding:'20px'}}>
+            <Card className="shadowed" style={{ padding: '20px' }}>
                 <Card.Body>
                     <PageTitle title="Your Setlists">
                         Organize your setlists

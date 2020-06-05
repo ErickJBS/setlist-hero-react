@@ -54,6 +54,7 @@ const CustomHeader = ({ lyricsCallback, setGlobalFilter, chordsCallback, isLyric
 
 const ManageSongSheets = ({ band, song }) => {
     const [isDialogDisplaying, setIsDialogDisplaying] = useState(false);
+    const [globalFilter, setGlobalFilter] = useState('');
     const history = useHistory();
 
     const songSheetsFormated = ({ lyrics, sheets, chords }) => {
@@ -134,8 +135,10 @@ const ManageSongSheets = ({ band, song }) => {
             <TreeTable
                 className="animated faster fadeIn"
                 value={songSheetsFormated(song).root}
+                globalFilter={globalFilter}
                 header={
                     <CustomHeader
+                        setGlobalFilter={setGlobalFilter}
                         lyricsCallback={lyricsCallback}
                         chordsCallback={chordsCallback}
                         isLyricsEdition={song.lyrics}

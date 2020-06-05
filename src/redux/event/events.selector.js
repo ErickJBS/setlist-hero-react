@@ -9,5 +9,5 @@ export const  selectEvents = createSelector(
 
 export const  selectSelectedEvent = createSelector(
     [events],
-    eventsState => eventsState.event
+    eventsState => eventsState.selectecEvent
 )
