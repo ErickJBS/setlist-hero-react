@@ -211,7 +211,7 @@ const EditBand = ({ user, selectedBand, updateSelectedBand, fetchBandsSuccess, b
                     </div>
                     <div className="row">
                         <div className="col-9" />
-                        <div className="col" style={{ paddingLeft: '74px' }}>
+                        <div className="col" style={{ paddingLeft: '61px' }}>
                             <Button id="edit-band-save" variant="success" type="button" onClick={handleButtonClick}>Save</Button>{' '}
                             <Button id="edit-band-mark" variant="secondary" type="button" onClick={handleButtonClick}>{`Mark as ${isBandActive ? 'inactive' : 'active'}`}</Button>
                         </div >

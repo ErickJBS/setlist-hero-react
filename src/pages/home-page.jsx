@@ -12,6 +12,7 @@ const HomePage = ({ growlMessages }) => {
 
     const [prevMessages, setPrevMessages] = useState(null);
     const growl = useRef();
+    
     if (growlMessages && growlMessages !== prevMessages) {
         if (growlMessages.length > 0) {
             growl.current.show(growlMessages);
