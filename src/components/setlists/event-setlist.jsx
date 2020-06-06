@@ -11,15 +11,16 @@ import { showMessage } from '../../redux/growl/growl.actions';
 import Button from 'react-bootstrap/Button';
 import { InputText } from 'primereact/inputtext';
 import AddSet from './add-set';
+import ModifySet from './modify-set';
+import DeleteSet from './delete-set';
 
 
-const CustomHeader = (
-    {
-        setGlobalFilter,
-        setIsAddSetDialogDisplaying,
-        setIsModifySetDialogDisplaying,
-        setIsRemoveSetDialogDisplaying
-    }) => (
+const CustomHeader = ({
+    setGlobalFilter,
+    setIsAddSetDialogDisplaying,
+    setIsModifySetDialogDisplaying,
+    setIsRemoveSetDialogDisplaying
+}) => (
         <div style={{ paddingTop: '15px' }}>
             <div className="d-flex flex-row justify-content-start">
                 <div style={{ paddingBottom: '10px', marginRight: '10px' }}>
@@ -50,7 +51,7 @@ const CustomHeader = (
                         onClick={() => setIsRemoveSetDialogDisplaying(true)}
                     >
                         <span className="text-light">
-                            <i class="far fa-trash-alt"></i>{' '}
+                            <i className="far fa-trash-alt"></i>{' '}
                         Delete set
                     </span>
                     </Button>
@@ -119,7 +120,7 @@ const EventSetlist = ({ event, showMessage }) => {
             </Modal.Header>
             <Modal.Body>
                 <AddSet callback={() => setIsAddSetDialogDisplaying(false)} songs={allSongs} />
-            </Modal.Body> 
+            </Modal.Body>
             <Modal.Footer />
         </Modal>
     )
@@ -138,7 +139,7 @@ const EventSetlist = ({ event, showMessage }) => {
             </Modal.Title>
             </Modal.Header>
             <Modal.Body>
-                <AddSet />
+                <ModifySet callback={() => setIsModifySetDialogDisplaying(false)} songs={allSongs} />
             </Modal.Body>
             <Modal.Footer />
         </Modal>
@@ -158,7 +159,7 @@ const EventSetlist = ({ event, showMessage }) => {
             </Modal.Title>
             </Modal.Header>
             <Modal.Body>
-                <AddSet />
+                <DeleteSet callback={() => setIsRemoveSetDialogDisplaying(false)}/>
             </Modal.Body>
             <Modal.Footer />
         </Modal>
