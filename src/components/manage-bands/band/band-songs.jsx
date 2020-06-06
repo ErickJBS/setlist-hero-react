@@ -33,7 +33,7 @@ const BandSongs = ({ songs, band, fetchSongs, selectSong, showMessage }) => {
 
     const handleDelete = () => {
         songService.delete(songToBeDeleted.id)
-            .then(() => { 
+            .then(() => {
                 setIsConfirmDialogDisplaying(false)
                 fetchSongs(songs.filter(song => song.id !== songToBeDeleted.id));
                 setSongToBeDeleted(null);
@@ -100,8 +100,7 @@ const BandSongs = ({ songs, band, fetchSongs, selectSong, showMessage }) => {
                 onHide={() => setIsDialogDisplaying(false)}
                 dialogClassName="modal-dialog-centered"
                 aria-labelledby="modal-title"
-                onExiting={() => setIsDialogDisplaying(false)}
-            >
+                onExiting={() => setIsDialogDisplaying(false)}>
                 <Modal.Header closeButton>
                     <Modal.Title id="modal-title">
                         Add song
@@ -110,6 +109,7 @@ const BandSongs = ({ songs, band, fetchSongs, selectSong, showMessage }) => {
                 <Modal.Body>
                     <AddSong callback={() => setIsDialogDisplaying(false)} />
                 </Modal.Body>
+                <Modal.Footer />
             </Modal>
             <DataTable value={songs} className="animated faster fadeIn"
                 header={

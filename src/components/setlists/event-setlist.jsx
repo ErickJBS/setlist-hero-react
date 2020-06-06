@@ -156,7 +156,7 @@ const EventSetlist = ({ event, showMessage }) => {
             <Modal.Header closeButton>
                 <Modal.Title id="modal-title">
                     Remove set
-            </Modal.Title>
+                </Modal.Title>
             </Modal.Header>
             <Modal.Body>
                 <DeleteSet callback={() => setIsRemoveSetDialogDisplaying(false)}/>

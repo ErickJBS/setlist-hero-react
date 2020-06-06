@@ -46,6 +46,7 @@ const ManageBandsBody = ({bands, selectBand }) => {
                     <CreateBand callback={createBandCallback} />
                     <div className="spacer" />
                 </Modal.Body>
+                <Modal.Footer />
             </Modal>
             <DataTable  className="animated faster fadeIn"
                 header={

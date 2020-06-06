@@ -532,7 +532,7 @@ body .p-multiselect .p-multiselect-label {
   color: #dedede;
 }
 body .p-multiselect .p-multiselect-label.p-placeholder {
-  color: #9b9b9b;
+  color: $placeholder-color;
 }
 body .p-multiselect .p-multiselect-trigger {
   background-color: #585858;

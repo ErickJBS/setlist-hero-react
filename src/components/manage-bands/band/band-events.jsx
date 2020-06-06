@@ -99,6 +99,7 @@ const BandEvents = ({ band, events, fetchEvents, showMessage }) => {
                     event={eventToEdit}
                     callback={() => setIsEditDialogDisplaying(false)} />
             </Modal.Body>
+            <Modal.Footer />
         </Modal>)
 
     const renderDeleteModal = (

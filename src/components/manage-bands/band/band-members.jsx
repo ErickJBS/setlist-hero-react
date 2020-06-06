@@ -181,6 +181,7 @@ const BandMembers = ({ musicians, fetchMusicians, band, fetchFailure, showMessag
                 <Modal.Body>
                     <AddBandMember callback={() => setIsDialogDisplaying(false)} />
                 </Modal.Body>
+                <Modal.Footer />
             </Modal>
             <DataTable id="band-members-table" value={musicians}
                 className="animated faster fadeIn "
