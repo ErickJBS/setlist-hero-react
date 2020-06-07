@@ -30,24 +30,19 @@ function App() {
   const renderRoutes = () => {
     return jwtCookie ?
       (
-        <>
           <Switch>
             <PrivateRoute path="/" component={HomePage} />
           </Switch>
-        </>
       ) :
       (
-        <>
           <Switch>
             <Route exact path="/" to="/login" component={LoginPage} />
             <Route exact path="/login" component={LoginPage} />
             <Route exact path="/register" component={RegisterPage} />
             <Redirect to="/" />
           </Switch>
-        </>
       )
   }
-  console.log(jwtCookie);
 
   return (
     <Provider store={store}>

@@ -31,9 +31,9 @@ export const ChordsEditor = ({ song }) => {
     const [editorState, setEditorState] = useState({});
 
     const save = () => {
-        songService.update(song.id, { ...song, tags: song.tags.split(', '), chords: { ops: editorState.ops } })
+        songService.update(song.id, { ...song, chords: { ops: editorState.ops } })
             .then(song => {
-                selectSong({ ...song, tags: song.tags.join(', ') });
+                selectSong(song);
                 showMessage({ severity: 'success', summary: 'Success', detail: 'Lyrics edition succeded' });
             })
             .catch(() => showMessage({ severity: 'error', summary: 'Error Message', detail: "Couldn't update chords" }));

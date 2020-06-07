@@ -25,12 +25,11 @@ const SheetUploader = ({ callback, showMessage, song, selectSong }) => {
         }) : [{instrument, content: imageUrl}];
         const updateSong = {
             ...song,
-            tags: song.tags.split(', '),
             sheets: updateSheets
         };
         songService.update(song.id, updateSong)
         .then(song => {
-            selectSong({...song, tags: song.tags.join(', ') })
+            selectSong(song)
             showMessage({ severity: 'success', summary: 'Success', detail: 'Sheet added!' });
             callback();
         })

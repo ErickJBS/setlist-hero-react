@@ -32,9 +32,9 @@ export const LyricsEditor = ({ song, selectSong, showMessage }) => {
     const [editorState, setEditorState] = useState({});
 
     const save = () => {
-        songService.update(song.id, { ...song, tags: song.tags.split(', '), lyrics: { ops: editorState.ops } })
+        songService.update(song.id, { ...song, lyrics: { ops: editorState.ops } })
             .then((song) => {
-                selectSong({ ...song, tags: song.tags.join(', ') });
+                selectSong(song);
                 showMessage({ severity: 'success', summary: 'Success', detail: 'Lyrics edition succeded' });
             })
             .catch(() => showMessage({ severity: 'error', summary: 'Error Message', detail: "Couldn't update lyrics" }));

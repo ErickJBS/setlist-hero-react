@@ -21,7 +21,7 @@ const AddSong = ({ callback, selectedBand, songs, fetchSongs }) => {
             .then(song => {
                 callback();
                 showMessage({severity: 'success', summary: 'Success', detail: 'Song added' });
-                return { ...song, tags: song.tags.join(', ') };
+                return song;
             })
             .then(newSong => fetchSongs(songs.concat(newSong)))
             .catch(e => {
