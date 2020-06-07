@@ -111,7 +111,7 @@ const ManageSongSheets = ({ band, song }) => {
         >
             <Modal.Header closeButton>
                 <Modal.Title id="modal-title">
-                    Edit event
+                    Manage sheets
             </Modal.Title>
             </Modal.Header>
             <Modal.Body>

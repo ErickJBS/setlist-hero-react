@@ -19,10 +19,19 @@ const SheetUploader = ({ callback, showMessage, song, selectSong }) => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        const updateSheets = song.sheets.length ? song.sheets.map( sheet => {
-            if (sheet.instrument === instrument) return {instrument, content: imageUrl};
-            else return sheet;
-        }) : [{instrument, content: imageUrl}];
+        let updateSheets = [];
+        if (song.sheets.length){
+            if(song.sheets.find(sheet => sheet.instrument === instrument)){
+                updateSheets = song.sheets.map( sheet => {
+                    if (sheet.instrument === instrument) return {instrument, content: imageUrl};
+                    else return sheet;
+                });
+            }else{
+                updateSheets = song.sheets.concat([{instrument, content: imageUrl}]);
+            }
+        }else {
+            updateSheets = [{instrument, content: imageUrl}]
+        }
         const updateSong = {
             ...song,
             sheets: updateSheets
@@ -45,7 +54,7 @@ const SheetUploader = ({ callback, showMessage, song, selectSong }) => {
     return (
         <form onSubmit={handleSubmit}>
             <div className="form-group row">
-                <label htmlFor="upload-sheet" className="col-sm-2 col-form-label">Name</label>
+                <label htmlFor="upload-sheet" className="col-sm-2 col-form-label">Sheets</label>
                 <div className="col-sm-10">
                     <FileUpload
                         name="data"
