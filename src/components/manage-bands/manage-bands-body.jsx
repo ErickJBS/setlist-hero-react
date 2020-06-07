@@ -1,17 +1,15 @@
-import React, { useState} from 'react'
-import { DataTable } from 'primereact/datatable';
 import { Column } from 'primereact/column';
-import { InputText } from 'primereact/inputtext';
-import {useHistory} from 'react-router-dom';
+import { DataTable } from 'primereact/datatable';
+import React, { useState } from 'react';
 import Modal from 'react-bootstrap/Modal';
-import Button from 'react-bootstrap/Button';
-import CreateBand from './create-band';
 import { connect } from 'react-redux';
-import { fetchBandsSuccess, fetchBandsFailure, selectBand } from '../../redux/band/band.actions';
-import { selectBands } from '../../redux/band/band.selector';
+import { useHistory } from 'react-router-dom';
 import { createStructuredSelector } from 'reselect';
+import { fetchBandsFailure, fetchBandsSuccess, selectBand } from '../../redux/band/band.actions';
+import { selectBands } from '../../redux/band/band.selector';
 import TableHeader from '../table-header';
-const ManageBandsBody = ({bands, selectBand }) => {
+import CreateBand from './create-band';
+const ManageBandsBody = ({ bands, selectBand }) => {
     const [globalFilter, setGlobalFilter] = useState(null);
     const [isDialogDisplaying, setIsDialogDisplaying] = useState(false);
     const [selectedColumn, setSelectedColumn] = useState(null);
@@ -19,7 +17,7 @@ const ManageBandsBody = ({bands, selectBand }) => {
 
     const createBandCallback = () => {
         setIsDialogDisplaying(false);
-        
+
     }
     const chooseBand = e => {
         selectBand(e.value);
@@ -48,7 +46,7 @@ const ManageBandsBody = ({bands, selectBand }) => {
                 </Modal.Body>
                 <Modal.Footer />
             </Modal>
-            <DataTable  className="animated faster fadeIn"
+            <DataTable className="animated faster fadeIn"
                 header={
                     <TableHeader
                         buttonText="Add band"
@@ -60,10 +58,10 @@ const ManageBandsBody = ({bands, selectBand }) => {
                 globalFilter={globalFilter} sortField="name"
                 selectionMode="single" sortOrder={1}
                 selection={selectedColumn} onSelectionChange={chooseBand}>
-                <Column field="name" header="Name" sortable style={{textAlign: 'center'}} />
+                <Column field="name" header="Name" sortable style={{ textAlign: 'center' }} />
                 <Column style={{ width: '50%' }} field="description" header="Description" sortable />
                 <Column style={{ width: '25%' }} field="genres" header="Genres" sortable />
-                <Column field="active" header="Active" style={{textAlign: 'center'}}/>
+                <Column field="active" header="Active" style={{ textAlign: 'center' }} />
             </DataTable>
         </>
     )

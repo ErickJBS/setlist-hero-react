@@ -12,7 +12,7 @@ import { selectSelectedBand } from '../../../redux/band/band.selector';
 
 const EditEvent = ({ band, callback, showMessage, events, fetchEvents, event }) => {
     const [date, setDate] = useState(new Date(event.date));
-    const [tags, setTags] = useState(event.tags.split(', '));
+    const [tags, setTags] = useState(event.tags);
     const [tour, setTour] = useState(event.tour);
     const [name, setName] = useState(event.tour);
     const [location, setLocation] = useState(event.location);
@@ -33,7 +33,7 @@ const EditEvent = ({ band, callback, showMessage, events, fetchEvents, event }) 
             .then(event => {
                 callback();
                 showMessage({ severity: 'success', summary: 'Success', detail: 'Event updated' });
-                return { ...event, tags: event.tags.join(', ') };
+                return event;
             })
             .then(newEvent => fetchEvents(events.map( ev => {
                 if (ev.id === event.id) return {...newEvent, date: new Date(newEvent.date).toLocaleDateString()};

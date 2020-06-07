@@ -13,6 +13,7 @@ import eventService from '../../../services/EventService';
 import TableHeader from '../../table-header';
 import CreateEvent from './create-event';
 import EditEvent from './edit-event';
+import TagsTemplate from './tag-template';
 
 const BandEvents = ({ band, events, fetchEvents, showMessage }) => {
     const [globalFilter, setGlobalFilter] = useState(null);
@@ -28,7 +29,6 @@ const BandEvents = ({ band, events, fetchEvents, showMessage }) => {
                 const newEvents = events.map(
                     event => ({
                         ...event,
-                        tags: event.tags.join(', '),
                         date: new Date(event.date).toLocaleDateString()
                     }));
                 fetchEvents(newEvents);
@@ -159,7 +159,7 @@ const BandEvents = ({ band, events, fetchEvents, showMessage }) => {
                 <Column field="date" header="Date" sortable style={{ width: '10%', textAlign: 'center' }} />
                 <Column field="location" header="Location" sortable />
                 <Column field="designer" header="Designer" sortable />
-                <Column field="tags" header="Tags" sortable />
+                <Column field="tags" header="Tags" sortable body={TagsTemplate} />
                 <Column body={editBodyTemplate} headerStyle={{ width: '4em', textAlign: 'center' }} bodyStyle={{ textAlign: 'center', overflow: 'visible' }} />
                 <Column body={deleteBodyTemplate} headerStyle={{ width: '4em', textAlign: 'center' }} bodyStyle={{ textAlign: 'center', overflow: 'visible' }} />
             </DataTable>

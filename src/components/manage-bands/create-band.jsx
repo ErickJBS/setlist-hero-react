@@ -41,7 +41,11 @@ const CreateBand = ({ user, callback, fetchBands, bands, showMessage }) => {
         };
         bandService.create(band)
             .then((result) => {
-                const newBands = bands.concat({ ...result, genres: result.genres.join(', ') })
+                const newBands = bands.concat({ 
+                    ...result, 
+                    genres: result.genres.join(', '), 
+                    active: band.active ? 'Active' : 'Inactive' 
+                });
                 callback();
                 fetchBands(newBands);
                 showMessage({ severity: 'success', summary: 'Success', detail: 'Band Created' });

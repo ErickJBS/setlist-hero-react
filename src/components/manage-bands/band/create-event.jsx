@@ -33,7 +33,7 @@ export const CreateEvent = ({ band, callback, showMessage, events, fetchEvents }
             .then(event => {
                 callback();
                 showMessage({ severity: 'success', summary: 'Success', detail: 'Event added' });
-                return { ...event, tags: event.tags.join(', ') };
+                return { ...event, date: new Date(event.date).toLocaleDateString() };
             })
             .then(newEvent => fetchEvents(events.concat(newEvent)))
             .catch(e => {

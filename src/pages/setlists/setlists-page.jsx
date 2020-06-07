@@ -1,9 +1,8 @@
 import React from 'react';
+import Card from 'react-bootstrap/card';
 import { withRouter } from 'react-router-dom';
 import PageTitle from '../../components/page-title';
-import GenericBodyCard from '../../components/generic-body-card';
 import SetlistsBody from '../../components/setlists/setlist-body';
-import Card from 'react-bootstrap/card';
 const SetlistsPage = () => {
 
     return (

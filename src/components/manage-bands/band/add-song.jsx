@@ -1,7 +1,6 @@
 import { Chips } from 'primereact/chips';
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
-import { FileUpload } from 'primereact/fileupload';
 import { createStructuredSelector } from 'reselect';
 import { selectSelectedBand } from '../../../redux/band/band.selector';
 import { showMessage } from '../../../redux/growl/growl.actions';
@@ -20,7 +19,7 @@ const AddSong = ({ callback, selectedBand, songs, fetchSongs }) => {
         songService.create(song)
             .then(song => {
                 callback();
-                showMessage({severity: 'success', summary: 'Success', detail: 'Song added' });
+                showMessage({ severity: 'success', summary: 'Success', detail: 'Song added' });
                 return song;
             })
             .then(newSong => fetchSongs(songs.concat(newSong)))
@@ -34,13 +33,13 @@ const AddSong = ({ callback, selectedBand, songs, fetchSongs }) => {
                 <div className="form-group row">
                     <label htmlFor="song-name" className="col-sm-2 col-form-label">Name</label>
                     <div className="col-sm-10">
-                        <input  onChange={(e) => setName(e.target.value)} type="text" className="form-control" id="song-name" />
+                        <input onChange={(e) => setName(e.target.value)} type="text" className="form-control" id="song-name" />
                     </div>
                 </div>
                 <div className="form-group row">
                     <label htmlFor="song-tempo" className="col-sm-2 col-form-label">Tempo</label>
                     <div className="col-sm-10">
-                        <input  onChange={(e) => setTempo(e.target.value)} type="number" className="form-control" id="song-tempo" />
+                        <input onChange={(e) => setTempo(e.target.value)} type="number" className="form-control" id="song-tempo" />
                     </div>
                 </div>
                 <div className="form-group row">
