@@ -16,13 +16,11 @@ const AddSet = ({ songs, callback, event, selectEvent, showMessage }) => {
         e.preventDefault();
         eventService.update(event.id, {
             ...event,
-            tags: event.tags.split(', '),
             setlist: event.setlist.concat([{ name, songs: setSongs }])
         })
             .then(event => {
                 const stateEvent = {
                     ...event,
-                    tags: event.tags.join(', '),
                     date: new Date(event.date).toLocaleDateString()
                 };
                 selectEvent(stateEvent);

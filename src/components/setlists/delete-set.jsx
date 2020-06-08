@@ -26,13 +26,11 @@ const DeleteSet = ({ callback, event, selectEvent, showMessage }) => {
         e.preventDefault();
         eventService.update(event.id, {
             ...event,
-            tags: event.tags.split(', '),
             setlist: event.setlist.filter(set => set._id !== selectedSet._id)
         })
             .then(event => {
                 const stateEvent = {
                     ...event,
-                    tags: event.tags.join(', '),
                     date: new Date(event.date).toLocaleDateString()
                 };
                 selectEvent(stateEvent);

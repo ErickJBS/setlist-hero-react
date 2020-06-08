@@ -27,7 +27,7 @@ const header = (
 );
 
 
-export const ChordsEditor = ({ song }) => {
+export const ChordsEditor = ({ song, showMessage }) => {
     const [editorState, setEditorState] = useState({});
 
     const save = () => {
