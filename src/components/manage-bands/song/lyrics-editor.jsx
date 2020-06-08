@@ -30,11 +30,13 @@ const header = (
 
 export const LyricsEditor = ({ song, selectSong, showMessage }) => {
     const [editorState, setEditorState] = useState({});
+    const [editorText, setEditorText] = useState(new Converter(song?.lyrics?.ops).convert() || '');
 
     const save = () => {
         songService.update(song.id, { ...song, lyrics: { ops: editorState.ops } })
             .then((song) => {
                 selectSong(song);
+                setEditorText(new Converter(song?.lyrics?.ops).convert());
                 showMessage({ severity: 'success', summary: 'Success', detail: 'Lyrics edition succeded' });
             })
             .catch(() => showMessage({ severity: 'error', summary: 'Error Message', detail: "Couldn't update lyrics" }));
@@ -42,7 +44,7 @@ export const LyricsEditor = ({ song, selectSong, showMessage }) => {
 
     return (
         <div>
-            <Editor style={{ height: '300px' }} value={new Converter(song?.lyrics?.ops).convert() || ''} headerTemplate={header} onTextChange={(e) => setEditorState(e.source.compose(e.delta))} />
+            <Editor style={{ height: '41vh' }} value={editorText} headerTemplate={header} onTextChange={(e) => setEditorState(e.source.compose(e.delta))} />
             <div className="spacer-mini" />
             <div className="d-flex flex-row justify-content-start">
                 <button className="btn btn-secondary" style={{ width: '100px' }} onClick={save}>Save</button>

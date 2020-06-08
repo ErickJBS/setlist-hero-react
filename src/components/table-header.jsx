@@ -3,9 +3,9 @@ import Button from 'react-bootstrap/Button';
 import { InputText } from 'primereact/inputtext';
 
 const TableHeader = ({isDialogDisplaying, setIsDialogDisplaying, setGlobalFilter, buttonText}) => (
-    <div style={{ paddingTop: '15px' }}>
+    <div style={{ paddingTop: '2vh' }}>
         <div className="d-flex justify-content-start">
-            <div style={{ paddingBottom: '10px', paddingLeft:'5px' }}>
+            <div style={{ paddingBottom: '1vh', paddingLeft:'0.5vw' }}>
                 <Button
                     active={isDialogDisplaying}
                     variant="secondary"
@@ -16,7 +16,7 @@ const TableHeader = ({isDialogDisplaying, setIsDialogDisplaying, setGlobalFilter
                     </span>
                 </Button>
             </div>  
-            <div style={{ paddingLeft: '780px' }}>
+            <div style={{ paddingLeft: '50vw' }}>
                 <InputText type="search" placeholder="Search" onInput={(e) => setGlobalFilter(e.target.value)} />
             </div>
         </div>

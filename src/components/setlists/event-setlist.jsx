@@ -21,9 +21,9 @@ const CustomHeader = ({
     setIsModifySetDialogDisplaying,
     setIsRemoveSetDialogDisplaying
 }) => (
-        <div style={{ paddingTop: '15px' }}>
+        <div style={{ paddingTop: '2vh' }}>
             <div className="d-flex flex-row justify-content-start">
-                <div style={{ paddingBottom: '10px', marginRight: '10px' }}>
+                <div style={{ paddingBottom: '1vh', marginRight: '1vw' }}>
                     <Button
                         variant="secondary"
                         onClick={() => setIsAddSetDialogDisplaying(true)}
@@ -34,7 +34,7 @@ const CustomHeader = ({
                     </span>
                     </Button>
                 </div>
-                <div style={{ paddingBottom: '10px', marginRight: '10px' }}>
+                <div style={{ paddingBottom: '1vh', marginRight: '1vw' }}>
                     <Button
                         variant="secondary"
                         onClick={() => setIsModifySetDialogDisplaying(true)}
@@ -56,7 +56,7 @@ const CustomHeader = ({
                     </span>
                     </Button>
                 </div>
-                <div style={{ paddingLeft: '580px' }}>
+                <div style={{ paddingLeft: '37vw' }}>
                     <InputText type="search" placeholder="Search" onInput={(e) => setGlobalFilter(e.target.value)} />
                 </div>
             </div>
@@ -171,7 +171,7 @@ const EventSetlist = ({ event, showMessage }) => {
             {renderModifySetModal}
             {renderRemoveSet}
             <TreeTable
-                scrollable scrollHeight="360px"
+                scrollable scrollHeight="40vh"
                 value={setlistItems}
                 className="animated faster fadeIn"
                 globalFilter={globalFilter}

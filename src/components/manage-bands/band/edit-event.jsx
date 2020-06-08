@@ -9,6 +9,7 @@ import { selectEvents } from '../../../redux/event/events.selector';
 import { fetchEvents } from '../../../redux/event/events.actions';
 import eventService from '../../../services/EventService';
 import { selectSelectedBand } from '../../../redux/band/band.selector';
+import moment from 'moment';
 
 const EditEvent = ({ band, callback, showMessage, events, fetchEvents, event }) => {
     const [date, setDate] = useState(new Date(event.date));
@@ -22,7 +23,7 @@ const EditEvent = ({ band, callback, showMessage, events, fetchEvents, event }) 
         e.preventDefault();
         const updateEvent = {
             band: band.id,
-            date: new Date(date).toLocaleDateString(),
+            date: new Date(date),
             tags,
             tour,
             name,
@@ -36,7 +37,7 @@ const EditEvent = ({ band, callback, showMessage, events, fetchEvents, event }) 
                 return event;
             })
             .then(newEvent => fetchEvents(events.map( ev => {
-                if (ev.id === event.id) return {...newEvent, date: new Date(newEvent.date).toLocaleDateString()};
+                if (ev.id === event.id) return {...newEvent, date: moment(newEvent.date).format("MMM Do YYYY")};
                 else return ev;
             })))
             .catch(e => {

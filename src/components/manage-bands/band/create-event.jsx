@@ -9,6 +9,7 @@ import { fetchEvents } from '../../../redux/event/events.actions';
 import { selectEvents } from '../../../redux/event/events.selector';
 import { showMessage } from '../../../redux/growl/growl.actions';
 import eventService from '../../../services/EventService';
+import moment from 'moment';
 
 export const CreateEvent = ({ band, callback, showMessage, events, fetchEvents }) => {
     const [date, setDate] = useState(null);
@@ -22,7 +23,7 @@ export const CreateEvent = ({ band, callback, showMessage, events, fetchEvents }
         e.preventDefault();
         const event = {
             band: band.id,
-            date: new Date(date).toLocaleDateString(),
+            date: new Date(date),
             tags,
             tour,
             name,
@@ -33,7 +34,7 @@ export const CreateEvent = ({ band, callback, showMessage, events, fetchEvents }
             .then(event => {
                 callback();
                 showMessage({ severity: 'success', summary: 'Success', detail: 'Event added' });
-                return { ...event, date: new Date(event.date).toLocaleDateString() };
+                return { ...event, date: moment(event.date).format("MMM Do YYYY") };
             })
             .then(newEvent => fetchEvents(events.concat(newEvent)))
             .catch(e => {

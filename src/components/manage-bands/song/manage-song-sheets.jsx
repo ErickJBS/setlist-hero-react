@@ -12,9 +12,9 @@ import { selectSelectedSong } from '../../../redux/song/song.selector';
 import SheetUploader from './sheet-uploader';
 
 const CustomHeader = ({ lyricsCallback, setGlobalFilter, chordsCallback, isLyricsEdition, isChordsEdition, setIsDialogDisplaying }) => (
-    <div style={{ paddingTop: '15px' }}>
+    <div style={{ paddingTop: '2vh' }}>
         <div className="d-flex flex-row justify-content-start">
-            <div style={{ paddingBottom: '10px', marginRight: '10px' }}>
+            <div style={{ paddingBottom: '1vh', marginRight: '1vw' }}>
                 <Button
                     variant="secondary"
                     onClick={lyricsCallback}>
@@ -24,7 +24,7 @@ const CustomHeader = ({ lyricsCallback, setGlobalFilter, chordsCallback, isLyric
                     </span>
                 </Button>
             </div>
-            <div style={{ paddingBottom: '10px', marginRight: '10px' }}>
+            <div style={{ paddingBottom: '1vh', marginRight: '1vw' }}>
                 <Button
                     variant="secondary"
                     onClick={chordsCallback}>
@@ -45,7 +45,7 @@ const CustomHeader = ({ lyricsCallback, setGlobalFilter, chordsCallback, isLyric
                     </span>
                 </Button>
             </div>
-            <div style={{ paddingLeft: '480px' }}>
+            <div style={{ paddingLeft: '32vw' }}>
                 <InputText type="search" placeholder="Search" onInput={(e) => setGlobalFilter(e.target.value)} />
             </div>
         </div>
@@ -136,6 +136,7 @@ const ManageSongSheets = ({ band, song }) => {
                 className="animated faster fadeIn"
                 value={songSheetsFormated(song).root}
                 globalFilter={globalFilter}
+                scrollable scrollHeight="40vh"
                 header={
                     <CustomHeader
                         setGlobalFilter={setGlobalFilter}

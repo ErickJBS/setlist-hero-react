@@ -193,7 +193,7 @@ const BandMembers = ({ musicians, fetchMusicians, band, fetchFailure, showMessag
                         setGlobalFilte={setGlobalFilter}
                         setIsDialogDisplaying={setIsDialogDisplaying} />
                 }
-                scrollable scrollHeight="315px"
+                scrollable scrollHeight="40vh"
                 globalFilter={globalFilter} sortField="name"
                 selectionMode="single">
                 <Column field="name" header="Name" sortable style={{ width: '25%', textAlign: 'center' }} />

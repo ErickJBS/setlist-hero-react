@@ -54,7 +54,7 @@ const ManageBandsBody = ({ bands, selectBand }) => {
                         setGlobalFilter={setGlobalFilter}
                         setIsDialogDisplaying={setIsDialogDisplaying} />
                 }
-                value={bands} scrollable scrollHeight="315px"
+                value={bands} scrollable scrollHeight="40vh"
                 globalFilter={globalFilter} sortField="name"
                 selectionMode="single" sortOrder={1}
                 selection={selectedColumn} onSelectionChange={chooseBand}>

@@ -119,7 +119,7 @@ const BandSongs = ({ songs, band, fetchSongs, selectSong, showMessage }) => {
                         setGlobalFilter={setGlobalFilter}
                         setIsDialogDisplaying={setIsDialogDisplaying} />
                 }
-                scrollable scrollHeight="315px"
+                scrollable scrollHeight="40vh"
                 globalFilter={globalFilter} sortField="name">
                 <Column field="name" header="Name" sortable />
                 <Column field="tags" header="Tags" body={TagsTemplate} />

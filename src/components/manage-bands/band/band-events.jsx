@@ -14,6 +14,7 @@ import TableHeader from '../../table-header';
 import CreateEvent from './create-event';
 import EditEvent from './edit-event';
 import TagsTemplate from './tag-template';
+import moment from 'moment';
 
 const BandEvents = ({ band, events, fetchEvents, showMessage }) => {
     const [globalFilter, setGlobalFilter] = useState(null);
@@ -29,7 +30,7 @@ const BandEvents = ({ band, events, fetchEvents, showMessage }) => {
                 const newEvents = events.map(
                     event => ({
                         ...event,
-                        date: new Date(event.date).toLocaleDateString()
+                        date: moment(event.date).format("MMM Do YYYY")
                     }));
                 fetchEvents(newEvents);
             })
@@ -151,12 +152,12 @@ const BandEvents = ({ band, events, fetchEvents, showMessage }) => {
                         setGlobalFilter={setGlobalFilter}
                         setIsDialogDisplaying={setIsDialogDisplaying} />
                 }
-                scrollable scrollHeight="315px"
+                scrollable scrollHeight="40vh"
                 value={events}
                 globalFilter={globalFilter} sortField="name"
                 selectionMode="single">
                 <Column field="name" header="Name" sortable />
-                <Column field="date" header="Date" sortable style={{ width: '10%', textAlign: 'center' }} />
+                <Column field="date" header="Date" sortable style={{ width: '15%', textAlign: 'center' }} />
                 <Column field="location" header="Location" sortable />
                 <Column field="designer" header="Designer" sortable />
                 <Column field="tags" header="Tags" sortable body={TagsTemplate} />
