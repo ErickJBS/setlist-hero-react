@@ -1,0 +1,29 @@
+$brand-color: #FD6631;
+$brand-hover:rgb(253, 91, 32);
+$brand-active: rgb(255, 76, 11);
+$brand-shadow: rgba($brand-color, 0.5);
+$brand-color-svg: invert(61%) sepia(33%) saturate(7497%) hue-rotate(340deg) brightness(101%) contrast(99%);
+
+$theme-colors: ("primary":$brand-color,
+"secondary": #1a3e93,
+"success": $brand-color,
+"highlight":#ffc107);
+
+$secondary: #506595;
+$placeholder-color: #9b9b9b;
+$secondary-hover: #133072;
+$secondary-active: #0f2250;
+$secondary-shadow: rba($secondary, 0.4);
+
+$body-bg: #585858;
+$font-family-sans-serif: "Montserrat",
+sans-serif;
+
+$border-radius: 0.50rem;
+$border-radius-lg: 0.5rem;
+$border-radius-sm: 0.3rem;
+$font-size-base: .9rem;
+$font-size-lg: $font-size-base * 1.15;
+$font-size-sm: $font-size-base * .765;
+
+$enable-responsive-font-sizes: true;

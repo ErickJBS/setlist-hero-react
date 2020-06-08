@@ -1,0 +1,167 @@
+
+@import "./variables.scss";
+@import "../../node_modules/bootstrap/scss/bootstrap.scss";
+@import url("https://fonts.googleapis.com/css?family=Montserrat:300,400,700,800&display=swap");
+
+/*---------------DocsStyle----------------------*/
+
+
+.square {
+  height: 150;
+}
+
+.spacer-sm {
+  height: 20px;
+}
+
+.spacer-lg {
+  height: 100px;
+}
+
+.spacer {
+  height: 50px;
+}
+
+.spacer-mini {
+    height: 10px;
+}
+
+/*---------------UIStyle----------------------*/
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  overflow-y: hidden;
+  scroll-behavior: smooth;
+  transition: all ease-in-out 0.2s;
+  color: #F2F2F2;
+}
+
+.modal-header{
+  border-bottom-color: $dark;
+}
+.modal-footer {
+  border-top-color: $dark;;
+}
+
+.p-inputtext{
+  border-radius: $border-radius;
+}
+
+.selectable img {
+  filter: invert(100%) sepia(0%) saturate(0%) hue-rotate(49deg) brightness(103%) contrast(103%);
+}
+
+.close {
+  color: white;
+}
+
+.form-control {
+  color: white;
+  background-color: $body-bg;
+  border-color: $body-bg;
+}
+
+.form-control::placeholder {
+  color: $placeholder-color;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover, 
+input:-webkit-autofill:focus, 
+input:-webkit-autofill:active {
+  -webkit-box-shadow: 0 0 0 30px $body-bg inset !important;
+  box-shadow: 0 0 0 30px $body-bg inset !important;
+  -webkit-text-fill-color: white !important;
+  color: white;
+}
+
+.form-control:focus{
+  color: white;
+  border-color:$brand-color;
+  background-color: $body-bg;
+}
+
+.form-control::-webkit-input-placeholder { /* Edge */
+  color: $placeholder-color;
+}
+
+*::-webkit-scrollbar {
+  width: 10px;
+  background-color: transparent;
+}
+
+*::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  background-color: white;
+}
+
+*::-webkit-scrollbar-track {
+  border-radius: 10px;
+  background-color: transparent;
+}
+
+hr {
+  margin-bottom: 0;
+}
+
+.bg-background {
+  background-color: $body-bg;
+}
+
+/* Selected items sidebar */
+
+.selected {
+    color: $brand-color;
+}
+
+.selectable:hover {
+    color: $brand-color;
+}
+
+.selected img {
+    filter: $brand-color-svg;
+}
+
+.selectable:hover img {
+    filter: $brand-color-svg;
+}
+
+.tbe-selectable{
+  padding-top: 16px;
+}
+
+.tbe-selected{
+  color: $brand-color;
+}
+.tbe-selectable:hover{
+  
+  color: $brand-color;
+}
+.card, .card-body,.modal-content ,.modal-header,.modal-title,.modal-body {
+  background-color: #3f3f3f;
+}
+
+.shadowed {
+  
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.my-multiselected-item-token{
+  background-color: $brand-color;
+}
+
+button {
+  font-family: 'Open Sans';
+  font-size: '14px';
+  
+}
+
+.btn{
+  font-family: 'Open Sans';
+  font-size: '14px';
+  min-width: 70px;
+}
+

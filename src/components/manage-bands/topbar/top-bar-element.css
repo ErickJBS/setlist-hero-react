@@ -1,0 +1,21 @@
+.tbe-selectable {
+    transition-duration: 0.4s;
+    
+    cursor: pointer;
+}
+
+.tbe-selected {
+    transition: all ease-in-out 0.2s;
+}
+
+.tbe-selectable:hover {
+    transition: all ease-in-out 0.2s;
+}
+
+.tbe-selectable h6 {
+    cursor: pointer;
+}
+
+.tbe-selectable:hover:active{
+    transform: translateY(9px);
+}

@@ -1,0 +1,99 @@
+{
+  "ops": [
+    {
+      "insert": "small",
+      "attributes": {
+        "size": "small"
+      }
+    },
+    {
+      "insert": "\nnormal\n"
+    },
+    {
+      "insert": "large",
+      "attributes": {
+        "size": "large"
+      }
+    },
+    {
+      "insert": "\n"
+    },
+    {
+      "insert": "huge",
+      "attributes": {
+        "size": "huge"
+      }
+    },
+    {
+      "insert": "\n"
+    },
+    {
+      "insert": "bold",
+      "attributes": {
+        "size": "huge",
+        "bold": true
+      }
+    },
+    {
+      "insert": "\n"
+    },
+    {
+      "insert": "italics",
+      "attributes": {
+        "size": "huge",
+        "italic": true
+      }
+    },
+    {
+      "insert": "\n"
+    },
+    {
+      "insert": "underline",
+      "attributes": {
+        "size": "huge",
+        "underline": true
+      }
+    },
+    {
+      "insert": "\n"
+    },
+    {
+      "insert": "bold and underline and huge",
+      "attributes": {
+        "underline": true,
+        "size": "huge",
+        "bold": true
+      }
+    },
+    {
+      "insert": "\n"
+    },
+    {
+      "insert": "color",
+      "attributes": {
+        "color": "#ff9900"
+      }
+    },
+    {
+      "insert": "\n"
+    },
+    {
+      "insert": "asdasd",
+      "attributes": {
+        "color": "#888888"
+      }
+    },
+    {
+      "insert": "\nbackground color\n"
+    },
+    {
+      "insert": "another background",
+      "attributes": {
+        "background": "#ffff00"
+      }
+    },
+    {
+      "insert": "\n\n"
+    }
+  ]
+}

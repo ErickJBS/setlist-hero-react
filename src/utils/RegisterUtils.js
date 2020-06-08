@@ -1,0 +1,1 @@
+export const validatePassword = (string) => /(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/.test(string);
