@@ -6,7 +6,7 @@ import Badge from 'react-bootstrap/Badge'
 
 export const SetlistTitle = ({className, event}) => {
     const { name, tour, date, tags } = event;
-    const generateTags = tags.split(', ').map(
+    const generateTags = tags.lenght ? tags.map(
         (tag, index) => {
             return (
                 <React.Fragment key={index}>
@@ -14,7 +14,7 @@ export const SetlistTitle = ({className, event}) => {
                 </React.Fragment>
             );
         }
-    );
+    ) : (<>No tags</>);
 
     return (
         <div className={className}>

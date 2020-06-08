@@ -18,7 +18,6 @@ const SetlistsRouter = ({ user, showMessage, fetchEvents}) => {
             const newEvents = events.map(
                 event => ({
                     ...event,
-                    tags: event.tags.join(', '),
                     date: new Date(event.date).toLocaleDateString()
                 }));
             fetchEvents(newEvents);

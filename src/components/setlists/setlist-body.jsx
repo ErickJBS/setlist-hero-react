@@ -7,6 +7,7 @@ import { InputText } from 'primereact/inputtext';
 import { createStructuredSelector } from 'reselect';
 import { selectEvents } from '../../redux/event/events.selector';
 import { selectEvent } from '../../redux/event/events.actions';
+import TagTemplate from '../manage-bands/band/tag-template';
 
 const CustomHeader = ({setGlobalFilter}) => (
     <div >
@@ -43,7 +44,7 @@ export const SetlistsBody = ({events, selectEvent}) => {
                 <Column field="name" header="Name" sortable />
                 <Column field="date" header="Date" sortable style={{ width: '10%', textAlign: 'center' }} />
                 <Column field="location" header="Location" sortable />
-                <Column field="tags" header="Tags" sortable />
+                <Column field="tags" header="Tags" sortable body={TagTemplate}  />
         </DataTable>
     )
 }
