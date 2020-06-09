@@ -1,24 +1,28 @@
 # Setlist Hero Web
 
-Proyecto realizado para la clase de User Experience Ene-Ago 2020
+Project made for a User Experience class Jan-Aug 2020
 
-## Autores
+## Authors
 - Erick Jassiel Blanco Sausameda - 311008
 - Cristhoper Ochoa Gutierrez - 310853
 - Oscar Eduardo Ordoñez Medina - 310898
 - Jorge Luis Pizaña Martinez - 311049
 
-## Setup del proyecyo
+## Project requirements 
 
-Para instalar este proyecto se debe ejecutar
-`npm install`
+This project needs to have NodeJS and NPM installed in your computer
 
-Para que este proyecto corra con todas sus funcionalidades se debe instalar el [proyecto backend del producto](https://github.com/ErickJBS/setlist-hero-express).
 
-## Correr el proyecto localmente
+## Project setup
 
-Una vez corriendo la aplicacion de servidor se ejecuta `npm start` para correr la aplicacion localmente.
+To install this proyect you must run `npm install`
 
-## Crear build de producción
+To have this project running at it's full features you need to have the [backend project](https://github.com/ErickJBS/setlist-hero-express) running
 
-Para crear el build de producción se ejecuta `npm run build` el cual genera el contenido compilado estático en la carpeta build/
+## Run project in local
+
+Once having the application server running, run `npm start` to launch the web application.
+
+## Create production build
+
+To generate the production build run `npm run build` which generates the static content on the build/ folder
